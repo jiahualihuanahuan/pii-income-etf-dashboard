@@ -1,0 +1,50 @@
+# Hand-curated "what he said" entries. Each entry points at a video + a regex that must match a sentence in that
+# video's transcript; tools/build_seed.py copies the matching sentence VERBATIM (auto-captions, so spelling can be off)
+# and exits non-zero if a pattern does not match. `label` is one of:
+#   core, love, hold, buy, recommend, positive, top, watch, neutral, cautious, avoid, sell, obsolete
+# Newest dated entry per ticker wins in the app; older ones stay visible as history.
+videos:   # id -> short title (dates/views come from the channel index)
+  Ch6YtqThUYI: "The PII Magnificent 10 (Canada): core foundational income ETFs to buy & hold forever"
+  Pz5AOOAp1RE: "The PII Magnificent 10 (U.S.): core foundational income ETFs to buy & hold forever"
+  nCkIjZrNHeI: "HHIS: Can you hold it FOREVER?"
+  NdMtiWw-I3k: "Top High Yield Covered Call Income ETFs Canada - Monthly Update Oct 2026"
+  Alzt2J4MJzA: "Top High Yield Covered Call Income ETFs U.S. - Monthly Update Oct 2026"
+  SMSR3rdYTvw: "My $2.5M covered call ETF income portfolio: Oct 2026 update"
+  4KQZuOm2VM4: "CLSA 15% yield income ETF: my 5k/month buy strategy"
+  TOsm9y1Q_Sg: "BIGY dividend CUT! Should you sell?"
+  oA2n6If0CGI: "HHIS vs QDAY: which should you own?"
+  i40uJVBZ6qQ: "9 assets I will NEVER invest in"
+  NUovnkP0NCY: "QYLD & XYLD: time to get out?"
+  Y15x8LIq70Q: "Is QYLD dead? Lacklustre performance vs JEPQ"
+  MX71AI-c3qY: "QYLD ETF: follows the NASDAQ-100 index"
+  gj3CnR9Hm8k: "ZWC: 1 ETF is all you need"
+stances:
+  - {ticker: HHIS.TO, video: nCkIjZrNHeI, label: hold, pattern: "I'm going to hold HHIS forever"}
+  - {ticker: HDIV.TO, video: Ch6YtqThUYI, label: core, pattern: "It's the undisputed king", summary: "Named the undisputed king of his Canadian Magnificent 10 (core, buy & hold)."}
+  - {ticker: HYLD.TO, video: Ch6YtqThUYI, label: core, pattern: "HYLD is like give me the best of the S&P 500"}
+  - {ticker: USCL.TO, video: NdMtiWw-I3k, label: love, pattern: "HYLD uh USCL is still the king"}
+  - {ticker: QQCL.TO, video: NdMtiWw-I3k, label: love, pattern: "QQCL still the king"}
+  - {ticker: BMAX.TO, video: Ch6YtqThUYI, label: recommend, pattern: "I think BMAX is a great one to consider"}
+  - {ticker: ECHI.TO, video: Ch6YtqThUYI, label: core, pattern: "put Etchy as the magnificent number 10", summary: "Named number 10 of his Canadian Magnificent 10 (the caption spells ECHI as 'Etchy')."}
+  - {ticker: EQCL.TO, video: Ch6YtqThUYI, label: core, summary: "Number 7 of his Canadian Magnificent 10 (core, buy & hold).", pattern: "Number seven is EQCL"}
+  - {ticker: HDIF.TO, video: Ch6YtqThUYI, label: core, summary: "In his Canadian Magnificent 10 (the captions spell it HDEF / HIF)."}
+  - {ticker: CLSA.TO, video: 4KQZuOm2VM4, label: love, pattern: "one of my newer favorite ETFs of all time"}
+  - {ticker: BIGY.TO, video: TOsm9y1Q_Sg, label: hold, pattern: "will definitely not be selling or giving up on my"}
+  - {ticker: USHI.TO, video: NdMtiWw-I3k, label: watch, pattern: "if USHI is beating VFV, it's a good sign"}
+  - {ticker: QDAY.TO, video: oA2n6If0CGI, label: hold, pattern: "I will continue to hold both of them"}
+  - {ticker: CMCL.TO, video: i40uJVBZ6qQ, label: love, pattern: "This is why I love the CMCL"}
+  - {ticker: HBTE.TO, video: SMSR3rdYTvw, label: hold, pattern: "I still believe in Bitcoin long-term", summary: "Holds HBTE (Bitcoin position) but expects massive swings."}
+  - {ticker: MSTE.TO, video: SMSR3rdYTvw, label: hold, pattern: "In terms of my Bitcoin positions", summary: "Listed among his Bitcoin positions in his portfolio update."}
+  - {ticker: JEPI, video: Alzt2J4MJzA, label: avoid, pattern: "JEPQ's not bad, but JEPI is terrible"}
+  - {ticker: OVL, video: Pz5AOOAp1RE, label: core, pattern: "my favorite ones would be OVL and XSPI"}
+  - {ticker: XSPI, video: Pz5AOOAp1RE, label: core, pattern: "my favorite ones would be OVL and XSPI"}
+  - {ticker: XPAY, video: Alzt2J4MJzA, label: top, pattern: "OVL, XPAY, GPIX, those three, which seems to be the top three performers"}
+  - {ticker: GPIX, video: Alzt2J4MJzA, label: top, pattern: "OVL, XPAY, GPIX, those three, which seems to be the top three performers"}
+  - {ticker: QQQI, video: Alzt2J4MJzA, label: cautious, pattern: "QQQI a little bit under underwhelming here"}
+  - {ticker: TDAX, video: Pz5AOOAp1RE, label: core, pattern: "I'm a fan of leverage, so this is the first leverage covered call"}
+  - {ticker: GIAX, video: Pz5AOOAp1RE, label: watch, pattern: "I'll give you an honorable an honorable mention for global"}
+  - {ticker: QYLD, video: NUovnkP0NCY, label: sell, pattern: "you should strongly consider swapping out of it"}
+  - {ticker: XYLD, video: NUovnkP0NCY, label: sell, pattern: "you should strongly consider swapping out of it"}
+  - {ticker: QYLD, video: Y15x8LIq70Q, label: cautious, pattern: "is qld dead that is really the question"}
+  - {ticker: QYLD, video: MX71AI-c3qY, label: recommend, pattern: "really really stellar distribution"}
+  - {ticker: ZWC.TO, video: gj3CnR9Hm8k, label: recommend, pattern: "no-brainer to choose the covered call"}

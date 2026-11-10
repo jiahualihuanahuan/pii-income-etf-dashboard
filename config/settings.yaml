@@ -1,0 +1,37 @@
+# Defaults for the whole app. Edit and restart (docker compose restart backend).
+# The UI's "Save as default" writes weights/window/scope/half-life to <data>/settings.override.yaml,
+# which takes precedence over this file; the "Reset" button deletes that override.
+
+# Ranking score = weighted average of three percentile ranks (0-100). Weights are re-normalised to sum to 1.
+weights:
+  total_return: 0.45   # total return over `window`, distributions reinvested on the ex-date
+  stability: 0.30      # distribution cuts / variability + volatility + max drawdown (see below)
+  yield: 0.25          # trailing-12-month yield = distributions in last 365 days / latest price
+stability_weights:     # how the stability component mixes its four sub-scores (lower = better for all four)
+  cuts: 0.35           # sum of the size of cuts in the last 12 months (a cut = a period more than cut_threshold below the previous)
+  cv: 0.15             # variability of the monthly distribution totals (std / mean)
+  volatility: 0.25     # annualised 1-year volatility of the total-return series
+  drawdown: 0.25       # 1-year max drawdown of the total-return series
+window: 1y             # 1m | 3m | 6m | 1y | 3y | inception
+scope: all             # all = percentile vs every fund; category = percentile within the fund's category
+cut_threshold: 0.10    # a distribution period lower by more than 10% than the previous counts as a cut
+missing_return: neutral # funds too young for the chosen window: neutral (return component = 50) | renormalize | exclude
+stale_days: 10         # funds whose last price is >10 days older than the newest price are left unranked (halted/delisted)
+half_life_days: 180    # recency decay for stances and the video library: weight = 0.5 ** (age_days / half_life)
+views_transform: log   # video score = transform(views) * recency weight; log | linear | none
+
+timezone: America/Toronto
+schedule:              # APScheduler cron fields, in `timezone`
+  prices:    {day_of_week: mon-fri, hour: "9-16", minute: "0,30"}   # every 30 min during market hours
+  dividends: {hour: 2, minute: 30}                                   # nightly
+  videos:    {day_of_week: sun, hour: 3, minute: 0}                  # weekly
+videos:
+  channel_url: https://www.youtube.com/@passiveincomeinvesting
+  max_new_per_run: 25          # new videos dated / transcribed per weekly run (be gentle with YouTube)
+  fetch_transcripts: true
+fetch:
+  chunk_size: 40               # symbols per yfinance request
+  pause_seconds: 2.0
+  retries: 3
+bootstrap_on_start: true       # download full history on first start when the database is empty
+scheduler_enabled: true

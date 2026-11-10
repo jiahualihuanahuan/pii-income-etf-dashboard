@@ -1,0 +1,2480 @@
+version: 1
+generated: '2026-11-10'
+notes: 'Editable. listing = trading currency of this symbol (CAD = .TO, USD = US tickers and -U.TO). role: fund (ranked) | benchmark (fetched,
+  shown, never ranked). A benchmark must have the same listing currency as the fund. stances: his dated opinions, newest wins. Re-generate with
+  tools/build_seed.py or edit by hand.'
+categories:
+  bitcoin:
+    label: Bitcoin income
+    description: Bitcoin / Bitcoin-proxy income funds
+  blended:
+    label: All-in-one baskets (Canada)
+    description: 'Funds of funds / income-share baskets: HHIS, BMAX, EQCL, HDIF, USHI, HHIC...'
+  canada:
+    label: Canadian equity income
+    description: TSX / Canadian dividend-stock covered-call funds
+  energy:
+    label: Energy income
+    description: Oil & gas / energy covered-call funds
+  financials:
+    label: Financials & banks income
+    description: Bank and financial-sector income funds
+  global:
+    label: Global / international income
+    description: Global and non-US/Canada income funds
+  gold:
+    label: Gold, resources & commodities income
+    description: Gold-producer, materials and commodity income funds
+  nasdaq:
+    label: Nasdaq-100 & tech income
+    description: Covered-call and boosted-income funds on the Nasdaq-100 or technology
+  other:
+    label: Other income funds
+    description: Everything else he ranks
+  sector:
+    label: Other sector income
+    description: Utilities, healthcare, REITs, infrastructure and other sector funds
+  single_stock:
+    label: Single-stock / option-income
+    description: YieldMax / Defiance / Roundhill-style option income funds
+  smallcap:
+    label: Russell 2000 income
+    description: Small-cap (Russell 2000) covered-call / high-income funds
+  sp500:
+    label: S&P 500 income
+    description: Covered-call / put-write / premium-income funds on the S&P 500
+  split:
+    label: Split-share & closed-end
+    description: Split corporations and preferred-share funds
+funds:
+- ticker: HHIS.TO
+  name: Harvest Diversified High Income Shares ETF - Class A Units
+  listing: CAD
+  category: blended
+  role: fund
+  benchmark: QQC.TO
+  aliases:
+  - HHIS
+  mentions_in_ranking_videos: 272
+  stances: &id002
+  - date: '2026-10-04'
+    label: hold
+    video_id: nCkIjZrNHeI
+    video_title: 'HHIS: Can you hold it FOREVER?'
+    url: https://youtu.be/nCkIjZrNHeI?t=2008
+    quote: I'm going to hold HHIS forever.
+    t: '33:28'
+  pair: HHIS-U.TO
+- ticker: HDIV.TO
+  name: Hamilton Enhanced Canadian Covered Call ETF
+  listing: CAD
+  category: canada
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - HD
+  - HDEV
+  - HDIV
+  mentions_in_ranking_videos: 240
+  stances:
+  - date: '2026-09-13'
+    label: core
+    video_id: Ch6YtqThUYI
+    video_title: 'The PII Magnificent 10 (Canada): core foundational income ETFs to buy & hold forever'
+    url: https://youtu.be/Ch6YtqThUYI?t=417
+    summary: Named the undisputed king of his Canadian Magnificent 10 (core, buy & hold).
+    quote: It's the undisputed king.
+    t: '6:57'
+- ticker: HYLD.TO
+  name: Hamilton Enhanced U.S. Covered Call ETF
+  listing: CAD
+  category: sp500
+  role: fund
+  benchmark: VSP.TO
+  aliases:
+  - HYLD
+  mentions_in_ranking_videos: 220
+  stances: &id001
+  - date: '2026-09-13'
+    label: core
+    video_id: Ch6YtqThUYI
+    video_title: 'The PII Magnificent 10 (Canada): core foundational income ETFs to buy & hold forever'
+    url: https://youtu.be/Ch6YtqThUYI?t=2645
+    quote: So HYLD is like give me the best of the S&P 500 and kick out all the small guys.
+    t: '44:05'
+  pair: HYLD-U.TO
+- ticker: USCL.TO
+  name: Global X Enhanced S&P 500 Covered Call ETF
+  listing: CAD
+  category: sp500
+  role: fund
+  benchmark: VFV.TO
+  aliases:
+  - USCL
+  mentions_in_ranking_videos: 116
+  stances:
+  - date: '2026-10-11'
+    label: love
+    video_id: NdMtiWw-I3k
+    video_title: Top High Yield Covered Call Income ETFs Canada - Monthly Update Oct 2026
+    url: https://youtu.be/NdMtiWw-I3k?t=532
+    quote: It seems that really HYLD uh USCL is still the king.
+    t: '8:52'
+- ticker: QQCL.TO
+  name: Global X Enhanced NASDAQ-100 Covered Call ETF
+  listing: CAD
+  category: nasdaq
+  role: fund
+  benchmark: QQC.TO
+  aliases:
+  - QQCL
+  mentions_in_ranking_videos: 107
+  stances:
+  - date: '2026-10-11'
+    label: love
+    video_id: NdMtiWw-I3k
+    video_title: Top High Yield Covered Call Income ETFs Canada - Monthly Update Oct 2026
+    url: https://youtu.be/NdMtiWw-I3k?t=672
+    quote: So, there you go, QQCL still the king.
+    t: '11:12'
+- ticker: GPIX
+  name: Goldman Sachs S&P 500 Premium Income ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - GPIX
+  - GPX
+  mentions_in_ranking_videos: 101
+  stances:
+  - date: '2026-10-21'
+    label: top
+    video_id: Alzt2J4MJzA
+    video_title: Top High Yield Covered Call Income ETFs U.S. - Monthly Update Oct 2026
+    url: https://youtu.be/Alzt2J4MJzA?t=243
+    quote: This is uh you know, OVL, XPAY, GPIX, those three, which seems to be the top three performers.
+    t: '4:03'
+- ticker: HHIC.TO
+  name: Harvest Canadian High Income Shares ETF - Class A Units
+  listing: CAD
+  category: blended
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - HHIC
+  mentions_in_ranking_videos: 89
+- ticker: EQCL.TO
+  name: Global X Enhanced All-Equity Asset Allocation Covered Call ETF CAD
+  listing: CAD
+  category: blended
+  role: fund
+  benchmark: XEQT.TO
+  aliases:
+  - EQCL
+  mentions_in_ranking_videos: 71
+  stances:
+  - date: '2026-09-13'
+    label: core
+    video_id: Ch6YtqThUYI
+    video_title: 'The PII Magnificent 10 (Canada): core foundational income ETFs to buy & hold forever'
+    url: https://youtu.be/Ch6YtqThUYI?t=1399
+    summary: Number 7 of his Canadian Magnificent 10 (core, buy & hold).
+    quote: Number seven is EQCL.
+    t: '23:19'
+- ticker: TDAQ
+  name: TappAlpha Innovation 100 Growth & Daily Income ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - TDAC
+  - TDAQ
+  mentions_in_ranking_videos: 70
+- ticker: BMAX.TO
+  name: Brompton Enhanced Multi-Asset Income ETF
+  listing: CAD
+  category: blended
+  role: fund
+  benchmark: XEQT.TO
+  aliases:
+  - BMAX
+  mentions_in_ranking_videos: 69
+  stances:
+  - date: '2026-09-13'
+    label: recommend
+    video_id: Ch6YtqThUYI
+    video_title: 'The PII Magnificent 10 (Canada): core foundational income ETFs to buy & hold forever'
+    url: https://youtu.be/Ch6YtqThUYI?t=1174
+    quote: Uh, if you're what you can if you consider yourself a little bit more conservative, I think BMAX is a great one to consider.
+    t: '19:34'
+- ticker: ENCL.TO
+  name: Global X Enhanced Canadian Oil and Gas Equity Covered Call ETF CAD
+  listing: CAD
+  category: energy
+  role: fund
+  benchmark: XEG.TO
+  aliases:
+  - ENCL
+  mentions_in_ranking_videos: 69
+- ticker: QDTE
+  name: Roundhill Nasdaq-100 0DTE Covered Call ETF Strategy ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - QDT
+  - QDTE
+  mentions_in_ranking_videos: 59
+- ticker: OVL
+  name: Overlay Shares Large Cap Equity ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - OVL
+  mentions_in_ranking_videos: 58
+  stances:
+  - date: '2026-09-27'
+    label: core
+    video_id: Pz5AOOAp1RE
+    video_title: 'The PII Magnificent 10 (U.S.): core foundational income ETFs to buy & hold forever'
+    url: https://youtu.be/Pz5AOOAp1RE?t=2082
+    quote: For the S&P 500 category, I think my favorite ones would be OVL and XSPI.
+    t: '34:42'
+- ticker: QQQI
+  name: NEOS NASDAQ-100(R) High Income ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - QQQI
+  mentions_in_ranking_videos: 55
+  stances:
+  - date: '2026-10-21'
+    label: cautious
+    video_id: Alzt2J4MJzA
+    video_title: Top High Yield Covered Call Income ETFs U.S. - Monthly Update Oct 2026
+    url: https://youtu.be/Alzt2J4MJzA?t=572
+    quote: QQQI a little bit under underwhelming here.
+    t: '9:32'
+- ticker: HFIN.TO
+  name: Hamilton Enhanced Canadian Financials ETF
+  listing: CAD
+  category: financials
+  role: fund
+  benchmark: ZEB.TO
+  aliases:
+  - HFIN
+  mentions_in_ranking_videos: 53
+- ticker: GLCC.TO
+  name: Global X Gold Producer Equity Covered Call ETF
+  listing: CAD
+  category: gold
+  role: fund
+  benchmark: ZGLD.TO
+  aliases:
+  - GLCC
+  mentions_in_ranking_videos: 46
+- ticker: QMAX.TO
+  name: Hamilton Technology YIELD MAXIMIZER ETF
+  listing: CAD
+  category: nasdaq
+  role: fund
+  benchmark: QQC.TO
+  aliases:
+  - QAX
+  - QMAX
+  mentions_in_ranking_videos: 45
+  pair: QMAX-U.TO
+- ticker: ESPX.TO
+  name: Evolve S&P 500 Enhanced Yield Fund CAD Hedged
+  listing: CAD
+  category: sp500
+  role: fund
+  benchmark: VFV.TO
+  aliases:
+  - ESPX
+  mentions_in_ranking_videos: 43
+  pair: ESPX-U.TO
+- ticker: ECHI.TO
+  name: Ninepoint Enhanced CA Highshares ETF
+  listing: CAD
+  category: canada
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - ECHI
+  - ECHY
+  - ECI
+  - ETCHY
+  mentions_in_ranking_videos: 39
+  stances:
+  - date: '2026-09-13'
+    label: core
+    video_id: Ch6YtqThUYI
+    video_title: 'The PII Magnificent 10 (Canada): core foundational income ETFs to buy & hold forever'
+    url: https://youtu.be/Ch6YtqThUYI?t=2128
+    summary: Named number 10 of his Canadian Magnificent 10 (the caption spells ECHI as 'Etchy').
+    quote: I got to put Etchy as the magnificent number 10.
+    t: '35:28'
+- ticker: JEPI
+  name: JPMorgan Equity Premium Income ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - JEPI
+  mentions_in_ranking_videos: 38
+  stances:
+  - date: '2026-10-21'
+    label: avoid
+    video_id: Alzt2J4MJzA
+    video_title: Top High Yield Covered Call Income ETFs U.S. - Monthly Update Oct 2026
+    url: https://youtu.be/Alzt2J4MJzA?t=722
+    quote: JEPQ's not bad, but JEPI is terrible.
+    t: '12:02'
+- ticker: AMAX.TO
+  name: Hamilton Gold Producer YIELD MAXIMIZER ETF
+  listing: CAD
+  category: gold
+  role: fund
+  benchmark: ZGLD.TO
+  aliases:
+  - AAX
+  - AMAX
+  mentions_in_ranking_videos: 37
+- ticker: BIGY.TO
+  name: Evolve US Equity UltraYield ETF
+  listing: CAD
+  category: sp500
+  role: fund
+  benchmark: VFV.TO
+  aliases:
+  - BIGY
+  mentions_in_ranking_videos: 37
+  stances:
+  - date: '2026-08-19'
+    label: hold
+    video_id: TOsm9y1Q_Sg
+    video_title: BIGY dividend CUT! Should you sell?
+    url: https://youtu.be/TOsm9y1Q_Sg?t=665
+    quote: So, this is why I will definitely not be selling or giving up on my BIGGIE.
+    t: '11:05'
+- ticker: BKCL.TO
+  name: Global X Enhanced Equal Weight Canadian Banks Covered Call ETF
+  listing: CAD
+  category: financials
+  role: fund
+  benchmark: ZEB.TO
+  aliases:
+  - BKCL
+  mentions_in_ranking_videos: 37
+- ticker: QQQY
+  name: Defiance Nasdaq 100 Target 30 Weekly Distribution ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - QQQY
+  mentions_in_ranking_videos: 36
+- ticker: QQQY.TO
+  name: Evolve NASDAQ Technology Enhanced Yield Index Fund
+  listing: CAD
+  category: nasdaq
+  role: fund
+  benchmark: QQC.TO
+  aliases:
+  - QQQY
+  mentions_in_ranking_videos: 36
+  pair: QQQY-U.TO
+- ticker: ENCC.TO
+  name: Global X Canadian Oil and Gas Equity Covered Call ETF
+  listing: CAD
+  category: energy
+  role: fund
+  benchmark: XEG.TO
+  aliases:
+  - ENCC
+  mentions_in_ranking_videos: 35
+- ticker: HMAX.TO
+  name: Hamilton Canadian Financials YIELD MAXIMIZER ETF
+  listing: CAD
+  category: financials
+  role: fund
+  benchmark: ZEB.TO
+  aliases:
+  - HMAX
+  mentions_in_ranking_videos: 35
+- ticker: EMAX.TO
+  name: Hamilton Energy YIELD MAXIMIZER ETF
+  listing: CAD
+  category: energy
+  role: fund
+  benchmark: XEG.TO
+  aliases:
+  - EMAC
+  - EMAX
+  mentions_in_ranking_videos: 34
+- ticker: GLCL.TO
+  name: Global X Enhanced Gold Producer Equity Covered Call ETF
+  listing: CAD
+  category: gold
+  role: fund
+  benchmark: ZGLD.TO
+  aliases:
+  - GLCL
+  mentions_in_ranking_videos: 33
+- ticker: NXF.TO
+  name: CI Energy Giants Covered Call ETF Common Units (CAD Hedged)
+  listing: CAD
+  category: energy
+  role: fund
+  benchmark: XEG.TO
+  aliases:
+  - NXF
+  mentions_in_ranking_videos: 32
+  pair: NXF-U.TO
+- ticker: MSTE.TO
+  name: Harvest Strategy Inc. Enhanced High Income Shares ETF - Class A Units
+  listing: CAD
+  category: bitcoin
+  role: fund
+  aliases:
+  - MSTE
+  mentions_in_ranking_videos: 31
+  stances:
+  - date: '2026-10-28'
+    label: hold
+    video_id: SMSR3rdYTvw
+    video_title: 'My $2.5M covered call ETF income portfolio: Oct 2026 update'
+    url: https://youtu.be/SMSR3rdYTvw?t=1202
+    summary: Listed among his Bitcoin positions in his portfolio update.
+    quote: In terms of my Bitcoin positions, HBTI and MSTE.
+    t: '20:02'
+- ticker: CGXF.TO
+  name: CI Gold+ Giants Covered Call ETF Common
+  listing: CAD
+  category: gold
+  role: fund
+  benchmark: ZGLD.TO
+  aliases:
+  - CGXF
+  mentions_in_ranking_videos: 29
+  pair: CGXF-U.TO
+- ticker: HDIF.TO
+  name: Harvest Diversified Monthly Income ETF - Class A Units
+  listing: CAD
+  category: blended
+  role: fund
+  benchmark: XEQT.TO
+  aliases:
+  - HDEF
+  - HDIF
+  - HDIFF
+  - HIF
+  mentions_in_ranking_videos: 29
+  stances:
+  - date: '2026-09-13'
+    label: core
+    video_id: Ch6YtqThUYI
+    video_title: 'The PII Magnificent 10 (Canada): core foundational income ETFs to buy & hold forever'
+    url: https://youtu.be/Ch6YtqThUYI
+    summary: In his Canadian Magnificent 10 (the captions spell it HDEF / HIF).
+- ticker: HTAE.TO
+  name: Harvest Tech Leaders Enhanced Income ETF CAD Hedged
+  listing: CAD
+  category: nasdaq
+  role: fund
+  benchmark: QQC.TO
+  aliases:
+  - HTAE
+  mentions_in_ranking_videos: 29
+- ticker: HUTE.TO
+  name: Harvest Utilities Leaders Enhanced Income ETF CAD Hedged
+  listing: CAD
+  category: sector
+  role: fund
+  aliases:
+  - HUTE
+  mentions_in_ranking_videos: 29
+- ticker: CBNK.TO
+  name: Mulvihill Canadian Bank Enhanced Y ETF
+  listing: CAD
+  category: financials
+  role: fund
+  benchmark: ZEB.TO
+  aliases:
+  - CBNK
+  mentions_in_ranking_videos: 28
+- ticker: GPIQ
+  name: Goldman Sachs Nasdaq-100 Premiu
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - GPIC
+  - GPIQ
+  mentions_in_ranking_videos: 28
+- ticker: HHL.TO
+  name: Harvest Healthcare Leaders Income ETF
+  listing: CAD
+  category: sector
+  role: fund
+  aliases:
+  - HHL
+  mentions_in_ranking_videos: 28
+  pair: HHL-U.TO
+- ticker: LBS.TO
+  name: Life & Banc Split Corp.
+  listing: CAD
+  category: split
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - LBS
+  mentions_in_ranking_videos: 28
+- ticker: TXF.TO
+  name: CI Tech Giants Covered Call ETF Common Units
+  listing: CAD
+  category: nasdaq
+  role: fund
+  benchmark: QQC.TO
+  aliases:
+  - TXF
+  mentions_in_ranking_videos: 27
+  pair: TXF-U.TO
+- ticker: XSPI
+  name: NEOS Boosted S&P 500 High Income ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - XSPI
+  - XSPY
+  mentions_in_ranking_videos: 27
+  stances:
+  - date: '2026-09-27'
+    label: core
+    video_id: Pz5AOOAp1RE
+    video_title: 'The PII Magnificent 10 (U.S.): core foundational income ETFs to buy & hold forever'
+    url: https://youtu.be/Pz5AOOAp1RE?t=2082
+    quote: For the S&P 500 category, I think my favorite ones would be OVL and XSPI.
+    t: '34:42'
+- ticker: ZWT.TO
+  name: BMO Covered Call Technology ETF
+  listing: CAD
+  category: nasdaq
+  role: fund
+  benchmark: QQC.TO
+  aliases:
+  - ZWT
+  mentions_in_ranking_videos: 27
+- ticker: BALI
+  name: iShares U.S. Large Cap Premium Income Active ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - BALI
+  mentions_in_ranking_videos: 26
+- ticker: XDTE
+  name: Roundhill S&P 500 0DTE Covered Call Strategy ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - XDT
+  - XDTE
+  mentions_in_ranking_videos: 26
+- ticker: HYLD-U.TO
+  name: Hamilton Enhanced U.S. Covered Call ETF USD
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - HYLD
+  - HYLD.U
+  mentions_in_ranking_videos: 25
+  stances: *id001
+  pair: HYLD.TO
+- ticker: JEPQ
+  name: JPMorgan Nasdaq Equity Premium Income ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - JEPQ
+  mentions_in_ranking_videos: 25
+- ticker: DIVO
+  name: Amplify CWP Enhanced Dividend Income ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - DIVO
+  - DVO
+  mentions_in_ranking_videos: 24
+- ticker: HUTL.TO
+  name: Harvest Utilities Leaders Income ETF CAD Hedged
+  listing: CAD
+  category: sector
+  role: fund
+  aliases:
+  - HUTL
+  mentions_in_ranking_videos: 24
+- ticker: BCCC
+  name: Global X Bitcoin Covered Call ETF
+  listing: USD
+  category: bitcoin
+  role: fund
+  benchmark: IBIT
+  aliases:
+  - BCCC
+  mentions_in_ranking_videos: 22
+- ticker: BTCY.TO
+  name: Purpose Bitcoin Yield ETF - ETF Units
+  listing: CAD
+  category: bitcoin
+  role: fund
+  aliases:
+  - BTCY
+  mentions_in_ranking_videos: 21
+  pair: BTCY-U.TO
+- ticker: HCAL.TO
+  name: Hamilton Enhanced Canadian Bank ETF
+  listing: CAD
+  category: financials
+  role: fund
+  benchmark: ZEB.TO
+  aliases:
+  - HCAL
+  mentions_in_ranking_videos: 21
+- ticker: CNCL.TO
+  name: Global X Enhanced S&P/TSX 60 Covered Call ETF
+  listing: CAD
+  category: canada
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - CNCL
+  mentions_in_ranking_videos: 20
+- ticker: ETSX.TO
+  name: Evolve S&P/TSX 60 Enhanced Yield Fund CAD Unhedged
+  listing: CAD
+  category: canada
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - ETSX
+  mentions_in_ranking_videos: 20
+- ticker: SPYI
+  name: Neos S&P 500(R) High Income ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - SPYI
+  mentions_in_ranking_videos: 20
+- ticker: UMAX.TO
+  name: Hamilton Utilities YIELD MAXIMIZER ETF
+  listing: CAD
+  category: sector
+  role: fund
+  aliases:
+  - UMAX
+  mentions_in_ranking_videos: 20
+- ticker: ZWK.TO
+  name: BMO Covered Call US Banks ETF
+  listing: CAD
+  category: financials
+  role: fund
+  benchmark: ZEB.TO
+  aliases:
+  - ZWK
+  mentions_in_ranking_videos: 20
+- ticker: BTCI
+  name: NEOS ETF Trust - NEOS Bitcoin High Income ETF
+  listing: USD
+  category: bitcoin
+  role: fund
+  benchmark: IBIT
+  aliases:
+  - BTCI
+  mentions_in_ranking_videos: 19
+- ticker: FMAX.TO
+  name: Hamilton U.S. Financials YIELD MAXIMIZER ETF
+  listing: CAD
+  category: financials
+  role: fund
+  benchmark: ZEB.TO
+  aliases:
+  - FMAX
+  mentions_in_ranking_videos: 19
+- ticker: HPF.TO
+  name: Harvest Energy Leaders Income ETF Class A CAD Hedged
+  listing: CAD
+  category: energy
+  role: fund
+  benchmark: XEG.TO
+  aliases:
+  - HPF
+  mentions_in_ranking_videos: 19
+  pair: HPF-U.TO
+- ticker: QDVO
+  name: Amplify CWP Growth & Income ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - QDVO
+  mentions_in_ranking_videos: 19
+- ticker: SBC.TO
+  name: Brompton Split Banc Corp.
+  listing: CAD
+  category: split
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - SBC
+  mentions_in_ranking_videos: 19
+- ticker: SMAX.TO
+  name: Hamilton U.S. Equity YIELD MAXIMIZER ETF
+  listing: CAD
+  category: sp500
+  role: fund
+  benchmark: VFV.TO
+  aliases:
+  - SMAX
+  mentions_in_ranking_videos: 19
+  pair: SMAX-U.TO
+- ticker: XYLD
+  name: Global X S&P 500 Covered Call ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - XYLD
+  mentions_in_ranking_videos: 19
+  stances:
+  - date: '2025-07-19'
+    label: sell
+    video_id: NUovnkP0NCY
+    video_title: 'QYLD & XYLD: time to get out?'
+    url: https://youtu.be/NUovnkP0NCY?t=31
+    quote: And the point is really, if you're watching this and you still own QYLD or XYLD, in my personal opinion, I think you should strongly
+      consider swapping out of it for another similar income oriented covered call fund.
+    t: 0:31
+- ticker: HHLE.TO
+  name: Harvest Healthcare Leaders Enhanced Income ETF - Class A Units
+  listing: CAD
+  category: sector
+  role: fund
+  aliases:
+  - HHLE
+  mentions_in_ranking_videos: 18
+- ticker: QQCI.TO
+  name: Invesco NASDAQ 100 Income Advantage ETF
+  listing: CAD
+  category: nasdaq
+  role: fund
+  benchmark: QQC.TO
+  aliases:
+  - QQCI
+  mentions_in_ranking_videos: 18
+  pair: QQCI-U.TO
+- ticker: TDAX
+  name: TDAQ Lift ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - TDACS
+  - TDAX
+  mentions_in_ranking_videos: 18
+  stances:
+  - date: '2026-09-27'
+    label: core
+    video_id: Pz5AOOAp1RE
+    video_title: 'The PII Magnificent 10 (U.S.): core foundational income ETFs to buy & hold forever'
+    url: https://youtu.be/Pz5AOOAp1RE?t=813
+    quote: You guys know that I'm a fan of leverage, so this is the first leverage covered call ETF on the list.
+    t: '13:33'
+- ticker: ZWB.TO
+  name: BMO Covered Call Canadian Banks ETF
+  listing: CAD
+  category: financials
+  role: fund
+  benchmark: ZEB.TO
+  aliases:
+  - ZWB
+  mentions_in_ranking_videos: 18
+  pair: ZWB-U.TO
+- ticker: ZWU.TO
+  name: BMO Covered Call Utilities ETF
+  listing: CAD
+  category: sector
+  role: fund
+  aliases:
+  - ZWU
+  mentions_in_ranking_videos: 18
+- ticker: HGY.TO
+  name: Global X Gold Yield ETF Common
+  listing: CAD
+  category: gold
+  role: fund
+  benchmark: ZGLD.TO
+  aliases:
+  - HGY
+  mentions_in_ranking_videos: 17
+- ticker: XQQI
+  name: NEOS Boosted Nasdaq-100 High Income ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - XQQI
+  mentions_in_ranking_videos: 17
+- ticker: BALQ
+  name: iShares Nasdaq Premium Income Active ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - BALQ
+  mentions_in_ranking_videos: 16
+- ticker: CNCC.TO
+  name: Global X Canadian S&P/TSX 60 Covered Call ETF
+  listing: CAD
+  category: canada
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - CNCC
+  mentions_in_ranking_videos: 16
+- ticker: IVVW
+  name: iShares S&P 500 BuyWrite ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - IVVW
+  mentions_in_ranking_videos: 16
+- ticker: USCC.TO
+  name: Global X S&P 500 Covered Call ETF
+  listing: CAD
+  category: sp500
+  role: fund
+  benchmark: VFV.TO
+  aliases:
+  - USCC
+  mentions_in_ranking_videos: 16
+  pair: USCC-U.TO
+- ticker: LMAX.TO
+  name: Hamilton Healthcare YIELD MAXIMIZER ETF
+  listing: CAD
+  category: sector
+  role: fund
+  aliases:
+  - LMAX
+  mentions_in_ranking_videos: 15
+- ticker: MSTY.TO
+  name: Harvest Strategy Inc. High Income Shares ETF
+  listing: CAD
+  category: bitcoin
+  role: fund
+  aliases:
+  - MSTY
+  mentions_in_ranking_videos: 15
+- ticker: OILY.TO
+  name: Evolve Canadian Energy Enhanced Yield Index Fund ETF (CAD-Unhedged)
+  listing: CAD
+  category: energy
+  role: fund
+  benchmark: XEG.TO
+  aliases:
+  - OILY
+  mentions_in_ranking_videos: 15
+- ticker: PAYG.TO
+  name: Brompton Global Equity HighPay ETF
+  listing: CAD
+  category: blended
+  role: fund
+  benchmark: XEQT.TO
+  aliases:
+  - PAGG
+  - PAYG
+  mentions_in_ranking_videos: 15
+- ticker: BANK.TO
+  name: Evolve Canadian Banks and Lifecos Enhanced Yield Index Fund
+  listing: CAD
+  category: financials
+  role: fund
+  benchmark: ZEB.TO
+  aliases:
+  - BANK
+  mentions_in_ranking_videos: 14
+- ticker: GDV.TO
+  name: Global Dividend Growth Split Corp.
+  listing: CAD
+  category: split
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - GDV
+  mentions_in_ranking_videos: 14
+- ticker: HUTS.TO
+  name: Hamilton Enhanced Utilities ETF
+  listing: CAD
+  category: sector
+  role: fund
+  aliases:
+  - HUTS
+  mentions_in_ranking_videos: 14
+- ticker: QYLD
+  name: Global X NASDAQ 100 Covered Call ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - QYLD
+  mentions_in_ranking_videos: 14
+  stances:
+  - date: '2025-07-19'
+    label: sell
+    video_id: NUovnkP0NCY
+    video_title: 'QYLD & XYLD: time to get out?'
+    url: https://youtu.be/NUovnkP0NCY?t=31
+    quote: And the point is really, if you're watching this and you still own QYLD or XYLD, in my personal opinion, I think you should strongly
+      consider swapping out of it for another similar income oriented covered call fund.
+    t: 0:31
+  - date: '2024-01-08'
+    label: cautious
+    video_id: Y15x8LIq70Q
+    video_title: Is QYLD dead? Lacklustre performance vs JEPQ
+    url: https://youtu.be/Y15x8LIq70Q?t=38
+    quote: 7 right now as I'm filming this billion so is qld dead that is really the question I'm going to try to answer in this video so we'll
+      revisit Q's option strategy we'll compare to Jeet q and other similar NASDAQ 100 cover called ETFs because now Q does no longer have the
+      Monopoly right it used to be…
+    t: 0:38
+  - date: '2021-01-15'
+    label: recommend
+    video_id: MX71AI-c3qY
+    video_title: 'QYLD ETF: follows the NASDAQ-100 index'
+    url: https://youtu.be/MX71AI-c3qY?t=371
+    quote: 75 so really really stellar distribution uh yield here really amazing so you could always read up on this page yourself to do a little
+      bit more uh research you could click on the fact sheet here which will bring you to this document uh which covers a lot of the stuff that
+      i already mentioned but if…
+    t: '6:11'
+- ticker: SEPI
+  name: Shelton Equity Premium Income ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - SEPI
+  mentions_in_ranking_videos: 14
+- ticker: TSYX
+  name: TSPY Lift ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - TSYX
+  mentions_in_ranking_videos: 14
+- ticker: YSPY
+  name: GraniteShares YieldBOOST SPY ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - YSPY
+  mentions_in_ranking_videos: 13
+- ticker: AIPI
+  name: REX AI Equity Premium Income ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - AIPI
+  mentions_in_ranking_videos: 12
+- ticker: SPLT.TO
+  name: Brompton Split Corp. PreferredShareETF
+  listing: CAD
+  category: split
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - SPLT
+  mentions_in_ranking_videos: 12
+  pair: SPLT-U.TO
+- ticker: XBCI
+  name: NEOS Boosted Bitcoin High Income ETF
+  listing: USD
+  category: bitcoin
+  role: fund
+  benchmark: IBIT
+  aliases:
+  - XBCI
+  mentions_in_ranking_videos: 12
+- ticker: ZWC.TO
+  name: BMO CA High Dividend Covered Call ETF
+  listing: CAD
+  category: canada
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - ZWC
+  mentions_in_ranking_videos: 12
+  stances:
+  - date: '2020-12-13'
+    label: recommend
+    video_id: gj3CnR9Hm8k
+    video_title: 'ZWC: 1 ETF is all you need'
+    url: https://youtu.be/gj3CnR9Hm8k?t=717
+    quote: 58 four point whatever against eight in my opinion it's really no uh a no-brainer to choose the covered call one and if we look at
+      what's in this one the vanguard you could see the top 10 holdings here which makes up 72 percent of the fund which is the bulk and you could
+      see basically the same…
+    t: '11:57'
+- ticker: HEQL.TO
+  name: Global X Enhanced All-Equity Asset Allocation ETF CAD
+  listing: CAD
+  category: blended
+  role: fund
+  benchmark: XEQT.TO
+  aliases:
+  - HEQL
+  mentions_in_ranking_videos: 11
+- ticker: CANY.TO
+  name: Evolve Canadian Equity UltraYield ETF
+  listing: CAD
+  category: canada
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - CANY
+  mentions_in_ranking_videos: 10
+- ticker: CMCL.TO
+  name: Global X Enhanced All-In-One Commodity Producers Equity Covered Call ETF
+  listing: CAD
+  category: gold
+  role: fund
+  benchmark: ZGLD.TO
+  aliases:
+  - CMCL
+  mentions_in_ranking_videos: 10
+  stances:
+  - date: '2026-10-14'
+    label: love
+    video_id: i40uJVBZ6qQ
+    video_title: 9 assets I will NEVER invest in
+    url: https://youtu.be/i40uJVBZ6qQ?t=1521
+    quote: This is why I love the CMCL all-in-one commodity producer ETF.
+    t: '25:21'
+- ticker: HTA.TO
+  name: Harvest Tech Leaders Income ETF Class A CAD Hedged
+  listing: CAD
+  category: nasdaq
+  role: fund
+  benchmark: QQC.TO
+  aliases:
+  - HTA
+  mentions_in_ranking_videos: 10
+  pair: HTA-U.TO
+- ticker: SIXY.TO
+  name: Evolve Big Six Canadian Banks UltraYield Index ETF
+  listing: CAD
+  category: financials
+  role: fund
+  benchmark: ZEB.TO
+  aliases:
+  - SIXY
+  mentions_in_ranking_videos: 10
+- ticker: UTES.TO
+  name: Evolve Canadian Utilities Enhanced Yield Index Fund ETF
+  listing: CAD
+  category: sector
+  role: fund
+  aliases:
+  - UTES
+  - YUTS
+  mentions_in_ranking_videos: 10
+- ticker: XLKI
+  name: State Street Technology Select Sector SPDR Premium Income ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - XLKI
+  mentions_in_ranking_videos: 10
+- ticker: YBTC
+  name: Roundhill Bitcoin Covered Call Strategy ETF
+  listing: USD
+  category: bitcoin
+  role: fund
+  benchmark: IBIT
+  aliases:
+  - YBTC
+  mentions_in_ranking_videos: 10
+- ticker: ZWQT.TO
+  name: BMO Global Enhanced Income Fund Series ETF
+  listing: CAD
+  category: global
+  role: fund
+  benchmark: XEQT.TO
+  aliases:
+  - ZWQT
+  mentions_in_ranking_videos: 10
+- ticker: FEPI
+  name: REX FANG & Innovation Equity Premium Income ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - FEPI
+  mentions_in_ranking_videos: 9
+- ticker: GIAX
+  name: Nicholas Global Equity and Income ETF
+  listing: USD
+  category: global
+  role: fund
+  benchmark: VT
+  aliases:
+  - GIAX
+  mentions_in_ranking_videos: 9
+  stances:
+  - date: '2026-09-27'
+    label: watch
+    video_id: Pz5AOOAp1RE
+    video_title: 'The PII Magnificent 10 (U.S.): core foundational income ETFs to buy & hold forever'
+    url: https://youtu.be/Pz5AOOAp1RE?t=2060
+    quote: Um before we get into like why I don't have global, and I'll give you an honorable an honorable mention for global, it's GIAX.
+    t: '34:20'
+- ticker: HHIH.TO
+  name: Harvest High Income Equity Shares ETF Class A Units
+  listing: CAD
+  category: blended
+  role: fund
+  benchmark: XEQT.TO
+  aliases:
+  - HHIH
+  mentions_in_ranking_videos: 9
+- ticker: HPYB.TO
+  name: Harvest Premium Yield Canadian Bank ETF Class A
+  listing: CAD
+  category: financials
+  role: fund
+  benchmark: ZEB.TO
+  aliases:
+  - HPYB
+  mentions_in_ranking_videos: 9
+- ticker: LFGY
+  name: YieldMax Crypto Industry & Tech Portfolio Option Income ETF
+  listing: USD
+  category: bitcoin
+  role: fund
+  benchmark: IBIT
+  aliases:
+  - LFGY
+  mentions_in_ranking_videos: 9
+- ticker: QQQT
+  name: Defiance Nasdaq 100 Income Target ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - QQQT
+  mentions_in_ranking_videos: 9
+- ticker: RS.TO
+  name: Real Estate Split Corp.
+  listing: CAD
+  category: split
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - RS
+  mentions_in_ranking_videos: 9
+- ticker: SDTY
+  name: YieldMax S&P 500 0DTE Covered Call Strategy ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - SDTY
+  mentions_in_ranking_videos: 9
+- ticker: ZWG.TO
+  name: BMO Global High Dividend Covered Call ETF
+  listing: CAD
+  category: global
+  role: fund
+  benchmark: XEQT.TO
+  aliases:
+  - ZWG
+  mentions_in_ranking_videos: 9
+- ticker: FYEE
+  name: Fidelity Yield Enhanced Equity ETF
+  listing: USD
+  category: other
+  role: fund
+  aliases:
+  - FYEE
+  mentions_in_ranking_videos: 8
+- ticker: QQA
+  name: Invesco QQQ Income Advantage ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - QQA
+  mentions_in_ranking_videos: 8
+- ticker: QYLG
+  name: Global X Nasdaq 100 Covered Call & Growth ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - QYLG
+  mentions_in_ranking_videos: 8
+- ticker: USHI.TO
+  name: Ninepoint Enhanced U.S. Equity HighShares ETF CAD Inc
+  listing: CAD
+  category: blended
+  role: fund
+  benchmark: XEQT.TO
+  aliases:
+  - USHI
+  mentions_in_ranking_videos: 8
+  stances:
+  - date: '2026-10-11'
+    label: watch
+    video_id: NdMtiWw-I3k
+    video_title: Top High Yield Covered Call Income ETFs Canada - Monthly Update Oct 2026
+    url: https://youtu.be/NdMtiWw-I3k?t=947
+    quote: So for me, if USHI is beating VFV, it's a good sign, and so far it is.
+    t: '15:47'
+- ticker: XYLG
+  name: Global X S&P 500 Covered Call & Growth ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - XYLG
+  mentions_in_ranking_videos: 8
+- ticker: BASE.TO
+  name: Evolve Global Materials & Mining Enhanced Yield Index ETF
+  listing: CAD
+  category: gold
+  role: fund
+  benchmark: ZGLD.TO
+  aliases:
+  - BASE
+  mentions_in_ranking_videos: 7
+- ticker: BGIE.TO
+  name: Brompton Global Infrastructure ETF
+  listing: CAD
+  category: sector
+  role: fund
+  aliases:
+  - BGIE
+  mentions_in_ranking_videos: 7
+- ticker: FTN.TO
+  name: Financial 15 Split Corp.
+  listing: CAD
+  category: split
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - FTN
+  mentions_in_ranking_videos: 7
+- ticker: TYLG
+  name: Global X Information Technology Covered Call & Growth ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - TYLG
+  mentions_in_ranking_videos: 7
+- ticker: XPAY
+  name: Roundhill S&P 500 Target 20 Managed Distribution ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - XPAY
+  mentions_in_ranking_videos: 7
+  stances:
+  - date: '2026-10-21'
+    label: top
+    video_id: Alzt2J4MJzA
+    video_title: Top High Yield Covered Call Income ETFs U.S. - Monthly Update Oct 2026
+    url: https://youtu.be/Alzt2J4MJzA?t=243
+    quote: This is uh you know, OVL, XPAY, GPIX, those three, which seems to be the top three performers.
+    t: '4:03'
+- ticker: BKCC.TO
+  name: Global X Equal Weight Canadian Bank Covered Call ETF
+  listing: CAD
+  category: financials
+  role: fund
+  benchmark: ZEB.TO
+  aliases:
+  - BKCC
+  mentions_in_ranking_videos: 6
+- ticker: DFN.TO
+  name: Dividend 15 Split Corp.
+  listing: CAD
+  category: split
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - DFN
+  mentions_in_ranking_videos: 6
+- ticker: DGS.TO
+  name: Dividend Growth Split Corporation
+  listing: CAD
+  category: split
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - DGS
+  mentions_in_ranking_videos: 6
+- ticker: HVOI.TO
+  name: Harvest Low Volatility Canadian Equity Income ETF - Class A Units
+  listing: CAD
+  category: canada
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - HVOI
+  mentions_in_ranking_videos: 6
+- ticker: QQCC.TO
+  name: Global X NASDAQ-100 Covered Call ETF
+  listing: CAD
+  category: nasdaq
+  role: fund
+  benchmark: QQC.TO
+  aliases:
+  - QQCC
+  mentions_in_ranking_videos: 6
+  pair: QQCC-U.TO
+- ticker: TQQY
+  name: GraniteShares YieldBOOST QQQ ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - TQQY
+  mentions_in_ranking_videos: 6
+- ticker: CMCC.TO
+  name: Global X All-In-One Commodity Producers Equity Covered Call ETF
+  listing: CAD
+  category: gold
+  role: fund
+  benchmark: ZGLD.TO
+  aliases:
+  - CMCC
+  mentions_in_ranking_videos: 5
+- ticker: HHII.TO
+  name: Harvest International High Income Shares ETF - Class A Units
+  listing: CAD
+  category: blended
+  role: fund
+  benchmark: XEQT.TO
+  aliases:
+  - HHII
+  mentions_in_ranking_videos: 5
+- ticker: HHIS-U.TO
+  name: Harvest Diversified High Income ETF U
+  listing: USD
+  category: blended
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - HHIS
+  - HHIS.U
+  mentions_in_ranking_videos: 5
+  stances: *id002
+  pair: HHIS.TO
+- ticker: HIG.TO
+  name: Brompton Global Healthcare Income & Growth ETF
+  listing: CAD
+  category: sector
+  role: fund
+  aliases:
+  - HIG
+  mentions_in_ranking_videos: 5
+  pair: HIG-U.TO
+- ticker: IWMI
+  name: NEOS Russell 2000 High Income ETF
+  listing: USD
+  category: smallcap
+  role: fund
+  aliases:
+  - IWMI
+  mentions_in_ranking_videos: 5
+- ticker: LCS.TO
+  name: Brompton Lifeco Split Corporation A
+  listing: CAD
+  category: split
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - LCS
+  mentions_in_ranking_videos: 5
+- ticker: BITA
+  name: iShares Bitcoin Premium Income ETF
+  listing: USD
+  category: bitcoin
+  role: fund
+  benchmark: IBIT
+  aliases:
+  - BITA
+  mentions_in_ranking_videos: 4
+- ticker: EASY.TO
+  name: Evolve All-in-One UltraYield ETF
+  listing: CAD
+  category: blended
+  role: fund
+  benchmark: XEQT.TO
+  aliases:
+  - EASY
+  mentions_in_ranking_videos: 4
+- ticker: FFN.TO
+  name: North American Financial 15 Split Corp.
+  listing: CAD
+  category: split
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - FFN
+  mentions_in_ranking_videos: 4
+- ticker: FHI.TO
+  name: CI Health Care Giants Covered Call ETF Common Units
+  listing: CAD
+  category: sector
+  role: fund
+  aliases:
+  - FHI
+  mentions_in_ranking_videos: 4
+  pair: FHI-U.TO
+- ticker: HBIE.TO
+  name: Harvest Balanced Income & Growth Enhanced ETF Class A
+  listing: CAD
+  category: blended
+  role: fund
+  benchmark: XEQT.TO
+  aliases:
+  - HBIE
+  mentions_in_ranking_videos: 4
+- ticker: HFN.TO
+  name: HAMILTON CHAMPIONS Canadian Financials Index ETF
+  listing: CAD
+  category: financials
+  role: fund
+  benchmark: ZEB.TO
+  aliases:
+  - HFN
+  mentions_in_ranking_videos: 4
+- ticker: HLIF.TO
+  name: Harvest Canadian Dividend Leaders Income ETF
+  listing: CAD
+  category: canada
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - HLIF
+  mentions_in_ranking_videos: 4
+- ticker: HPYG.TO
+  name: Harvest Premium Yield Gold ETF - Class A Units
+  listing: CAD
+  category: gold
+  role: fund
+  benchmark: ZGLD.TO
+  aliases:
+  - HPYG
+  mentions_in_ranking_videos: 4
+- ticker: IQQQ
+  name: ProShares Nasdaq-100 High Income ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - IQQQ
+  mentions_in_ranking_videos: 4
+- ticker: KGLD
+  name: Kurv Gold Enhanced Income ETF
+  listing: USD
+  category: gold
+  role: fund
+  benchmark: GLD
+  aliases:
+  - KGLD
+  mentions_in_ranking_videos: 4
+- ticker: PAYU.TO
+  name: Brompton U.S. Equity HighPay ETF
+  listing: CAD
+  category: blended
+  role: fund
+  benchmark: XEQT.TO
+  aliases:
+  - PAYU
+  mentions_in_ranking_videos: 4
+- ticker: SPIN
+  name: State Street US Equity Premium Income ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - SPIN
+  mentions_in_ranking_videos: 4
+- ticker: TLF.TO
+  name: Brompton Tech Leaders Income ETF
+  listing: CAD
+  category: nasdaq
+  role: fund
+  benchmark: QQC.TO
+  aliases:
+  - TLF
+  mentions_in_ranking_videos: 4
+  pair: TLF-U.TO
+- ticker: XBTY
+  name: GraniteShares YieldBOOST Bitcoin ETF
+  listing: USD
+  category: bitcoin
+  role: fund
+  benchmark: IBIT
+  aliases:
+  - XBTY
+  mentions_in_ranking_videos: 4
+- ticker: ZWH.TO
+  name: BMO US High Dividend Covered Call ETF
+  listing: CAD
+  category: sp500
+  role: fund
+  benchmark: VFV.TO
+  aliases:
+  - ZWH
+  mentions_in_ranking_videos: 4
+  pair: ZWH-U.TO
+- ticker: AGCC.TO
+  name: Global X Silver Covered Call ETF
+  listing: CAD
+  category: gold
+  role: fund
+  benchmark: ZGLD.TO
+  aliases:
+  - AGCC
+  mentions_in_ranking_videos: 3
+- ticker: BPI
+  name: Grayscale Bitcoin Premium Income ETF
+  listing: USD
+  category: bitcoin
+  role: fund
+  benchmark: IBIT
+  aliases:
+  - BPI
+  mentions_in_ranking_videos: 3
+- ticker: CLSA.TO
+  name: Brompton Split Corp. Enhanced Equity Income ETF
+  listing: CAD
+  category: split
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - CLSA
+  mentions_in_ranking_videos: 3
+  stances:
+  - date: '2026-11-09'
+    label: love
+    video_id: 4KQZuOm2VM4
+    video_title: 'CLSA 15% yield income ETF: my 5k/month buy strategy'
+    url: https://youtu.be/4KQZuOm2VM4?t=13
+    quote: And in today's video, I want to talk about one of my newer favorite ETFs of all time, the Brompton Split Corp Enhanced Equity Income
+      ETF.
+    t: 0:13
+- ticker: HBF.TO
+  name: Harvest US Equity Leaders Income ETF Class A CAD Hedged
+  listing: CAD
+  category: sp500
+  role: fund
+  benchmark: VFV.TO
+  aliases:
+  - HBF
+  mentions_in_ranking_videos: 3
+  pair: HBF-U.TO
+- ticker: ITWO
+  name: ProShares Russell 2000 High Income ETF
+  listing: USD
+  category: smallcap
+  role: fund
+  aliases:
+  - ITWO
+  mentions_in_ranking_videos: 3
+- ticker: NPS.TO
+  name: Canadian Large Cap Leaders Split Corp.
+  listing: CAD
+  category: split
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - NPS
+  mentions_in_ranking_videos: 3
+- ticker: QDTY
+  name: YieldMax Nasdaq 100 0DTE Covered Call Strategy ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - QDTY
+  mentions_in_ranking_videos: 3
+- ticker: RDTE
+  name: Roundhill Russell 2000 0DTE Covered Call Strategy ETF
+  listing: USD
+  category: smallcap
+  role: fund
+  aliases:
+  - RDTE
+  mentions_in_ranking_videos: 3
+- ticker: RYLD
+  name: Global X Russell 2000 Covered Call ETF
+  listing: USD
+  category: smallcap
+  role: fund
+  aliases:
+  - RYLD
+  mentions_in_ranking_videos: 3
+- ticker: SPYT
+  name: 'Defiance S&P 500 Target Income '
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - SPYT
+  mentions_in_ranking_videos: 3
+- ticker: YMAX
+  name: YieldMax Universe Fund of Option Income ETFs
+  listing: USD
+  category: single_stock
+  role: fund
+  aliases:
+  - YMAX
+  mentions_in_ranking_videos: 3
+- ticker: ZWHC.TO
+  name: BMO Covered Call Health Care ETF
+  listing: CAD
+  category: sector
+  role: fund
+  aliases:
+  - ZWHC
+  mentions_in_ranking_videos: 3
+- ticker: CIC.TO
+  name: CI Canadian Banks Covered Call Income Class ETF
+  listing: CAD
+  category: financials
+  role: fund
+  benchmark: ZEB.TO
+  aliases:
+  - CIC
+  mentions_in_ranking_videos: 2
+- ticker: CMVP.TO
+  name: HAMILTON CHAMPIONS Canadian Dividend Index ETF Class E Units
+  listing: CAD
+  category: canada
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - CMVP
+  mentions_in_ranking_videos: 2
+- ticker: CUTL.TO
+  name: CI Utilities Giants Covered Call ETF (Hedged Common Units)
+  listing: CAD
+  category: sector
+  role: fund
+  aliases:
+  - CUTL
+  mentions_in_ranking_videos: 2
+- ticker: CWIN.TO
+  name: HAMILTON CHAMPIONS Enhanced Canadian Dividend ETF Class E Units
+  listing: CAD
+  category: canada
+  role: fund
+  benchmark: XIU.TO
+  aliases:
+  - CWIN
+  mentions_in_ranking_videos: 2
+- ticker: EGGY
+  name: NestYield Dynamic Income ETF
+  listing: USD
+  category: other
+  role: fund
+  aliases:
+  - EGGY
+  mentions_in_ranking_videos: 2
+- ticker: EQCC.TO
+  name: Global X All-Equity Asset Allocation Covered Call ETF
+  listing: CAD
+  category: blended
+  role: fund
+  benchmark: XEQT.TO
+  aliases:
+  - EQCC
+  mentions_in_ranking_videos: 2
+- ticker: HGR.TO
+  name: Harvest REIT Leaders Income ETF CAD Hedged
+  listing: CAD
+  category: sector
+  role: fund
+  aliases:
+  - HGR
+  mentions_in_ranking_videos: 2
+- ticker: KQQQ
+  name: Kurv Technology Titans Select ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - KQQQ
+  mentions_in_ranking_videos: 2
+- ticker: NRGI.TO
+  name: Ninepoint Energy Income Fund Series ETF
+  listing: CAD
+  category: energy
+  role: fund
+  benchmark: XEG.TO
+  aliases:
+  - NRGI
+  mentions_in_ranking_videos: 2
+- ticker: RDTY
+  name: YieldMax Russell 2000 0DTE Covered Call Strategy ETF
+  listing: USD
+  category: smallcap
+  role: fund
+  aliases:
+  - RDTY
+  mentions_in_ranking_videos: 2
+- ticker: WDTE
+  name: Defiance S&P 500 Target 30 Weekly Distribution ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - WDTE
+  mentions_in_ranking_videos: 2
+- ticker: BTCY-U.TO
+  name: Purpose Bitcoin Yield ETF - USD ETF Non-Currency Hedged Units
+  listing: USD
+  category: bitcoin
+  role: fund
+  benchmark: IBIT
+  aliases:
+  - BTCY
+  pair: BTCY.TO
+  mentions_in_ranking_videos: 0
+- ticker: CGXF-U.TO
+  name: CI Gold+ Giants Covered Call ETF Common Units (USD Hedged)
+  listing: USD
+  category: gold
+  role: fund
+  benchmark: GLD
+  aliases:
+  - CGXF
+  pair: CGXF.TO
+  mentions_in_ranking_videos: 0
+- ticker: ESPX-U.TO
+  name: Evolve S&P 500 Enhanced Yield Fund USD Unhedged
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - ESPX
+  pair: ESPX.TO
+  mentions_in_ranking_videos: 0
+- ticker: FHI-U.TO
+  name: CI Health Care Giants Covered Call ETF Common Units (USD Hedged)
+  listing: USD
+  category: sector
+  role: fund
+  aliases:
+  - FHI
+  pair: FHI.TO
+  mentions_in_ranking_videos: 0
+- ticker: HBF-U.TO
+  name: Harvest US Equity Leaders Income ETF Class U USD
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - HBF
+  pair: HBF.TO
+  mentions_in_ranking_videos: 0
+- ticker: HHL-U.TO
+  name: Harvest Healthcare Leaders Income ETF Class U Units
+  listing: USD
+  category: sector
+  role: fund
+  aliases:
+  - HHL
+  pair: HHL.TO
+  mentions_in_ranking_videos: 0
+- ticker: HIG-U.TO
+  name: Brompton Global Healthcare Income & Growth ETF
+  listing: USD
+  category: sector
+  role: fund
+  aliases:
+  - HIG
+  pair: HIG.TO
+  mentions_in_ranking_videos: 0
+- ticker: HPF-U.TO
+  name: Harvest Energy Leaders Income ETF Class U USD
+  listing: USD
+  category: energy
+  role: fund
+  aliases:
+  - HPF
+  pair: HPF.TO
+  mentions_in_ranking_videos: 0
+- ticker: HTA-U.TO
+  name: Harvest Tech Leaders Income ETF U USD
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - HTA
+  pair: HTA.TO
+  mentions_in_ranking_videos: 0
+- ticker: NXF-U.TO
+  name: CI Energy Giants Covered Call ETF Common Units (USD Hedged)
+  listing: USD
+  category: energy
+  role: fund
+  aliases:
+  - NXF
+  pair: NXF.TO
+  mentions_in_ranking_videos: 0
+- ticker: QMAX-U.TO
+  name: Hamilton Technology YIELD MAXIMIZER ETF USD
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - QAX
+  - QMAX
+  pair: QMAX.TO
+  mentions_in_ranking_videos: 0
+- ticker: QQCC-U.TO
+  name: GLOBAL X NASDAQ 100 CVRD CALL E
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - QQCC
+  pair: QQCC.TO
+  mentions_in_ranking_videos: 0
+- ticker: QQCI-U.TO
+  name: Invesco NASDAQ 100 Income Advantage ETF USD Inc
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - QQCI
+  pair: QQCI.TO
+  mentions_in_ranking_videos: 0
+- ticker: QQQY-U.TO
+  name: Evolve NASDAQ Technology Enhanced Yield Index Fund USD Unhedged
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - QQQY
+  pair: QQQY.TO
+  mentions_in_ranking_videos: 0
+- ticker: SMAX-U.TO
+  name: Hamilton US Equity YIELD MAXIMIZER ETF USD
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - SMAX
+  pair: SMAX.TO
+  mentions_in_ranking_videos: 0
+- ticker: SPLT-U.TO
+  name: Brompton Split Corp. Preferred Share ETF USD
+  listing: USD
+  category: split
+  role: fund
+  aliases:
+  - SPLT
+  pair: SPLT.TO
+  mentions_in_ranking_videos: 0
+- ticker: TLF-U.TO
+  name: Brompton Tech Leaders Income ETF
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - TLF
+  pair: TLF.TO
+  mentions_in_ranking_videos: 0
+- ticker: TSPY
+  name: TappAlpha SPY Growth & Daily Income ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - T-SPY
+  - TSPY
+  mentions_in_ranking_videos: 0
+- ticker: TXF-U.TO
+  name: CI Tech Giants Covered Call ETF Common Units (USD Hedged)
+  listing: USD
+  category: nasdaq
+  role: fund
+  benchmark: QQQ
+  aliases:
+  - TXF
+  pair: TXF.TO
+  mentions_in_ranking_videos: 0
+- ticker: USCC-U.TO
+  name: Global X S&P 500 Covered Call ETF
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - USCC
+  pair: USCC.TO
+  mentions_in_ranking_videos: 0
+- ticker: ZWB-U.TO
+  name: BMO Covered Call Canadian Banks ETF (USD Units)
+  listing: USD
+  category: financials
+  role: fund
+  benchmark: XLK
+  aliases:
+  - ZWB
+  pair: ZWB.TO
+  mentions_in_ranking_videos: 0
+- ticker: ZWH-U.TO
+  name: BMO US High Dividend Covered Call ETF USD
+  listing: USD
+  category: sp500
+  role: fund
+  benchmark: VOO
+  aliases:
+  - ZWH
+  pair: ZWH.TO
+  mentions_in_ranking_videos: 0
+- ticker: QQC.TO
+  name: CI Invesco NASDAQ 100 Index ETF CAD Units
+  listing: CAD
+  category: nasdaq
+  role: benchmark
+  aliases:
+  - QQC
+  - QQQC
+  mentions_in_ranking_videos: 67
+- ticker: VFV.TO
+  name: Vanguard S&P 500 Index ETF
+  listing: CAD
+  category: sp500
+  role: benchmark
+  aliases:
+  - VFV
+  mentions_in_ranking_videos: 62
+- ticker: VSP.TO
+  name: Vanguard S&P 500 Index ETF (CAD-hedged)
+  listing: CAD
+  category: sp500
+  role: benchmark
+  aliases:
+  - VSP
+  - VSSP
+  mentions_in_ranking_videos: 55
+- ticker: QQQ
+  name: Invesco QQQ Trust
+  listing: USD
+  category: other
+  role: benchmark
+  aliases:
+  - QQQ
+  mentions_in_ranking_videos: 43
+- ticker: XEQT.TO
+  name: iShares Core Equity ETF Portfolio
+  listing: CAD
+  category: other
+  role: benchmark
+  aliases:
+  - XEQT
+  mentions_in_ranking_videos: 34
+- ticker: QQQM
+  name: Invesco NASDAQ 100 ETF
+  listing: USD
+  category: nasdaq
+  role: benchmark
+  aliases:
+  - QQQM
+  mentions_in_ranking_videos: 33
+- ticker: VOO
+  name: Vanguard S&P 500 ETF
+  listing: USD
+  category: sp500
+  role: benchmark
+  aliases:
+  - VOO
+  mentions_in_ranking_videos: 33
+- ticker: SPY
+  name: State Street SPDR S&P 500 ETF Trust
+  listing: USD
+  category: sp500
+  role: benchmark
+  aliases:
+  - SPY
+  mentions_in_ranking_videos: 31
+- ticker: IBIT
+  name: iShares Bitcoin Trust ETF
+  listing: USD
+  category: bitcoin
+  role: benchmark
+  aliases:
+  - IBIT
+  mentions_in_ranking_videos: 29
+- ticker: VDY.TO
+  name: Vanguard FTSE Canadian High Dividend Yield Index ETF
+  listing: CAD
+  category: canada
+  role: benchmark
+  aliases:
+  - VDY
+  mentions_in_ranking_videos: 20
+- ticker: USSL.TO
+  name: Global X Enhanced S&P 500 Index ETF
+  listing: CAD
+  category: sp500
+  role: benchmark
+  aliases:
+  - USSL
+  mentions_in_ranking_videos: 15
+- ticker: ZEB.TO
+  name: BMO Equal Weight Banks Index ETF
+  listing: CAD
+  category: financials
+  role: benchmark
+  aliases:
+  - ZEB
+  mentions_in_ranking_videos: 15
+- ticker: BTC
+  name: Grayscale Bitcoin Mini Trust ETF
+  listing: USD
+  category: bitcoin
+  role: benchmark
+  aliases:
+  - BTC
+  mentions_in_ranking_videos: 12
+- ticker: GLD
+  name: SPDR Gold Shares
+  listing: USD
+  category: gold
+  role: benchmark
+  aliases:
+  - GLD
+  mentions_in_ranking_videos: 12
+- ticker: XIU.TO
+  name: iShares S&P/TSX 60 Index ETF
+  listing: CAD
+  category: canada
+  role: benchmark
+  aliases:
+  - XIU
+  mentions_in_ranking_videos: 12
+- ticker: VO
+  name: Vanguard Morningstar Mid-Cap ETF
+  listing: USD
+  category: other
+  role: benchmark
+  aliases:
+  - VO
+  mentions_in_ranking_videos: 10
+- ticker: XLK
+  name: State Street Technology Select Sector SPDR ETF
+  listing: USD
+  category: nasdaq
+  role: benchmark
+  aliases:
+  - XLK
+  mentions_in_ranking_videos: 10
+- ticker: HEQT.TO
+  name: Global X All-Equity Asset Allocation ETF
+  listing: CAD
+  category: blended
+  role: benchmark
+  aliases:
+  - HEQT
+  mentions_in_ranking_videos: 9
+- ticker: XFN.TO
+  name: iShares S&P/TSX Capped Financials Index ETF
+  listing: CAD
+  category: financials
+  role: benchmark
+  aliases:
+  - XFN
+  mentions_in_ranking_videos: 9
+- ticker: GDX
+  name: VanEck Gold Miners ETF
+  listing: USD
+  category: gold
+  role: benchmark
+  aliases:
+  - GDX
+  mentions_in_ranking_videos: 8
+- ticker: ZGLD.TO
+  name: BMO Gold Bullion ETF (CAD Units)
+  listing: CAD
+  category: gold
+  role: benchmark
+  aliases:
+  - ZGLD
+  mentions_in_ranking_videos: 8
+- ticker: GLDX.TO
+  name: Global X Gold Producers Index ETF
+  listing: CAD
+  category: gold
+  role: benchmark
+  aliases:
+  - GLDX
+  mentions_in_ranking_videos: 7
+- ticker: QQQL.TO
+  name: Global X Enhanced Nasdaq-100 Index ETF
+  listing: CAD
+  category: nasdaq
+  role: benchmark
+  aliases:
+  - QQQL
+  mentions_in_ranking_videos: 7
+- ticker: VEQT.TO
+  name: Vanguard All-Equity ETF Portfolio
+  listing: CAD
+  category: blended
+  role: benchmark
+  aliases:
+  - VEQT
+  mentions_in_ranking_videos: 7
+- ticker: ZCN.TO
+  name: BMO S&P/TSX Capped Composite Index ETF
+  listing: CAD
+  category: canada
+  role: benchmark
+  aliases:
+  - ZCN
+  mentions_in_ranking_videos: 7
+- ticker: REIT.TO
+  name: Global X Equal Weight Canadian REITs Index ETF
+  listing: CAD
+  category: sector
+  role: benchmark
+  aliases:
+  - REIT
+  mentions_in_ranking_videos: 6
+- ticker: RSP
+  name: Invesco S&P 500 Equal Weight ETF
+  listing: USD
+  category: sp500
+  role: benchmark
+  aliases:
+  - RSP
+  mentions_in_ranking_videos: 6
+- ticker: CANL.TO
+  name: Global X Enhanced S&P/TSX 60 Index ETF
+  listing: CAD
+  category: canada
+  role: benchmark
+  aliases:
+  - CANL
+  mentions_in_ranking_videos: 5
+- ticker: SCHD
+  name: Schwab U.S. Dividend Equity ETF
+  listing: USD
+  category: sp500
+  role: benchmark
+  aliases:
+  - SCHD
+  mentions_in_ranking_videos: 5
+- ticker: VGT
+  name: Vanguard Information Technology Index Fund ETF Shares
+  listing: USD
+  category: nasdaq
+  role: benchmark
+  aliases:
+  - VGT
+  mentions_in_ranking_videos: 5
+- ticker: XRE.TO
+  name: iShares S&P/TSX Capped REIT Index ETF
+  listing: CAD
+  category: sector
+  role: benchmark
+  aliases:
+  - XRE
+  mentions_in_ranking_videos: 5
+- ticker: ZUT.TO
+  name: BMO Equal Weight Utilities Index ETF
+  listing: CAD
+  category: sector
+  role: benchmark
+  aliases:
+  - ZUT
+  mentions_in_ranking_videos: 5
+- ticker: DAX
+  name: Global X DAX Germany ETF
+  listing: USD
+  category: other
+  role: benchmark
+  aliases:
+  - DAX
+  mentions_in_ranking_videos: 4
+- ticker: VTWO
+  name: Vanguard Russell 2000 Index Fund ETF Shares
+  listing: USD
+  category: smallcap
+  role: benchmark
+  aliases:
+  - VTWO
+  mentions_in_ranking_videos: 4
+- ticker: CNDX.TO
+  name: Global X S&P/TSX 60 Index ETF
+  listing: CAD
+  category: canada
+  role: benchmark
+  aliases:
+  - CNDX
+  mentions_in_ranking_videos: 3
+- ticker: NRGY.TO
+  name: Global X Equal Weight Canadian Oil & Gas Index ETF
+  listing: CAD
+  category: energy
+  role: benchmark
+  aliases:
+  - NRGY
+  mentions_in_ranking_videos: 3
+- ticker: VT
+  name: Vanguard Total World Stock Index Fund ETF Shares
+  listing: USD
+  category: global
+  role: benchmark
+  aliases:
+  - VT
+  mentions_in_ranking_videos: 3
+- ticker: ZRE.TO
+  name: BMO Equal Weight REITs Index ETF
+  listing: CAD
+  category: sector
+  role: benchmark
+  aliases:
+  - ZRE
+  mentions_in_ranking_videos: 3
+- ticker: IVV
+  name: iShares Core S&P 500 ETF
+  listing: USD
+  category: sp500
+  role: benchmark
+  aliases:
+  - IVV
+  mentions_in_ranking_videos: 2
+- ticker: XEG.TO
+  name: iShares S&P/TSX Capped Energy Index ETF
+  listing: CAD
+  category: energy
+  role: benchmark
+  aliases:
+  - XEG
+  mentions_in_ranking_videos: 2
+- ticker: XLV
+  name: State Street Health Care Select Sector SPDR ETF
+  listing: USD
+  category: sector
+  role: benchmark
+  aliases:
+  - XLV
+  mentions_in_ranking_videos: 2
+- ticker: ZBK.TO
+  name: BMO Equal Weight US Banks Index ETF
+  listing: CAD
+  category: financials
+  role: benchmark
+  aliases:
+  - ZBK
+  mentions_in_ranking_videos: 2
+- ticker: ZDV.TO
+  name: BMO Canadian Dividend ETF
+  listing: CAD
+  category: canada
+  role: benchmark
+  aliases:
+  - ZDV
+  mentions_in_ranking_videos: 2
+- ticker: ZLB.TO
+  name: BMO Low Volatility Canadian Equity ETF
+  listing: CAD
+  category: canada
+  role: benchmark
+  aliases:
+  - ZLB
+  mentions_in_ranking_videos: 2
+excluded:
+- token: YMAG
+  mentions: 34
+  reason: 'Ambiguous: Yahoo YMAG is the US YieldMax Mag 7 fund, he mostly discusses a Canadian fund of that name; see unresolved'
+- token: MSTR
+  mentions: 28
+  reason: Strategy Inc single stock, not a fund
+- token: TDOC
+  mentions: 23
+  reason: Caption variant of TDAC/TDAX; Yahoo TDOC.TO is a different fund (TD healthcare index)
+- token: AGGY
+  mentions: 17
+  reason: WisdomTree bond fund on Yahoo does not match his AGGY (an HHIS-like US fund); see unresolved
+- token: BK
+  mentions: 14
+  reason: Canadian Banc Corp Class A (single split share), kept only if listed as split share
+- token: MST
+  mentions: 14
+  reason: Defiance MSTR leveraged ETF; unclear if it is the fund he discusses (caption noise for 'MSTE/MSTY')
+- token: AMA
+  mentions: 10
+  reason: Defiance 2x single-stock ETF, caption noise
+- token: FEP
+  mentions: 10
+  reason: First Trust Europe AlphaDEX; caption noise
+- token: USD
+  mentions: 9
+  reason: ProShares Ultra Semiconductors; caption noise for 'USD'
+- token: HBTC
+  mentions: 5
+  reason: Yahoo HBTC is Fortuna Hedged Bitcoin (different issuer); his HBTC/HBTI/HBTE are Harvest Bitcoin funds, not found on Yahoo
+unresolved:
+- token: QDAY
+  mentions: 30
+  ca_votes: 30
+  us_votes: 0
+  note: Hamilton 'DayMax' ETF (Nasdaq-tech version); new in 2025-26; no Yahoo Finance symbol found
+  his_latest_stance:
+    date: '2026-07-29'
+    label: hold
+    video_id: oA2n6If0CGI
+    video_title: 'HHIS vs QDAY: which should you own?'
+    url: https://youtu.be/oA2n6If0CGI?t=1074
+    quote: I will continue to hold both of them.
+    t: '17:54'
+- token: BCCL
+  mentions: 26
+  ca_votes: 26
+  us_votes: 0
+  note: Global X Bitcoin covered-call leveraged; no Yahoo Finance symbol found
+- token: HBTE
+  mentions: 19
+  ca_votes: 18
+  us_votes: 1
+  note: Harvest Bitcoin enhanced income ETF (his Bitcoin position); no Yahoo Finance symbol found
+  his_latest_stance:
+    date: '2026-10-28'
+    label: hold
+    video_id: SMSR3rdYTvw
+    video_title: 'My $2.5M covered call ETF income portfolio: Oct 2026 update'
+    url: https://youtu.be/SMSR3rdYTvw?t=1953
+    summary: Holds HBTE (Bitcoin position) but expects massive swings.
+    quote: I still believe in Bitcoin long-term.
+    t: '32:33'
+- token: HBIX
+  mentions: 16
+  ca_votes: 16
+  us_votes: 0
+  note: possible Harvest bitcoin fund; caption variant; no Yahoo Finance symbol found
+- token: CBCC
+  mentions: 16
+  ca_votes: 16
+  us_votes: 0
+  note: possible Global X / CI covered-call fund; no Yahoo Finance symbol found
+- token: CDAY
+  mentions: 7
+  ca_votes: 7
+  us_votes: 0
+  note: Hamilton 'DayMax' ETF (Champions Canadian dividend + 25% S&P 500 leg); no Yahoo Finance symbol found
+- token: HPIX
+  mentions: 7
+  ca_votes: 7
+  us_votes: 0
+  note: possible Harvest/Hamilton fund; caption variant; no Yahoo Finance symbol found
+- token: BDAY
+  mentions: 6
+  ca_votes: 6
+  us_votes: 0
+  note: Hamilton 'DayMax' ETF; no Yahoo Finance symbol found
+- token: SDAY
+  mentions: 3
+  ca_votes: 3
+  us_votes: 0
+  note: Hamilton 'DayMax' ETF; no Yahoo Finance symbol found
+- token: HBTI
+  mentions: 0
+  ca_votes: 0
+  us_votes: 0
+  note: Harvest Bitcoin Leaders income ETF; no Yahoo Finance symbol found
+- token: AGGY
+  mentions: 17
+  ca_votes: 0
+  us_votes: 17
+  note: US HHIS-like fund he names in his US Magnificent 10; Yahoo AGGY is a different fund
+- token: YMAG
+  mentions: 34
+  ca_votes: 34
+  us_votes: 0
+  note: Canadian 'YMAG' he discusses is not identifiable on Yahoo; US YMAG is a different fund

@@ -1,0 +1,10 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+apscheduler>=3.10,<4
+pyyaml>=6
+pandas>=2.2
+numpy>=1.26
+yfinance>=0.2.50
+yt-dlp>=2024.8.6
+youtube-transcript-api>=1.0
+tzdata

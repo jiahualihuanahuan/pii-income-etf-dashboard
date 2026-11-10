@@ -1,0 +1,132 @@
+# Inputs for tools/build_seed.py. Edit, then re-run the tool; or edit config/tickers.yaml directly after generating.
+
+# spoken/caption variants -> canonical token (auto-captions mangle tickers)
+alias:
+  HD: HDIV
+  HDEV: HDIV
+  HDEF: HDIF
+  HIF: HDIF
+  HDIFF: HDIF
+  YUTS: UTES
+  TDAC: TDAQ
+  TDACS: TDAX
+  QDT: QDTE
+  GPX: GPIX
+  GPIC: GPIQ
+  ECHY: ECHI
+  ETCHY: ECHI
+  "HYLD.U": "HYLD.U"
+  "HHIS.U": "HHIS.U"
+  AAX: AMAX
+  QAX: QMAX
+  EMAC: EMAX
+  ECI: ECHI
+  QQQC: QQC
+  VSSP: VSP
+  DVO: DIVO
+  PAGG: PAYG
+  XDT: XDTE
+  XSPY: XSPI     # caption variant of XSPI (boosted SPYI)
+
+# tokens whose plain US symbol is a different fund or a company: force the exact Yahoo symbol
+force:
+  USCL: USCL.TO
+  BIGY: BIGY.TO
+  SMAX: SMAX.TO
+  AMAX: AMAX.TO
+  HEQT: HEQT.TO
+  EASY: EASY.TO
+  FTN: FTN.TO
+  REIT: REIT.TO
+  JEPI: JEPI
+  JEPQ: JEPQ
+  TDAQ: TDAQ
+  TDAX: TDAX
+  TSYX: TSYX
+
+# tokens that exist as BOTH a Canadian and a US fund that he discusses -> keep both symbols
+both:
+  QQQY: ["QQQY.TO", "QQQY"]
+
+# never rank these: wrong instrument, single stock, or not a fund he ranks. reason is shown in tickers.yaml
+exclude:
+  HD: "Home Depot (caption mangling of HDIV)"
+  MSTR: "Strategy Inc single stock, not a fund"
+  TDOC: "Caption variant of TDAC/TDAX; Yahoo TDOC.TO is a different fund (TD healthcare index)"
+  DIV: "Unrelated US ETF (SuperDividend); caption noise"
+  AMA: "Defiance 2x single-stock ETF, caption noise"
+  USD: "ProShares Ultra Semiconductors; caption noise for 'USD'"
+  GE: "General Electric, caption noise"
+  PG: "Procter & Gamble, caption noise"
+  HCA: "Hamilton bank mean-reversion fund; caption noise for HCAL"
+  HBTC: "Yahoo HBTC is Fortuna Hedged Bitcoin (different issuer); his HBTC/HBTI/HBTE are Harvest Bitcoin funds, not found on Yahoo"
+  HBIT: "Hedgeye Bitcoin ETF, not the Harvest fund he discusses"
+  FEP: "First Trust Europe AlphaDEX; caption noise"
+  IBID: "iBonds TIPS ETF; caption noise"
+  INTL: "Main International ETF; caption noise"
+  AGGY: "WisdomTree bond fund on Yahoo does not match his AGGY (an HHIS-like US fund); see unresolved"
+  MST: "Defiance MSTR leveraged ETF; unclear if it is the fund he discusses (caption noise for 'MSTE/MSTY')"
+  YMAG: "Ambiguous: Yahoo YMAG is the US YieldMax Mag 7 fund, he mostly discusses a Canadian fund of that name; see unresolved"
+  SPXE: "Yahoo SPXE.TO is Harvest SpaceX fund; caption noise for 'S&P ex-energy'"
+  HEE: "caption noise"
+  GIPIX: "Goldman Sachs mutual fund; his 'GIPIX' is the GPIX ETF spoken aloud"
+  USOI: "UBS ETRACS ETN; only 3 caption mentions with unclear context (not one of the funds he ranks)"
+  BK: "Canadian Banc Corp Class A (single split share), kept only if listed as split share"
+
+# real index/broad funds he uses as comparison points: fetched, shown, never ranked (role: benchmark)
+benchmarks: [VFV.TO, VSP.TO, QQC.TO, XEQT.TO, VEQT.TO, XIU.TO, ZCN.TO, ZEB.TO, XFN.TO, XEG.TO, XRE.TO, ZUT.TO, ZRE.TO, ZLB.TO, ZDV.TO, VDY.TO,
+             ZGLD.TO, GLDX.TO, REIT.TO, HEQT.TO, VOO, SPY, IVV, QQQ, QQQM, RSP, IBIT, GLD, GDX, SCHD, VO, VTWO, VT, VGT, XLK, XLV, DAX, BTC, ZBK.TO,
+             QQQL.TO, USSL.TO, CANL.TO, CNDX.TO, NRGY.TO]
+
+# the benchmark each category is compared against, per listing currency (a benchmark must share the fund's currency)
+benchmark_map:
+  CAD: {sp500: VFV.TO, nasdaq: QQC.TO, canada: XIU.TO, financials: ZEB.TO, energy: XEG.TO, gold: ZGLD.TO, blended: XEQT.TO, global: XEQT.TO, reit: XRE.TO, split: XIU.TO, hedged_us: VSP.TO}
+  USD: {sp500: VOO, nasdaq: QQQ, canada: null, financials: XLK, energy: null, gold: GLD, blended: VOO, global: VT, bitcoin: IBIT, split: null}
+# explicit per-ticker benchmark overrides (his own pairings)
+benchmark_override:
+  HHIS.TO: QQC.TO
+  HHIC.TO: XIU.TO
+  HYLD.TO: VSP.TO
+  "HYLD-U.TO": VOO
+  USCL.TO: VFV.TO
+  QQCL.TO: QQC.TO
+  QQQY: QQQ
+  "HHIS-U.TO": QQQ
+
+# fund-like names accepted although Yahoo calls them EQUITY (split-share corporations, closed-end style)
+allow_equity_name_regex: "Split|Banc Corp|Dividend Growth Split|Financial 15|Preferred ?Share"
+
+# real funds he discusses that Yahoo does not know (or could not be matched). Shown on the status page and kept in tickers.yaml.
+unresolved_notes:
+  QDAY: "Hamilton 'DayMax' ETF (Nasdaq-tech version); new in 2025-26; no Yahoo Finance symbol found"
+  CDAY: "Hamilton 'DayMax' ETF (Champions Canadian dividend + 25% S&P 500 leg); no Yahoo Finance symbol found"
+  BDAY: "Hamilton 'DayMax' ETF; no Yahoo Finance symbol found"
+  SDAY: "Hamilton 'DayMax' ETF; no Yahoo Finance symbol found"
+  HBTE: "Harvest Bitcoin enhanced income ETF (his Bitcoin position); no Yahoo Finance symbol found"
+  HBTI: "Harvest Bitcoin Leaders income ETF; no Yahoo Finance symbol found"
+  HPIX: "possible Harvest/Hamilton fund; caption variant; no Yahoo Finance symbol found"
+  HBIX: "possible Harvest bitcoin fund; caption variant; no Yahoo Finance symbol found"
+  BCCL: "Global X Bitcoin covered-call leveraged; no Yahoo Finance symbol found"
+  CBCC: "possible Global X / CI covered-call fund; no Yahoo Finance symbol found"
+  AGGY: "US HHIS-like fund he names in his US Magnificent 10; Yahoo AGGY is a different fund"
+  YMAG: "Canadian 'YMAG' he discusses is not identifiable on Yahoo; US YMAG is a different fund"
+
+# categories the name-based rules cannot infer
+category_override:
+  HYLD.TO: sp500
+  "HYLD-U.TO": sp500
+  TDAX: nasdaq
+  TSYX: sp500
+  QQQY: nasdaq
+  QQA: nasdaq
+  QDTY: nasdaq
+  SDTY: sp500
+  YSPY: sp500
+  TQQY: nasdaq
+  DIVO: sp500
+  QDVO: sp500
+  TDAQ: nasdaq
+  TSPY: sp500
+
+# symbols to include even if no caption token resolved to them ("T-SPY" is spoken, so no clean token exists)
+extra: [TSPY]

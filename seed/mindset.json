@@ -1,0 +1,202 @@
+{
+ "commandments_title": "The 10 Commandments of PII (passive income investing)",
+ "commandments_source": {
+  "video_id": "EHo26DVXdN8",
+  "title": "The 10 Commandments of PII",
+  "date": "2026-07-19",
+  "t_s": 0,
+  "url": "https://youtu.be/EHo26DVXdN8"
+ },
+ "commandments": [
+  {
+   "n": 1,
+   "title": "Thou shalt understand your assets",
+   "text": "A fund is a wrapper / middleman; you own the stocks, bonds, commodities or Bitcoin inside it. Know what they are and where they are listed."
+  },
+  {
+   "n": 2,
+   "title": "Thou shalt understand the income strategy",
+   "text": "How much of the portfolio is written with covered calls, how far out of the money, any puts, any leverage? Providers differ (Hamilton, Harvest, BMO, Evolve, Brompton)."
+  },
+  {
+   "n": 3,
+   "title": "Thou shalt understand distributions and yield",
+   "text": "Distributions come out of the fund's NAV (price drops by the payment on the ex-date). Yield is just an annual percentage and can change; it is not a GIC."
+  },
+  {
+   "n": 4,
+   "title": "Thou shalt not ignore total returns",
+   "text": "Judge performance by total return (price plus reinvested distributions), never by the price chart alone; use sensible benchmarks and identical start/end dates."
+  },
+  {
+   "n": 5,
+   "title": "Thou shalt invest responsibly",
+   "text": "Protect registered accounts (TFSA/RRSP/Roth/401k), keep risky bets (single stocks, Bitcoin) in a cash account, avoid crazy leverage, diversify, and set position limits."
+  },
+  {
+   "n": 6,
+   "title": "Thou shalt never sell",
+   "text": "Buy and hold: the distributions mean you never have to sell. Exceptions: streamlining, rebalancing, tax or strategy changes."
+  },
+  {
+   "n": 7,
+   "title": "Thou shalt remain focused on the long term",
+   "text": "Ignore day-to-day noise and headlines; do not panic-sell. Never selling (6) makes this easier."
+  },
+  {
+   "n": 8,
+   "title": "Thou shalt reinvest accordingly",
+   "text": "Reinvest as much as suits your situation (even retirees: consider 5-15%); it grows income over time."
+  },
+  {
+   "n": 9,
+   "title": "Thou shalt not judge other investing strategies",
+   "text": "Dividend, index, growth and covered-call investing all work for the people who stick with them."
+  },
+  {
+   "n": 10,
+   "title": "Thou shalt cherish life and be generous",
+   "text": "Enjoy the cash flow and be generous; money is a tool."
+  }
+ ],
+ "checklist_title": "Covered call ETF checklist (his order of importance)",
+ "checklist_source": {
+  "video_id": "pN64hQYlfmE",
+  "title": "Covered Call ETF Checklist: how I evaluate covered call ETFs",
+  "date": "2026-04-11",
+  "t_s": 0,
+  "url": "https://youtu.be/pN64hQYlfmE"
+ },
+ "checklist": [
+  {
+   "title": "Holdings",
+   "text": "What is actually inside? Peel the onion for funds-of-funds (e.g. USCL holds 125% of USCC; HYLD holds SMAX; BMAX and HHIS hold baskets). \"By far the most important thing.\""
+  },
+  {
+   "title": "Covered-call strategy",
+   "text": "Maximum share of the portfolio written (Canada: nobody goes over 50%) and moneyness of the calls: how much upside am I giving up? More calls = more yield but less upside."
+  },
+  {
+   "title": "Total return",
+   "text": "Compare against a matching benchmark with the same start date (USCL vs VFV, QQCL vs QQC, HYLD vs CAD-hedged S&P 500 VSP, HHIS vs Nasdaq-100). Expectation: with at most 50% coverage and modest leverage, total return should be similar to the underlying."
+  },
+  {
+   "title": "Yield",
+   "text": "Useful to know how much income to expect, but \"not super important\" next to total return; it changes with the price and distributions can change."
+  },
+  {
+   "title": "Management fee",
+   "text": "Look at the management fee, not the MER (the MER of leveraged funds includes borrowing costs). Canadian covered-call ETFs typically 0.40-0.85%, mid-range about 0.65%."
+  },
+  {
+   "title": "Currency hedging / listing",
+   "text": "Is the fund hedged to the Canadian dollar (HYLD is; QQCL, HHIS and QDAY are not)? He typically prefers unhedged because he believes more in the USD; HYLD.U is the USD-unhedged listing. Pick the benchmark accordingly (HYLD vs CAD-hedged VSP)."
+  }
+ ],
+ "principles": [
+  {
+   "title": "Yield is not return",
+   "text": "A 40% yield with a price down 30% is a 10% total return.",
+   "source": {
+    "video_id": "EHo26DVXdN8",
+    "title": "The 10 Commandments of PII",
+    "date": "2026-07-19",
+    "t_s": 0,
+    "url": "https://youtu.be/EHo26DVXdN8"
+   }
+  },
+  {
+   "title": "Track your own total return",
+   "text": "Include income in your portfolio total return (e.g. Snowball Analytics) or red price charts will mislead you even when you are green after 3 years of DRIP.",
+   "source": {
+    "video_id": "I_Bcq2SLUCc",
+    "title": "2 Income Investing MISTAKES to AVOID! Total Return Tracking",
+    "date": "2026-09-05",
+    "t_s": 0,
+    "url": "https://youtu.be/I_Bcq2SLUCc"
+   }
+  },
+  {
+   "title": "Hold through crashes",
+   "text": "Not having to sell is the defence; buying in a flash crash is worth more than buying on the way up.",
+   "source": {
+    "video_id": "CviDRq3NMRg",
+    "title": "Portfolio Down 165k in ONE DAY?! Am I worried?",
+    "date": "2026-11-07",
+    "t_s": 832,
+    "url": "https://youtu.be/CviDRq3NMRg?t=796"
+   }
+  },
+  {
+   "title": "Modest leverage",
+   "text": "He favours lightly leveraged (about 25%) covered-call ETFs, not 2x/3x daily-reset products.",
+   "source": {
+    "video_id": "Q7XhRPQ43Ac",
+    "title": "Do Leveraged ETFs Make Sense for Long Term Income Investors?",
+    "date": "2026-05-01",
+    "t_s": 0,
+    "url": "https://youtu.be/Q7XhRPQ43Ac"
+   }
+  },
+  {
+   "title": "Position limits",
+   "text": "His examples: no more than 20% in HHIS, about 5% in Bitcoin, about 5% in gold.",
+   "source": {
+    "video_id": "EHo26DVXdN8",
+    "title": "The 10 Commandments of PII",
+    "date": "2026-07-19",
+    "t_s": 0,
+    "url": "https://youtu.be/EHo26DVXdN8"
+   }
+  },
+  {
+   "title": "Hold-forever funds",
+   "text": "On HHIS: \"I'm going to hold HHIS forever\" (it is close to holding its underlying ~20 stocks with covered calls and 25% leverage).",
+   "source": {
+    "video_id": "nCkIjZrNHeI",
+    "title": "HHIS: Can you Hold it FOREVER?",
+    "date": "2026-10-04",
+    "t_s": 2008,
+    "url": "https://youtu.be/nCkIjZrNHeI?t=2008"
+   }
+  }
+ ],
+ "total_return": {
+  "text": "Total return = price change plus all distributions, ideally reinvested (DRIP). He says to use the same start and end date for every fund in a comparison, compare to an apples-to-apples benchmark, and never use price return alone (\"that's for amateurs\").",
+  "tools": [
+   "stockanalysis.com (total return comparison)",
+   "Canada Stock Channel (ETF total return comparison)",
+   "fund manager websites (only after 1 year)",
+   "Snowball Analytics (own portfolio)"
+  ],
+  "source": {
+   "video_id": "EHo26DVXdN8",
+   "title": "The 10 Commandments of PII",
+   "date": "2026-07-19",
+   "t_s": 481,
+   "url": "https://youtu.be/EHo26DVXdN8?t=560"
+  }
+ },
+ "never_invest": {
+  "title": "9 things he says he would never invest in (his opinion, 2026-10-14)",
+  "items": [
+   "Fixed income / bonds (\"toxic\")",
+   "The Russell 2000 index",
+   "Defensive-sector ETFs (healthcare, staples, utilities) - \"the best defence is not having to sell\"",
+   "Physical real estate as an investment",
+   "Pure international (developed ex-US, e.g. MSCI EAFE) stocks",
+   "Pure emerging-market stocks",
+   "Spot / physical commodities (prefers commodity producers, e.g. CMCL)",
+   "Private credit: BDCs, private mortgages, fixed-income closed-end funds",
+   "Cash and cash ETFs (\"cash is trash\")"
+  ],
+  "source": {
+   "video_id": "i40uJVBZ6qQ",
+   "title": "9 Assets I Will NEVER Invest In",
+   "date": "2026-10-14",
+   "t_s": 0,
+   "url": "https://youtu.be/i40uJVBZ6qQ"
+  }
+ },
+ "note": "Paraphrased from auto-captions of the cited videos; check each source for his exact wording. Not financial advice."
+}

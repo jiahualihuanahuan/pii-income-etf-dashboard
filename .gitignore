@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+frontend/dist/
+data/
+.env
+*.db
+*.db-wal
+*.db-shm
+agent-tools/
