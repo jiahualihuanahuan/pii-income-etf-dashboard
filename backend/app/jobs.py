@@ -6,7 +6,7 @@ import threading
 from datetime import datetime
 from typing import Callable, Optional
 
-from . import db, seed, videos
+from . import db, seed, service, videos
 from .config import load_settings, load_universe
 from .fetch import YahooProvider
 
@@ -56,6 +56,10 @@ def run_job(name: str, provider=None, **kw) -> dict:
             res = videos.sync(s, load_universe(), **kw)
         else:
             raise ValueError(f"unknown job {name}")
+        try:  # warm the metrics cache so the first page load after a refresh is fast
+            service.all_metrics(load_universe(), s["cut_threshold"])
+        except Exception:
+            log.exception("cache warm-up failed")
         db.finish_job(jid, "ok", str(res))
         return res
     except Exception as e:  # keep the scheduler alive
