@@ -37,6 +37,10 @@ REIT_RX = re.compile(r"real estate|\bREITS?\b|\bproperty\b|properties", re.I)
 BULLION_RX = re.compile(r"\b(gold|silver|platinum|palladium|bitcoin|ether(eum)?)\b.*\b(trust|shares|etf)\b", re.I)
 NAME_FIXES = {  # typos in issuer files that stop an exact-name match (explicit, reviewed)
     "BROMPTON GLOBAL INFRASTUCTURE ETF": "BGIE",
+    "NINEPOINT ROYAL BANK HIGHSHARES ETF": "RYHI",  # ECHI's file uses the short names; the funds are the "RY-Linked" / "TD-Linked" HighShares ETFs
+    "NINEPOINT TD HIGHSHARES ETF": "TDHI",
+    "GLOBAL X LITHIUM & BATTERY T": "LIT",  # CMCC's page cuts the name at 28 characters; LIT is the only Global X fund starting "Lithium & Battery T"
+    "GLOBAL X EQUAL WEIGHT CANADIAN PIPELINES INDEX ETF": "PPLN",  # the fund's own statements say "Pipelines", the index file "Pipeline"
 }
 SEC = {"INFORMATION TECHNOLOGY": "Information Technology", "IT": "Information Technology", "TECHNOLOGY": "Information Technology",
        "COMMUNICATION": "Communication Services", "COMMUNICATION SERVICES": "Communication Services", "TELECOMMUNICATION SERVICES": "Communication Services",
@@ -128,6 +132,8 @@ class XrayIndex:
             if r["name"]:
                 self.name2fund[norm_name(r["name"])].add(key)
         self.sector_by_key: dict = {}
+        self.sector_by_name: dict[str, str] = {}
+        self.ids_by_name: dict[str, set] = defaultdict(set)  # normalised security name -> {(ticker, isin, cusip)} seen in the index
 
     def rows_for(self, wanted: set[str]) -> dict[str, list[list[str]]]:
         """One pass over every part; returns rows of the wanted fund keys and learns a sector per security id."""
@@ -142,7 +148,11 @@ class XrayIndex:
                     if k in wanted:
                         out[k].append(r)
                     if learn and len(r) > 10:
+                        if r[3] and (r[5] or r[6]) and not FUND_NAME_RX.search(r[3]):
+                            self.ids_by_name[norm_name(r[3])].add((r[4].strip() if r[4] not in ("-", "N/A") else "", r[5].strip(), r[6].strip()))
                         sec = norm_sector(r[8])
+                        if sec and r[3] and not FUND_NAME_RX.search(r[3]):
+                            self.sector_by_name.setdefault(norm_name(r[3]), sec)
                         if sec:
                             sid = sec_id(r[5], r[6]) or ((r[4].upper() + "|" + (r[14] if len(r) > 14 else "")) if r[4] and r[4] not in ("-", "N/A") else None)
                             if sid:
@@ -316,17 +326,141 @@ def build_fund(idx: XrayIndex, key: str, rows: list[list[str]]) -> dict:
             "holdings": items}
 
 
-def build_bundle(xray_dir: Path, tickers_yaml: Path, log=print) -> dict:
+def name_keys(name: str) -> list[str]:
+    """Normalised-name keys to look a reported security name up in the index (also without a trailing share class / ADR)."""
+    n = norm_name(re.sub(r",?\s*(ADR|GDR|Sponsored ADR)\b", "", name or "", flags=re.I))
+    out = [n]
+    n2 = re.sub(r"\s+[A-Z]$", "", n)
+    if n2 != n:
+        out.append(n2)
+    return out
+
+
+def load_supplements(sdir: Optional[Path]) -> dict[str, dict]:
+    """Fund holdings taken from fund financial statements / proxies: config/holdings_supplements/*.json ({"funds": {fund_key: entry}})."""
+    out: dict[str, dict] = {}
+    if not sdir or not Path(sdir).is_dir():
+        return out
+    for f in sorted(Path(sdir).glob("*.json")):
+        d = json.loads(f.read_text(encoding="utf-8"))
+        for k, e in (d.get("funds") or {}).items():
+            e["_file"] = f.name
+            out[k] = e
+    return out
+
+
+def make_tail_proxy(idx: XrayIndex, key: str, e: dict, rows: dict[str, list]) -> dict:
+    """Top-N fund whose full list is not published: keep the published top-N rows, fill the rest from a sister fund tracking the same index.
+
+    The filler rows are the proxy fund's securities that are not already in the published list, rescaled to fill the undisclosed rest of NAV.
+    ``name_aliases`` maps a published name to the proxy fund's spelling (explicit, reviewed) so nothing is counted twice.
+    """
+    base = build_fund(idx, key, rows[key])
+    prox = build_fund(idx, e["proxy_of"], rows[e["proxy_of"]])
+    alias = {norm_name(a): norm_name(b) for a, b in (e.get("name_aliases") or {}).items()}
+    have = {alias.get(norm_name(h["name"]), norm_name(h["name"])) for h in base["holdings"] if h["kind"] == "security"}
+    have |= {sec_id(h["isin"], h["cusip"]) for h in base["holdings"] if sec_id(h["isin"], h["cusip"])}
+    tail = [h for h in prox["holdings"] if h["kind"] == "security" and h["asset_class"] == "Equity" and h["w"] > 0
+            and norm_name(h["name"]) not in have and (sec_id(h["isin"], h["cusip"]) or "") not in have]
+    rest = 100.0 - sum(h["w"] for h in base["holdings"] if h["kind"] != "memo")
+    tsum = sum(h["w"] for h in tail)
+    if rest <= 0 or tsum <= 0:
+        raise ValueError(f"tail proxy {key}: nothing to fill (rest={rest}, tail={tsum})")
+    k = rest / tsum
+    hold = [h for h in base["holdings"] if h["kind"] != "memo"] + [dict(h, w=round(h["w"] * k, 6), sub=None, proxy_tail=True) for h in tail]
+    note = (f"{len(base['holdings'])} positions are {key.split(':', 1)[1]}'s own published weights (as of {base['as_of']}); the other {rest:.1f}% is ESTIMATED from the "
+            f"{len(tail)} constituents of {e['proxy_of'].split(':', 1)[1]} ({prox['as_of']}) that are not in that list, rescaled x{k:.2f} to fill it. Not actual holdings.")
+    return {"name": e.get("name") or "", "issuer": base["issuer"], "source": e["source"], "url": base["url"], "as_of": base["as_of"], "proxy": True, "note": note,
+            "coverage": f"PROXY for the undisclosed {rest:.1f}%: {e['proxy_of']} constituents", "holdings": hold, "_file": "(tail proxy)"}
+
+
+def _pseudo_row(m: str, key: str, h: dict) -> list[str]:
+    return [m, key.split(":", 1)[1], "D", h["name"], h.get("ticker") or "", h.get("isin") or "", h.get("cusip") or "", str(h["w"]), h.get("sector") or "",
+            h.get("country") or "", h.get("asset_class") or "", h.get("currency") or "", "", "", ""]
+
+
+def supp_subs(idx: XrayIndex, key: str, entry: dict) -> dict[int, str]:
+    """position -> sub-fund key for the fund rows of a supplement."""
+    m = key.split(":")[0]
+    out = {}
+    for i, h in enumerate(entry["holdings"]):
+        if h.get("kind") == "fund":
+            sub = idx.resolve_fund(_pseudo_row(m, key, h), m, key)
+            if sub and sub != key:
+                out[i] = sub
+    return out
+
+
+def build_supp_fund(idx: XrayIndex, key: str, entry: dict) -> dict:
+    """A bundle fund from a supplement entry (weights are % of NAV and kept as reported; the entry says whether it is actual or a proxy)."""
+    m = key.split(":")[0]
+    subs = supp_subs(idx, key, entry)
+    items = []
+    for i, h in enumerate(entry["holdings"]):
+        it = {"name": h["name"], "ticker": h.get("ticker") or "", "isin": h.get("isin") or "", "cusip": h.get("cusip") or "", "w": float(h["w"]),
+              "sector": h.get("sector") or "", "country": h.get("country") or "", "asset_class": h.get("asset_class") or "", "currency": h.get("currency") or "",
+              "kind": h.get("kind") or "security", "sub": subs.get(i)}
+        if it["kind"] == "fund" and not it["sub"] and not BULLION_RX.search(it["name"]):
+            pass  # stays an opaque fund (flagged); never guessed
+        if it["kind"] == "security" and not (it["ticker"] or it["isin"] or it["cusip"]):
+            seen = set()
+            for nk in name_keys(it["name"]):
+                seen = idx.ids_by_name.get(nk) or set()
+                if seen:
+                    break
+            if len(seen) >= 1:
+                for pick in ((lambda v: v[2]), (lambda v: v[1]), (lambda v: v[0])):  # all candidates must agree on the id used
+                    vals = {pick(v) for v in seen if pick(v)}
+                    if len(vals) == 1 and len({v[0] for v in seen if v[0]}) <= 1:
+                        t, isin, cusip = sorted(seen)[0]
+                        it["ticker"], it["isin"], it["cusip"] = t, isin, cusip
+                        break
+        sid = sec_id(it["isin"], it["cusip"])
+        if not it["sector"] and it["kind"] == "security":
+            it["sector"] = idx.sector_by_key.get(sid, "") if sid else ""
+            for nk in ([] if it["sector"] else name_keys(it["name"])):
+                it["sector"] = idx.sector_by_name.get(nk, "")
+                if it["sector"]:
+                    break
+        items.append(it)
+    tot = sum(it["w"] for it in items)
+    scale = 1.0
+    info = idx.funds.get(key) or {}
+    proxy = bool(entry.get("proxy"))
+    lev, basis = leverage_of([(it["w"], True) for it in items], entry.get("name") or info.get("name") or "", entry.get("issuer") or info.get("issuer") or "", False)
+    src = entry["source"]
+    if proxy and not src.upper().startswith("PROXY"):
+        src = "PROXY: " + src
+    return {"key": key, "market": m, "ticker": key.split(":", 1)[1], "issuer": entry.get("issuer") or info.get("issuer") or "", "source": src, "url": entry.get("url") or "",
+            "as_of": entry.get("as_of") or "", "n_rows": len(items), "raw_sum": round(tot, 4), "coverage": entry.get("coverage") or "full schedule of investments",
+            "partial": False, "scale": scale, "disclosed_pct": round(tot, 4), "leverage": lev, "leverage_basis": basis,
+            "note": entry.get("note") or None, "proxy": proxy, "replaces": (info.get("source") or "") if info else "", "holdings": items}
+
+
+def build_bundle(xray_dir: Path, tickers_yaml: Path, log=print, supplements_dir: Optional[Path] = None) -> dict:
     import yaml
     idx = XrayIndex(xray_dir)
+    if supplements_dir is None:
+        supplements_dir = Path(tickers_yaml).parent / "holdings_supplements"
+    supp = load_supplements(supplements_dir)
+    tails = {k: e for k, e in supp.items() if e.get("mode") == "tail_proxy"}
+    if tails:
+        need = set(tails) | {e["proxy_of"] for e in tails.values()}
+        trows = idx.rows_for(need)
+        for k, e in tails.items():
+            supp[k] = make_tail_proxy(idx, k, e, trows)
+            log(f"tail proxy {k}: {supp[k]['note']}")
+    log(f"supplements: {len(supp)} funds from {supplements_dir}")
     uni = yaml.safe_load(Path(tickers_yaml).read_text(encoding="utf-8"))
     syms = [f["ticker"] for f in uni["funds"]]
     aliases = dashboard_aliases(syms, idx)
     wanted = set(aliases.values())
     have: dict[str, list] = {}
     for it in range(MAX_DEPTH + 1):
-        rows = idx.rows_for(wanted - set(have))
+        rows = idx.rows_for((wanted - set(have)) - set(supp))
         have.update(rows)
+        for k in wanted & set(supp):
+            have.setdefault(k, [])
         new = set()
         for k, rs in rows.items():
             m = k.split(":")[0]
@@ -334,13 +468,17 @@ def build_bundle(xray_dir: Path, tickers_yaml: Path, log=print) -> dict:
                 sub = idx.resolve_fund(r, m, k)
                 if sub and sub in idx.funds and sub not in have and sub not in wanted:
                     new.add(sub)
+        for k in wanted & set(supp):
+            for sub in supp_subs(idx, k, supp[k]).values():
+                if (sub in idx.funds or sub in supp) and sub not in have and sub not in wanted:
+                    new.add(sub)
         log(f"pass {it}: {len(rows)} funds read, {len(new)} new sub-funds")
         if not new:
             break
         wanted |= new
     funds = {}
     for k, rs in have.items():
-        f = build_fund(idx, k, rs)
+        f = build_supp_fund(idx, k, supp[k]) if k in supp else build_fund(idx, k, rs)
         f["name"] = (idx.univ.get((k.split(":")[0], k.split(":", 1)[1].upper())) or {}).get("name") or ""
         funds[k] = f
     for f in funds.values():  # sub-funds we hold no rows for: physical bullion/crypto trusts are terminal, anything else stays opaque

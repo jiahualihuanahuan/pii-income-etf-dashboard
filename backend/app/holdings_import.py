@@ -7,7 +7,8 @@
     # both in one go
     python -m app.holdings_import --from-xray /path/to/portfolio-xray/data
 
-The bundle is a data file: keep it out of git (``*.holdings*.json.gz`` / ``*bundle*.json.gz`` are in .gitignore).
+The bundle (data/pii_holdings_bundle.json.gz) is committed with ``git add -f`` (it is a data file; ``*.json.gz`` is in .gitignore).
+It also folds in config/holdings_supplements/*.json (full schedules parsed from fund financial statements, and labelled PROXY fills).
 Only the local SQLite file (DATA_DIR/app.db) is ever written.
 """
 from __future__ import annotations

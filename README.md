@@ -113,11 +113,18 @@ cd backend && python -m app.holdings_import --from-xray /path/to/portfolio-xray/
 # 2) anywhere: load it (replaces the holdings tables; prices, videos and settings are untouched)
 python -m app.holdings_import --bundle ../pii_holdings_bundle.json.gz
 # Docker: copy the bundle into the data volume and import inside the container
-docker compose cp pii_holdings_bundle.json.gz backend:/data/ && docker compose exec backend python -m app.holdings_import --bundle /data/pii_holdings_bundle.json.gz
+docker compose cp data/pii_holdings_bundle.json.gz backend:/data/ && docker compose exec backend python -m app.holdings_import --bundle /data/pii_holdings_bundle.json.gz
 ```
 
 If the holdings tables are empty and `/data/pii_holdings_bundle.json.gz` (or `$HOLDINGS_BUNDLE`) exists, it is imported automatically at start-up.
 There is no refresh job in the scheduler on purpose: the scrapers live outside this repo (monthly runs); rebuild the bundle after a refresh and re-import.
+
+**Complete look-through (supplements).** Where an issuer's site only shows a top-10 (Global X Canada, some Brompton ETFs) the bundle builder also reads
+`config/holdings_supplements/*.json`: the **complete schedule of investments** parsed from the fund's own public interim financial statements
+(`tools/build_supplements.py` downloads the PDFs and writes the JSON; weights = fair value / net assets, so options, cash and borrowing are included).
+These are actual holdings, but as of the statement date (30 Jun 2026), so the app shows the as-of and a *stale* warning when old.
+`proxies.json` holds the only estimates: a **tail proxy** keeps the fund's own published top-N and fills just the undisclosed rest from a sister fund on the same
+index; it is always labelled **PROXY** in the source line and in a warning. Bundle: `data/pii_holdings_bundle.json.gz` is committed with `git add -f`.
 
 * `GET /api/etfs/{ticker}/holdings?lookthrough=true|false&q=&limit=&offset=` - rows, `summary` (individual securities / cash / derivatives / funds without data / undisclosed, in % of NAV, `complete`, `flags`), `funds_used` (every fund expanded, with source and as-of), `leverage`.
 * `GET /api/holdings/coverage` - per dashboard fund: has data, looked through completely, flags.

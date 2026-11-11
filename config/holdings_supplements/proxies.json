@@ -1,0 +1,12 @@
+{
+ "description": "Funds whose full portfolio is not published. mode=tail_proxy keeps the fund's own published top-N and estimates ONLY the undisclosed rest from a sister fund on the same index. Always labelled PROXY in the app.",
+ "funds": {
+  "CA:SLVX": {
+   "mode": "tail_proxy",
+   "proxy_of": "US:SIL",
+   "name": "Global X Silver Miners Index ETF",
+   "source": "PROXY (remainder only): SLVX published top-10 (Global X Canada site) + remainder estimated from the US sister fund SIL (Global X Silver Miners ETF, same Solactive silver-miners index family)",
+   "name_aliases": {"1ST MAJESTIC SILVER CORP": "FIRST MAJESTIC SILVER CORP.", "INDUSTRIAS PENOLES SAB DE CV": "INDUSTRIAS PENOLES, S.A.B. DE C.V.", "CIA DE MINAS BUENAVENTURA SAA": "Compania de Minas Buenaventura S.A.A.", "HECLA MINING CO": "HECLA MINING COMPANY", "COEUR MINING INC": "COEUR MINING, INC.", "SSR MINING INC": "SSR MINING INC."}
+  }
+ }
+}

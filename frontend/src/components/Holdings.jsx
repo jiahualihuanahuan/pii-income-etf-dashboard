@@ -55,7 +55,7 @@ export default function Holdings({ ticker }) {
         <details className="small" style={{ marginBottom: 8 }}>
           <summary className="muted">Funds looked through ({d.funds_used.length - 1}) with their source and as-of</summary>
           <div className="tablewrap"><table><thead><tr><th className="l">Fund</th><th>Share of NAV</th><th className="l">Source</th><th className="l">As of</th><th className="l">Coverage</th></tr></thead>
-            <tbody>{d.funds_used.map((u) => <tr key={u.fund_key}><td className="l"><b>{u.ticker}</b> <span className="muted">{u.name}</span></td><td>{num(u.exposure_pct, 1)}%</td><td className="l">{u.url ? <a href={u.url} target="_blank" rel="noreferrer">{u.source}</a> : u.source}</td><td className="l">{u.as_of}</td><td className="l muted">{u.partial ? u.coverage : 'full'}{u.leverage ? ` · ~${u.leverage}x` : ''}</td></tr>)}</tbody></table></div>
+            <tbody>{d.funds_used.map((u) => <tr key={u.fund_key}><td className="l"><b>{u.ticker}</b> <span className="muted">{u.name}</span></td><td>{num(u.exposure_pct, 1)}%</td><td className="l" style={/^PROXY/i.test(u.source) ? { color: 'var(--warn)' } : null}>{u.url ? <a href={u.url} target="_blank" rel="noreferrer">{u.source}</a> : u.source}</td><td className="l">{u.as_of}</td><td className="l muted">{u.partial || /^PROXY/i.test(u.source) ? u.coverage : 'full'}{u.leverage ? ` · ~${u.leverage}x` : ''}</td></tr>)}</tbody></table></div>
         </details>
       )}
       <div style={{ display: 'flex', gap: 10, alignItems: 'center', margin: '6px 0' }}>

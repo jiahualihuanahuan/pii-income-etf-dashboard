@@ -155,7 +155,7 @@ def lookthrough(con, key: str, max_depth: int = MAX_DEPTH) -> dict:
         f = _fund(con, fk)
         u = used.setdefault(fk, {"fund_key": fk, "ticker": f["ticker"], "name": f["name"], "source": f["source"], "as_of": f["as_of"], "url": f["url"],
                                  "partial": bool(f["partial"]), "leverage": f["leverage"], "leverage_basis": f["leverage_basis"], "exposure_pct": 0.0,
-                                 "coverage": f["coverage"], "depth": depth})
+                                 "coverage": f["coverage"], "note": f["note"], "depth": depth})
         u["exposure_pct"] += mult
         label = f["ticker"]
         for h in _rows(con, fk):
@@ -235,6 +235,9 @@ def _flags(con, key: str, lt: dict, dash_name: str = "") -> list[dict]:
         add("info", "leverage", f"Leverage ~{f['leverage']:.2f}x ({basis}).")
     elif lev_nodes:
         add("info", "leverage_underlying", "Leveraged underlying funds: " + ", ".join(f"{u['ticker']} ~{u['leverage']:.2f}x" for u in lev_nodes[:8]) + ".")
+    proxies = [u for u in and_used if (u["source"] or "").upper().startswith("PROXY") and u["exposure_pct"] >= 0.5]
+    for u in proxies:
+        add("warn", "proxy", f"{u['ticker']} ({u['exposure_pct']:.1f}% of this ETF) is a PROXY, not the fund's own full holdings. {u.get('note') or u['source']}")
     material = [u for u in and_used if u["exposure_pct"] >= 5.0 or u["fund_key"] == key]  # tiny sleeves do not drive the flags below
     for u in material:
         if (u["source"] or "").startswith("SEC"):
