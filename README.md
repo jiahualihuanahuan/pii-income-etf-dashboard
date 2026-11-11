@@ -122,6 +122,7 @@ There is no refresh job in the scheduler on purpose: the scrapers live outside t
 **Complete look-through (supplements).** Where an issuer's site only shows a top-10 (Global X Canada, some Brompton ETFs) the bundle builder also reads
 `config/holdings_supplements/*.json`: the **complete schedule of investments** parsed from the fund's own public interim financial statements
 (`tools/build_supplements.py` downloads the PDFs and writes the JSON; weights = fair value / net assets, so options, cash and borrowing are included).
+Split corporations (GDV, DGS, LBS, SBC, LCS, FTN, DFN, FFN, RS, NPS) are re-based to **Class A net assets**: the Preferred shares show as a negative row, so the stocks sum to ~160-220% and leverage = gross / net. USHI uses Ninepoint's published look-through table. These statements are semi-annual, so the as-of date can be months old (flagged *stale*).
 These are actual holdings, but as of the statement date (30 Jun 2026), so the app shows the as-of and a *stale* warning when old.
 `proxies.json` holds the only estimates: a **tail proxy** keeps the fund's own published top-N and fills just the undisclosed rest from a sister fund on the same
 index; it is always labelled **PROXY** in the source line and in a warning. Bundle: `data/pii_holdings_bundle.json.gz` is committed with `git add -f`.

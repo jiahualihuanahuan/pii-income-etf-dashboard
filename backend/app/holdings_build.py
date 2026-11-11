@@ -231,19 +231,20 @@ class XrayIndex:
 NAME_FIXES_N = {norm_name(k): v for k, v in NAME_FIXES.items()}
 
 
-def dashboard_aliases(symbols: Iterable[str], idx: XrayIndex) -> dict[str, str]:
+def dashboard_aliases(symbols: Iterable[str], idx: XrayIndex, extra_keys: Iterable[str] = ()) -> dict[str, str]:
     """dashboard symbol -> xray fund key. US listings match US only; X.TO -> CA:X; X-U.TO -> its CA share-class twin."""
     out: dict[str, str] = {}
+    extra = set(extra_keys)
     for s in symbols:
         if s.endswith(".TO"):
             b = s[:-3]
             for c in ([b.replace("-U", ".U"), b[:-2]] if b.endswith("-U") else []) + [b]:
-                k = idx.key_for("CA", c)
+                k = idx.key_for("CA", c) or (("CA:" + c) if ("CA:" + c) in extra else None)  # supplement-only funds (not in the xray index)
                 if k:
                     out[s] = k
                     break
         else:
-            k = idx.key_for("US", s)
+            k = idx.key_for("US", s) or (("US:" + s) if ("US:" + s) in extra else None)
             if k:
                 out[s] = k
     return out
@@ -453,7 +454,7 @@ def build_bundle(xray_dir: Path, tickers_yaml: Path, log=print, supplements_dir:
     log(f"supplements: {len(supp)} funds from {supplements_dir}")
     uni = yaml.safe_load(Path(tickers_yaml).read_text(encoding="utf-8"))
     syms = [f["ticker"] for f in uni["funds"]]
-    aliases = dashboard_aliases(syms, idx)
+    aliases = dashboard_aliases(syms, idx, set(supp))
     wanted = set(aliases.values())
     have: dict[str, list] = {}
     for it in range(MAX_DEPTH + 1):
@@ -479,7 +480,7 @@ def build_bundle(xray_dir: Path, tickers_yaml: Path, log=print, supplements_dir:
     funds = {}
     for k, rs in have.items():
         f = build_supp_fund(idx, k, supp[k]) if k in supp else build_fund(idx, k, rs)
-        f["name"] = (idx.univ.get((k.split(":")[0], k.split(":", 1)[1].upper())) or {}).get("name") or ""
+        f["name"] = (idx.univ.get((k.split(":")[0], k.split(":", 1)[1].upper())) or {}).get("name") or (supp.get(k) or {}).get("name") or ""
         funds[k] = f
     for f in funds.values():  # sub-funds we hold no rows for: physical bullion/crypto trusts are terminal, anything else stays opaque
         for it in f["holdings"]:

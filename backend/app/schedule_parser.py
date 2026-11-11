@@ -160,39 +160,14 @@ def _heading(t: str) -> str:
     return re.sub(r"\s{2,}Par .*$", "", t).strip()
 
 
-def parse_brompton_schedule(text: str, title: str) -> dict:
-    """Schedule of investment portfolio of one fund inside a (combined) Brompton financial-statements text.
-
-    Row weight = carrying value / net assets. Closing lines (options, forwards, cash, loans, other net assets) are kept so the total is 100% of NAV.
-    """
-    lines = text.splitlines()
-    start = None
-    for i, l in enumerate(lines):
-        if l.strip().startswith(title) and "Interim Financial Statements" in l and i + 1 < len(lines) and lines[i + 1].strip().startswith("SCHEDULE OF INVESTMENT PORTFOLIO"):
-            start = i
-            break
-    if start is None:
-        raise ValueError(f"schedule for {title!r} not found")
-    as_of = None
-    m = re.search(r"As at ([A-Z][a-z]+ \d{1,2}, \d{4})", "\n".join(lines[start:start + 6]))
-    if m:
-        from datetime import datetime
-        as_of = datetime.strptime(m.group(1), "%B %d, %Y").date().isoformat()
-    seg, na = [], None
-    for l in lines[start + 2:]:
-        seg.append(l)
-        if re.match(r"^\s*Net Assets attributable to holders", l) and re.search(r"\d", l):
-            na = _bval(l)
-            break
-    if not na:
-        raise ValueError("net assets not found")
+def _walk_rows(seg: list[str], na: float = 0.0, with_closing: bool = False):
     rows, cash, closing_deriv = [], {}, []
     pend = None
     country = sector = None
     after_total = False
     for l in seg:
         t = l.strip()
-        if not t or re.fullmatch(r"(?:Number of|Shares/?|Units|Par Value|Par|Cost\d?|Value|Carrying|CAD\$|US\$|\$|Assets|%\s*of\s*Net|\s)+", t) or re.match(r"^(As at|SCHEDULE|Brompton .* - Interim)", t) or re.fullmatch(r"\d+", t):
+        if not t or re.fullmatch(r"(?:Number of|Shares/?|Units|Shares/Units|Par Value|Par|Cost\d?|Value|Carrying|CAD\$|US\$|\$|Assets|Portfolio|%\s*of(?:\s*Net)?|\s)+", t) or re.match(r"^(As at|SCHEDULE|Brompton .* - Interim)", t) or re.fullmatch(r"\d+", t):
             continue
         if re.match(r"^Total Investments", t):
             after_total = True
@@ -234,9 +209,241 @@ def parse_brompton_schedule(text: str, title: str) -> dict:
             rows[-1]["name"] = _strip_fn(rows[-1]["name"] + " " + t)
         else:
             pend = t
+    return (rows, cash, closing_deriv) if with_closing else rows
+
+
+def parse_brompton_schedule(text: str, title: str) -> dict:
+    """Schedule of investment portfolio of one fund inside a (combined) Brompton financial-statements text.
+
+    Row weight = carrying value / net assets. Closing lines (options, forwards, cash, loans, other net assets) are kept so the total is 100% of NAV.
+    """
+    lines = text.splitlines()
+    start = None
+    for i, l in enumerate(lines):
+        if l.strip().startswith(title) and "Interim Financial Statements" in l and i + 1 < len(lines) and lines[i + 1].strip().startswith("SCHEDULE OF INVESTMENT PORTFOLIO"):
+            start = i
+            break
+    if start is None:
+        raise ValueError(f"schedule for {title!r} not found")
+    as_of = None
+    m = re.search(r"As at ([A-Z][a-z]+ \d{1,2}, \d{4})", "\n".join(lines[start:start + 6]))
+    if m:
+        from datetime import datetime
+        as_of = datetime.strptime(m.group(1), "%B %d, %Y").date().isoformat()
+    seg, na = [], None
+    for l in lines[start + 2:]:
+        seg.append(l)
+        if re.match(r"^\s*Net Assets attributable to holders", l) and re.search(r"\d", l):
+            na = _bval(l)
+            break
+    if not na:
+        raise ValueError("net assets not found")
+    rows, cash, closing_deriv = _walk_rows(seg, na, with_closing=True)
     for r in rows:
         r["w"] = r["fv"] / na * 100.0
     rows += closing_deriv
     inv = sum(r["w"] for r in rows)
     return {"as_of": as_of, "net_assets": na, "rows": rows, "cash": cash,
             "check": {"rows_pct": round(inv, 3), "stated_portfolio_pct": None, "total_pct": round(inv + sum(cash.values()), 3), "n": len(rows)}}
+
+
+# ---- split-share corporations (Class A shares sit behind Preferred shares) ----
+def _bs_first(text: str, label_rx: str, after: int = 0) -> Optional[float]:
+    """First number (current-period column) on the first line after ``after`` that starts with the label."""
+    for l in text[after:].splitlines():
+        if re.match(rf"^\s*(?:{label_rx})(?=[\s(,$])", l):
+            rest = re.sub(r"\((?:schedule|note)\s*\d+\)", "", re.sub(rf"^\s*(?:{label_rx})", "", l))
+            m = re.search(r"\(?-?[\d,]{2,}(?:\.\d+)?\)?", rest)
+            if m:
+                return num(m.group(0))
+    return None
+
+
+SECTOR_HEADS = {"Consumer Discretionary", "Consumer Staples", "Communication Services", "Energy", "Financials", "Healthcare", "Health Care", "Industrials",
+                "Information Technology", "Investment Funds", "Materials", "Real Estate", "Utilities", "Technology", "Telecommunication Services", "Other"}
+
+
+def parse_split_corp_brompton(text: str, title: str) -> dict:
+    """Brompton split corporation interim report: investments listed as '% of Portfolio'; re-based to Class A net assets.
+
+    Weights are % of the *Class A* net assets (the instrument the dashboard tracks): the Preferred shares ranking ahead of Class A show up as a
+    negative row ("Preferred shares and other net liabilities"), so the net is 100% and leverage = gross / net, like any levered ETF.
+    """
+    lines = text.splitlines()
+    start = None
+    for i, l in enumerate(lines):
+        if l.strip().startswith(title) and re.search(r"- (Interim Report|Interim Financial Statements|Annual Report) \d{4}", l) and i + 1 < len(lines) and lines[i + 1].strip().startswith("SCHEDULE OF INVESTMENT PORTFOLIO"):
+            start = i
+            break
+    if start is None:
+        raise ValueError(f"schedule for {title!r} not found")
+    as_of = None
+    m = re.search(r"As at ([A-Z][a-z]+ \d{1,2}, \d{4})", "\n".join(lines[start:start + 6]))
+    if m:
+        from datetime import datetime
+        as_of = datetime.strptime(m.group(1), "%B %d, %Y").date().isoformat()
+    head = "\n".join(lines[:start])
+    pos = head.find("STATEMENTS OF FINANCIAL POSITION")
+    if pos < 0:
+        raise ValueError("statement of financial position not found")
+    na = _bs_first(head, r"Net Assets attributable to holders of redeemable Class A shares", pos)
+    cash = _bs_first(head, r"Cash", pos) or 0.0
+    opts = _bs_first(head, r"Option contracts written, at fair value[^$\d]*", pos) or 0.0
+    fwd_gain = _bs_first(head, r"Unrealized gain on foreign currency forward contracts[^$\d]*", pos) or 0.0
+    fwd_loss = _bs_first(head, r"Unrealized loss on foreign currency forward contracts[^$\d]*", pos) or 0.0
+    if not na:
+        raise ValueError("Class A net assets not found")
+    seg = []
+    for l in lines[start + 2:]:
+        seg.append(l)
+        if re.match(r"^\s*Total Investments", l):
+            break
+    rows = _walk_rows(seg)
+    heads = {l.strip() for l in seg if l.strip() in SECTOR_HEADS}
+    for r in rows:  # a section heading line directly above its first row is glued onto the name by the line walker
+        for h in sorted(heads, key=len, reverse=True):
+            if r["name"].startswith(h + " ") and r["name"][len(h) + 1:][:1].isupper():
+                r["name"] = r["name"][len(h) + 1:]
+                r["sector"] = r["sector"] or h
+                break
+        r["w"] = r["fv"] / na * 100.0
+    derivs = []
+    if opts:
+        derivs.append({"name": "Call options written", "shares": 0.0, "fv": -opts, "section": None, "sub": None, "country": None, "sector": None, "deriv": True, "w": -opts / na * 100})
+    if fwd_gain or fwd_loss:
+        derivs.append({"name": "Net foreign currency forward contracts", "shares": 0.0, "fv": fwd_gain - fwd_loss, "section": None, "sub": None, "country": None, "sector": None,
+                       "deriv": True, "w": (fwd_gain - fwd_loss) / na * 100})
+    inv = sum(r["w"] for r in rows)
+    cash_w = cash / na * 100
+    resid = 100.0 - inv - sum(d["w"] for d in derivs) - cash_w
+    rows += derivs
+    return {"as_of": as_of, "net_assets": na, "rows": rows,
+            "cash": {"Cash": cash_w, "Preferred shares and other net liabilities (split-share leverage)": resid},
+            "check": {"rows_pct": round(inv, 3), "stated_portfolio_pct": None, "total_pct": 100.0, "n": len(rows) - len(derivs)}}
+
+
+def _q_first(text: str, label_rx: str, after: int = 0) -> Optional[float]:
+    for l in text[after:].replace("\t", " ").splitlines():
+        m = re.match(rf"^\s*(?:{label_rx})\b", l, re.I)
+        if m:
+            rest = re.sub(r"\((?:notes?|schedule)\s*[\d, and]+\)|\(\d\)", "", l[m.end():], flags=re.I)
+            n = re.search(r"\(?-?[\d,]{3,}(?:\.\d+)?\)?", rest)
+            if n:
+                return num(n.group(0))
+    return None
+
+
+QROW = re.compile(r"^\s*(?P<shares>[\d,]+)\s+(?P<name>[A-Za-z].*?)\s{2,}(?P<cost>[\d,]+)\s+(?P<fv>[\d,]+)\s*$")
+
+
+def parse_split_corp_quadravest(text: str) -> dict:
+    """Quadravest split corporation semi-annual/annual report (Financial 15, Dividend 15, North American Financial 15...).
+
+    Same re-basing as parse_split_corp_brompton: weights are % of Class A net assets; Preferred shares appear as the negative remainder.
+    """
+    t = text.replace("\t", " ")
+    lines = t.splitlines()
+    start = next((i for i, l in enumerate(lines) if l.strip().startswith("Schedule of Portfolio Investments") and "continued" not in l), None)
+    if start is None:
+        raise ValueError("schedule not found")
+    m = re.search(r"As at ([A-Z][a-z]+ \d{1,2}, \d{4})", "\n".join(lines[start:start + 4]))
+    from datetime import datetime
+    as_of = datetime.strptime(m.group(1), "%B %d, %Y").date().isoformat() if m else None
+    head = "\n".join(lines[:start])
+    pos = head.find("Statements of Financial Position")
+    na = _q_first(head, r"OF REDEEMABLE CLASS A SHARES", pos)
+    cash = _q_first(head, r"Cash", pos) or 0.0
+    opts = _q_first(head, r"Written options", pos) or 0.0
+    if not na:
+        raise ValueError("Class A net assets not found")
+    rows, country = [], None
+    for l in lines[start + 1:]:
+        s = l.strip()
+        if re.match(r"^Total Common Equities", s) or s.startswith("Call Options written"):
+            break
+        if re.search(r"Canadian .*Common Equities$", s) and not s.startswith("Total"):
+            country = "Canada"
+        elif re.search(r"U\.S\. .*Common Equities$", s) and not s.startswith("Total"):
+            country = "United States"
+        r = QROW.match(l)
+        if r and not s.startswith("Total"):
+            rows.append({"name": r.group("name").strip(), "shares": num(r.group("shares")), "fv": num(r.group("fv")), "section": None, "sub": None, "country": country,
+                         "sector": None, "deriv": False})
+    for r in rows:
+        r["w"] = r["fv"] / na * 100.0
+    derivs = [{"name": "Call options written", "shares": 0.0, "fv": -opts, "section": None, "sub": None, "country": None, "sector": None, "deriv": True, "w": -opts / na * 100}] if opts else []
+    inv = sum(r["w"] for r in rows)
+    cash_w = cash / na * 100
+    resid = 100.0 - inv - sum(d["w"] for d in derivs) - cash_w
+    return {"as_of": as_of, "net_assets": na, "rows": rows + derivs,
+            "cash": {"Cash": cash_w, "Preferred shares and other net liabilities (split-share leverage)": resid},
+            "check": {"rows_pct": round(inv, 3), "stated_portfolio_pct": None, "total_pct": 100.0, "n": len(rows)}}
+
+
+def _split_rebase(as_of, na, rows, cash, extra_derivs=None):
+    for r in rows:
+        r["w"] = r["fv"] / na * 100.0
+    derivs = extra_derivs or []
+    inv = sum(r["w"] for r in rows)
+    cash_w = cash / na * 100
+    resid = 100.0 - inv - sum(d["w"] for d in derivs) - cash_w
+    return {"as_of": as_of, "net_assets": na, "rows": rows + derivs,
+            "cash": {"Cash": cash_w, "Preferred shares and other net liabilities (split-share leverage)": resid},
+            "check": {"rows_pct": round(inv, 3), "stated_portfolio_pct": None, "total_pct": 100.0, "n": len(rows)}}
+
+
+def _iso(s: str) -> Optional[str]:
+    from datetime import datetime
+    m = re.search(r"([A-Za-z]+ \d{1,2}, \d{4})", s or "")
+    return datetime.strptime(m.group(1).title(), "%B %d, %Y").date().isoformat() if m else None
+
+
+def parse_split_corp_middlefield(text: str) -> dict:
+    """Middlefield split corporation interim/annual report (Real Estate Split Corp. ...). Weights are % of Class A net assets."""
+    lines = text.replace("\t", " ").splitlines()
+    start = next(i for i, l in enumerate(lines) if l.strip() == "Schedule of Investment Portfolio")
+    as_of = _iso(lines[start + 1])
+    head = "\n".join(lines[:start])
+    pos = head.find("Statements of Financial Position")
+    na = _q_first(head, r"Net Assets Attributable to Holders of Redeemable\s+Class A Shares", pos) or _q_first(head, r"Net Assets Attributable to Holders of Redeemable Class A Shares", pos)
+    cash = _q_first(head, r"Cash", pos) or 0.0
+    if not na:
+        raise ValueError("Class A net assets not found")
+    rx = re.compile(r"^\s*(?P<name>[A-Za-z][^$]*?)\s{2,}(?P<shares>[\d,]+)\s+\$?\s*(?P<cost>[\d,]+)\s+\$?\s*(?P<fv>[\d,]+)\s*$")
+    rows = []
+    for l in lines[start + 1:]:
+        if l.strip().upper().startswith("TOTAL INVESTMENTS"):
+            break
+        r = rx.match(l)
+        if r:
+            rows.append({"name": r.group("name").strip(), "shares": num(r.group("shares")), "fv": num(r.group("fv")), "section": None, "sub": None,
+                         "country": None, "sector": None, "deriv": False})
+    return _split_rebase(as_of, na, rows, cash)
+
+
+def parse_split_corp_ninepoint(text: str) -> dict:
+    """Ninepoint split corporation interim report (Canadian Large Cap Leaders Split Corp.)."""
+    lines = text.replace("\t", " ").splitlines()
+    start = next(i for i, l in enumerate(lines) if l.strip() == "Schedule of Investment Portfolio")
+    as_of = _iso(lines[start + 1])
+    pos = next(i for i, l in enumerate(lines) if l.strip() == "Statements of Financial Position")
+    head = "\n".join(lines)
+    off = len("\n".join(lines[:pos]))
+    na = _q_first(head, r"Net Assets attributable to holders of redeemable Class A shares", off)
+    cash = _q_first(head, r"Cash", off) or 0.0
+    if not na:
+        raise ValueError("Class A net assets not found")
+    rx = re.compile(r"^\s*(?P<shares>[\d,]+)\s+(?P<name>[A-Za-z].*?)\s{2,}(?P<cost>[\d,]+)\s+(?P<fv>[\d,]+)\s*$")
+    rows, sector = [], None
+    for l in lines[start + 1:]:
+        s = l.strip()
+        if s.startswith("Total equities") or s.startswith("Total investments"):
+            break
+        m = re.match(r"^([A-Z][A-Z &]+) \[[\d.]+%\]$", s)
+        if m and m.group(1) != "EQUITIES":
+            sector = m.group(1).title()
+        r = rx.match(l)
+        if r:
+            rows.append({"name": r.group("name").strip(), "shares": num(r.group("shares")), "fv": num(r.group("fv")), "section": None, "sub": None,
+                         "country": "Canada", "sector": sector, "deriv": False})
+    return _split_rebase(as_of, na, rows, cash)
