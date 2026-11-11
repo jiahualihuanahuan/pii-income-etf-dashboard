@@ -65,6 +65,7 @@ def funds_payload(settings: dict, overrides: Optional[dict] = None, include_benc
     for f in uni["funds"]:
         m = ms[f["ticker"]]
         rows.append({"ticker": f["ticker"], "name": f.get("name"), "listing": f.get("listing"), "category": f.get("category"),
+                     "group": f.get("group"), "subsector": f.get("subsector"),
                      "role": f.get("role", "fund"), "benchmark": f.get("benchmark"), "pair": f.get("pair"),
                      "leverage": f.get("leverage"), "metrics": m,
                      "stance": _stance_payload(f, s["half_life_days"]), "latest_mention": mentions.get(f["ticker"].split(".")[0].split("-")[0]) or mentions.get(f["ticker"])})

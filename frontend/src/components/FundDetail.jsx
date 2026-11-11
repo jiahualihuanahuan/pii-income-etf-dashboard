@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Bar, BarChart, CartesianGrid, Cell, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { api } from '../api.js'
 import { pct, spct, ytLink, stanceChip, num } from '../format.js'
+import Holdings from './Holdings.jsx'
 
-export default function FundDetail({ ticker, onClose, catLabel }) {
+export default function FundDetail({ ticker, onClose, catLabel, groupLabel = {} }) {
   const [d, setD] = useState(null)
   const [dist, setDist] = useState([])
   const [hist, setHist] = useState([])
@@ -20,7 +21,7 @@ export default function FundDetail({ ticker, onClose, catLabel }) {
   return (
     <div className="panel">
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <h2>{d.ticker} · {d.name} <span className="cur">{d.listing}</span> <span className="muted small">{catLabel[d.category] || d.category}{d.benchmark ? ` · benchmark ${d.benchmark}` : ''}{d.leverage ? ` · leverage ~${d.leverage}x` : ''}</span></h2>
+        <h2>{d.ticker} · {d.name} <span className="cur">{d.listing}</span> <span className="muted small">{groupLabel[d.group] || d.group}{d.subsector ? ` · ${d.subsector}` : ''} ({catLabel[d.category] || d.category}){d.benchmark ? ` · benchmark ${d.benchmark}` : ''}{d.leverage ? ` · leverage ~${d.leverage}x` : ''}</span></h2>
         <button className="btn ghost" onClick={onClose}>Close</button>
       </div>
       {d.notes && <p className="muted small">{d.notes}</p>}
@@ -42,6 +43,7 @@ export default function FundDetail({ ticker, onClose, catLabel }) {
           {dist.length === 0 && <p className="muted">No distributions on record.</p>}
         </div>
       </div>
+      <Holdings ticker={d.ticker} />
       <div className="grid2">
         <div>
           <h3>Numbers</h3>

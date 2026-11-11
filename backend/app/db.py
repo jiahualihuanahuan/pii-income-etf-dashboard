@@ -64,8 +64,10 @@ def session():
 
 
 def init() -> None:
+    from . import holdings
     with session() as con:
         con.executescript(SCHEMA)
+        holdings.init_schema(con)
 
 
 def upsert_prices(con, ticker: str, close: pd.Series) -> int:

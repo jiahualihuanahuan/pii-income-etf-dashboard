@@ -46,6 +46,40 @@ categories:
   split:
     label: Split-share & closed-end
     description: Split corporations and preferred-share funds
+groups:
+  diversified:
+    label: Diversified
+    description: Broad-market, regional and multi-sector / all-in-one income funds (S&P 500, Nasdaq-100, TSX, Russell 2000, global, baskets)
+  sector:
+    label: Sector-specific
+    description: 'Funds concentrated in one sector: tech, healthcare, utilities, financials, energy, real estate, infrastructure'
+  single_stock:
+    label: Single stock
+    description: Single-stock / option-income funds (YieldMax-style, funds of them)
+  crypto:
+    label: Bitcoin / crypto
+    description: Bitcoin and crypto-related income funds, including bitcoin-proxy stocks (MSTR)
+  commodities:
+    label: Commodities
+    description: Gold, silver, mining / materials and other commodity-linked income funds
+  other:
+    label: Other
+    description: Split-share corporations and anything that does not fit the groups above
+category_groups:
+  bitcoin: crypto
+  blended: diversified
+  canada: diversified
+  energy: sector
+  financials: sector
+  global: diversified
+  gold: commodities
+  nasdaq: diversified
+  other: diversified
+  sector: sector
+  single_stock: single_stock
+  smallcap: diversified
+  sp500: diversified
+  split: other
 funds:
 - ticker: HHIS.TO
   name: Harvest Diversified High Income Shares ETF - Class A Units
@@ -65,6 +99,7 @@ funds:
     quote: I'm going to hold HHIS forever.
     t: '33:28'
   pair: HHIS-U.TO
+  group: diversified
 - ticker: HDIV.TO
   name: Hamilton Enhanced Canadian Covered Call ETF
   listing: CAD
@@ -85,6 +120,7 @@ funds:
     summary: Named the undisputed king of his Canadian Magnificent 10 (core, buy & hold).
     quote: It's the undisputed king.
     t: '6:57'
+  group: diversified
 - ticker: HYLD.TO
   name: Hamilton Enhanced U.S. Covered Call ETF
   listing: CAD
@@ -103,6 +139,7 @@ funds:
     quote: So HYLD is like give me the best of the S&P 500 and kick out all the small guys.
     t: '44:05'
   pair: HYLD-U.TO
+  group: diversified
 - ticker: USCL.TO
   name: Global X Enhanced S&P 500 Covered Call ETF
   listing: CAD
@@ -120,6 +157,7 @@ funds:
     url: https://youtu.be/NdMtiWw-I3k?t=532
     quote: It seems that really HYLD uh USCL is still the king.
     t: '8:52'
+  group: diversified
 - ticker: QQCL.TO
   name: Global X Enhanced NASDAQ-100 Covered Call ETF
   listing: CAD
@@ -137,6 +175,7 @@ funds:
     url: https://youtu.be/NdMtiWw-I3k?t=672
     quote: So, there you go, QQCL still the king.
     t: '11:12'
+  group: diversified
 - ticker: GPIX
   name: Goldman Sachs S&P 500 Premium Income ETF
   listing: USD
@@ -155,6 +194,7 @@ funds:
     url: https://youtu.be/Alzt2J4MJzA?t=243
     quote: This is uh you know, OVL, XPAY, GPIX, those three, which seems to be the top three performers.
     t: '4:03'
+  group: diversified
 - ticker: HHIC.TO
   name: Harvest Canadian High Income Shares ETF - Class A Units
   listing: CAD
@@ -164,6 +204,7 @@ funds:
   aliases:
   - HHIC
   mentions_in_ranking_videos: 89
+  group: diversified
 - ticker: EQCL.TO
   name: Global X Enhanced All-Equity Asset Allocation Covered Call ETF CAD
   listing: CAD
@@ -182,6 +223,7 @@ funds:
     summary: Number 7 of his Canadian Magnificent 10 (core, buy & hold).
     quote: Number seven is EQCL.
     t: '23:19'
+  group: diversified
 - ticker: TDAQ
   name: TappAlpha Innovation 100 Growth & Daily Income ETF
   listing: USD
@@ -192,6 +234,7 @@ funds:
   - TDAC
   - TDAQ
   mentions_in_ranking_videos: 70
+  group: diversified
 - ticker: BMAX.TO
   name: Brompton Enhanced Multi-Asset Income ETF
   listing: CAD
@@ -209,6 +252,7 @@ funds:
     url: https://youtu.be/Ch6YtqThUYI?t=1174
     quote: Uh, if you're what you can if you consider yourself a little bit more conservative, I think BMAX is a great one to consider.
     t: '19:34'
+  group: diversified
 - ticker: ENCL.TO
   name: Global X Enhanced Canadian Oil and Gas Equity Covered Call ETF CAD
   listing: CAD
@@ -218,6 +262,8 @@ funds:
   aliases:
   - ENCL
   mentions_in_ranking_videos: 69
+  group: sector
+  subsector: Energy
 - ticker: QDTE
   name: Roundhill Nasdaq-100 0DTE Covered Call ETF Strategy ETF
   listing: USD
@@ -228,6 +274,7 @@ funds:
   - QDT
   - QDTE
   mentions_in_ranking_videos: 59
+  group: diversified
 - ticker: OVL
   name: Overlay Shares Large Cap Equity ETF
   listing: USD
@@ -245,6 +292,7 @@ funds:
     url: https://youtu.be/Pz5AOOAp1RE?t=2082
     quote: For the S&P 500 category, I think my favorite ones would be OVL and XSPI.
     t: '34:42'
+  group: diversified
 - ticker: QQQI
   name: NEOS NASDAQ-100(R) High Income ETF
   listing: USD
@@ -262,6 +310,7 @@ funds:
     url: https://youtu.be/Alzt2J4MJzA?t=572
     quote: QQQI a little bit under underwhelming here.
     t: '9:32'
+  group: diversified
 - ticker: HFIN.TO
   name: Hamilton Enhanced Canadian Financials ETF
   listing: CAD
@@ -271,6 +320,8 @@ funds:
   aliases:
   - HFIN
   mentions_in_ranking_videos: 53
+  group: sector
+  subsector: Financials
 - ticker: GLCC.TO
   name: Global X Gold Producer Equity Covered Call ETF
   listing: CAD
@@ -280,6 +331,8 @@ funds:
   aliases:
   - GLCC
   mentions_in_ranking_videos: 46
+  group: commodities
+  subsector: Gold
 - ticker: QMAX.TO
   name: Hamilton Technology YIELD MAXIMIZER ETF
   listing: CAD
@@ -291,6 +344,8 @@ funds:
   - QMAX
   mentions_in_ranking_videos: 45
   pair: QMAX-U.TO
+  group: sector
+  subsector: Tech
 - ticker: ESPX.TO
   name: Evolve S&P 500 Enhanced Yield Fund CAD Hedged
   listing: CAD
@@ -301,6 +356,7 @@ funds:
   - ESPX
   mentions_in_ranking_videos: 43
   pair: ESPX-U.TO
+  group: diversified
 - ticker: ECHI.TO
   name: Ninepoint Enhanced CA Highshares ETF
   listing: CAD
@@ -322,6 +378,7 @@ funds:
     summary: Named number 10 of his Canadian Magnificent 10 (the caption spells ECHI as 'Etchy').
     quote: I got to put Etchy as the magnificent number 10.
     t: '35:28'
+  group: diversified
 - ticker: JEPI
   name: JPMorgan Equity Premium Income ETF
   listing: USD
@@ -339,6 +396,7 @@ funds:
     url: https://youtu.be/Alzt2J4MJzA?t=722
     quote: JEPQ's not bad, but JEPI is terrible.
     t: '12:02'
+  group: diversified
 - ticker: AMAX.TO
   name: Hamilton Gold Producer YIELD MAXIMIZER ETF
   listing: CAD
@@ -349,6 +407,8 @@ funds:
   - AAX
   - AMAX
   mentions_in_ranking_videos: 37
+  group: commodities
+  subsector: Gold
 - ticker: BIGY.TO
   name: Evolve US Equity UltraYield ETF
   listing: CAD
@@ -366,6 +426,7 @@ funds:
     url: https://youtu.be/TOsm9y1Q_Sg?t=665
     quote: So, this is why I will definitely not be selling or giving up on my BIGGIE.
     t: '11:05'
+  group: diversified
 - ticker: BKCL.TO
   name: Global X Enhanced Equal Weight Canadian Banks Covered Call ETF
   listing: CAD
@@ -375,6 +436,8 @@ funds:
   aliases:
   - BKCL
   mentions_in_ranking_videos: 37
+  group: sector
+  subsector: Financials
 - ticker: QQQY
   name: Defiance Nasdaq 100 Target 30 Weekly Distribution ETF
   listing: USD
@@ -384,6 +447,7 @@ funds:
   aliases:
   - QQQY
   mentions_in_ranking_videos: 36
+  group: diversified
 - ticker: QQQY.TO
   name: Evolve NASDAQ Technology Enhanced Yield Index Fund
   listing: CAD
@@ -394,6 +458,8 @@ funds:
   - QQQY
   mentions_in_ranking_videos: 36
   pair: QQQY-U.TO
+  group: sector
+  subsector: Tech
 - ticker: ENCC.TO
   name: Global X Canadian Oil and Gas Equity Covered Call ETF
   listing: CAD
@@ -403,6 +469,8 @@ funds:
   aliases:
   - ENCC
   mentions_in_ranking_videos: 35
+  group: sector
+  subsector: Energy
 - ticker: HMAX.TO
   name: Hamilton Canadian Financials YIELD MAXIMIZER ETF
   listing: CAD
@@ -412,6 +480,8 @@ funds:
   aliases:
   - HMAX
   mentions_in_ranking_videos: 35
+  group: sector
+  subsector: Financials
 - ticker: EMAX.TO
   name: Hamilton Energy YIELD MAXIMIZER ETF
   listing: CAD
@@ -422,6 +492,8 @@ funds:
   - EMAC
   - EMAX
   mentions_in_ranking_videos: 34
+  group: sector
+  subsector: Energy
 - ticker: GLCL.TO
   name: Global X Enhanced Gold Producer Equity Covered Call ETF
   listing: CAD
@@ -431,6 +503,8 @@ funds:
   aliases:
   - GLCL
   mentions_in_ranking_videos: 33
+  group: commodities
+  subsector: Gold
 - ticker: NXF.TO
   name: CI Energy Giants Covered Call ETF Common Units (CAD Hedged)
   listing: CAD
@@ -441,6 +515,8 @@ funds:
   - NXF
   mentions_in_ranking_videos: 32
   pair: NXF-U.TO
+  group: sector
+  subsector: Energy
 - ticker: MSTE.TO
   name: Harvest Strategy Inc. Enhanced High Income Shares ETF - Class A Units
   listing: CAD
@@ -458,6 +534,8 @@ funds:
     summary: Listed among his Bitcoin positions in his portfolio update.
     quote: In terms of my Bitcoin positions, HBTI and MSTE.
     t: '20:02'
+  group: crypto
+  subsector: Bitcoin-proxy stock (MSTR)
 - ticker: CGXF.TO
   name: CI Gold+ Giants Covered Call ETF Common
   listing: CAD
@@ -468,6 +546,8 @@ funds:
   - CGXF
   mentions_in_ranking_videos: 29
   pair: CGXF-U.TO
+  group: commodities
+  subsector: Gold
 - ticker: HDIF.TO
   name: Harvest Diversified Monthly Income ETF - Class A Units
   listing: CAD
@@ -487,6 +567,7 @@ funds:
     video_title: 'The PII Magnificent 10 (Canada): core foundational income ETFs to buy & hold forever'
     url: https://youtu.be/Ch6YtqThUYI
     summary: In his Canadian Magnificent 10 (the captions spell it HDEF / HIF).
+  group: diversified
 - ticker: HTAE.TO
   name: Harvest Tech Leaders Enhanced Income ETF CAD Hedged
   listing: CAD
@@ -496,6 +577,8 @@ funds:
   aliases:
   - HTAE
   mentions_in_ranking_videos: 29
+  group: sector
+  subsector: Tech
 - ticker: HUTE.TO
   name: Harvest Utilities Leaders Enhanced Income ETF CAD Hedged
   listing: CAD
@@ -504,6 +587,8 @@ funds:
   aliases:
   - HUTE
   mentions_in_ranking_videos: 29
+  group: sector
+  subsector: Utilities
 - ticker: CBNK.TO
   name: Mulvihill Canadian Bank Enhanced Y ETF
   listing: CAD
@@ -513,6 +598,8 @@ funds:
   aliases:
   - CBNK
   mentions_in_ranking_videos: 28
+  group: sector
+  subsector: Financials
 - ticker: GPIQ
   name: Goldman Sachs Nasdaq-100 Premiu
   listing: USD
@@ -523,6 +610,7 @@ funds:
   - GPIC
   - GPIQ
   mentions_in_ranking_videos: 28
+  group: diversified
 - ticker: HHL.TO
   name: Harvest Healthcare Leaders Income ETF
   listing: CAD
@@ -532,6 +620,8 @@ funds:
   - HHL
   mentions_in_ranking_videos: 28
   pair: HHL-U.TO
+  group: sector
+  subsector: Healthcare
 - ticker: LBS.TO
   name: Life & Banc Split Corp.
   listing: CAD
@@ -541,6 +631,8 @@ funds:
   aliases:
   - LBS
   mentions_in_ranking_videos: 28
+  group: other
+  subsector: Financials
 - ticker: TXF.TO
   name: CI Tech Giants Covered Call ETF Common Units
   listing: CAD
@@ -551,6 +643,8 @@ funds:
   - TXF
   mentions_in_ranking_videos: 27
   pair: TXF-U.TO
+  group: sector
+  subsector: Tech
 - ticker: XSPI
   name: NEOS Boosted S&P 500 High Income ETF
   listing: USD
@@ -569,6 +663,7 @@ funds:
     url: https://youtu.be/Pz5AOOAp1RE?t=2082
     quote: For the S&P 500 category, I think my favorite ones would be OVL and XSPI.
     t: '34:42'
+  group: diversified
 - ticker: ZWT.TO
   name: BMO Covered Call Technology ETF
   listing: CAD
@@ -578,6 +673,8 @@ funds:
   aliases:
   - ZWT
   mentions_in_ranking_videos: 27
+  group: sector
+  subsector: Tech
 - ticker: BALI
   name: iShares U.S. Large Cap Premium Income Active ETF
   listing: USD
@@ -587,6 +684,7 @@ funds:
   aliases:
   - BALI
   mentions_in_ranking_videos: 26
+  group: diversified
 - ticker: XDTE
   name: Roundhill S&P 500 0DTE Covered Call Strategy ETF
   listing: USD
@@ -597,6 +695,7 @@ funds:
   - XDT
   - XDTE
   mentions_in_ranking_videos: 26
+  group: diversified
 - ticker: HYLD-U.TO
   name: Hamilton Enhanced U.S. Covered Call ETF USD
   listing: USD
@@ -609,6 +708,7 @@ funds:
   mentions_in_ranking_videos: 25
   stances: *id001
   pair: HYLD.TO
+  group: diversified
 - ticker: JEPQ
   name: JPMorgan Nasdaq Equity Premium Income ETF
   listing: USD
@@ -618,6 +718,7 @@ funds:
   aliases:
   - JEPQ
   mentions_in_ranking_videos: 25
+  group: diversified
 - ticker: DIVO
   name: Amplify CWP Enhanced Dividend Income ETF
   listing: USD
@@ -628,6 +729,7 @@ funds:
   - DIVO
   - DVO
   mentions_in_ranking_videos: 24
+  group: diversified
 - ticker: HUTL.TO
   name: Harvest Utilities Leaders Income ETF CAD Hedged
   listing: CAD
@@ -636,6 +738,8 @@ funds:
   aliases:
   - HUTL
   mentions_in_ranking_videos: 24
+  group: sector
+  subsector: Utilities
 - ticker: BCCC
   name: Global X Bitcoin Covered Call ETF
   listing: USD
@@ -645,6 +749,8 @@ funds:
   aliases:
   - BCCC
   mentions_in_ranking_videos: 22
+  group: crypto
+  subsector: Bitcoin
 - ticker: BTCY.TO
   name: Purpose Bitcoin Yield ETF - ETF Units
   listing: CAD
@@ -654,6 +760,8 @@ funds:
   - BTCY
   mentions_in_ranking_videos: 21
   pair: BTCY-U.TO
+  group: crypto
+  subsector: Bitcoin
 - ticker: HCAL.TO
   name: Hamilton Enhanced Canadian Bank ETF
   listing: CAD
@@ -663,6 +771,8 @@ funds:
   aliases:
   - HCAL
   mentions_in_ranking_videos: 21
+  group: sector
+  subsector: Financials
 - ticker: CNCL.TO
   name: Global X Enhanced S&P/TSX 60 Covered Call ETF
   listing: CAD
@@ -672,6 +782,7 @@ funds:
   aliases:
   - CNCL
   mentions_in_ranking_videos: 20
+  group: diversified
 - ticker: ETSX.TO
   name: Evolve S&P/TSX 60 Enhanced Yield Fund CAD Unhedged
   listing: CAD
@@ -681,6 +792,7 @@ funds:
   aliases:
   - ETSX
   mentions_in_ranking_videos: 20
+  group: diversified
 - ticker: SPYI
   name: Neos S&P 500(R) High Income ETF
   listing: USD
@@ -690,6 +802,7 @@ funds:
   aliases:
   - SPYI
   mentions_in_ranking_videos: 20
+  group: diversified
 - ticker: UMAX.TO
   name: Hamilton Utilities YIELD MAXIMIZER ETF
   listing: CAD
@@ -698,6 +811,8 @@ funds:
   aliases:
   - UMAX
   mentions_in_ranking_videos: 20
+  group: sector
+  subsector: Utilities
 - ticker: ZWK.TO
   name: BMO Covered Call US Banks ETF
   listing: CAD
@@ -707,6 +822,8 @@ funds:
   aliases:
   - ZWK
   mentions_in_ranking_videos: 20
+  group: sector
+  subsector: Financials
 - ticker: BTCI
   name: NEOS ETF Trust - NEOS Bitcoin High Income ETF
   listing: USD
@@ -716,6 +833,8 @@ funds:
   aliases:
   - BTCI
   mentions_in_ranking_videos: 19
+  group: crypto
+  subsector: Bitcoin
 - ticker: FMAX.TO
   name: Hamilton U.S. Financials YIELD MAXIMIZER ETF
   listing: CAD
@@ -725,6 +844,8 @@ funds:
   aliases:
   - FMAX
   mentions_in_ranking_videos: 19
+  group: sector
+  subsector: Financials
 - ticker: HPF.TO
   name: Harvest Energy Leaders Income ETF Class A CAD Hedged
   listing: CAD
@@ -735,6 +856,8 @@ funds:
   - HPF
   mentions_in_ranking_videos: 19
   pair: HPF-U.TO
+  group: sector
+  subsector: Energy
 - ticker: QDVO
   name: Amplify CWP Growth & Income ETF
   listing: USD
@@ -744,6 +867,7 @@ funds:
   aliases:
   - QDVO
   mentions_in_ranking_videos: 19
+  group: diversified
 - ticker: SBC.TO
   name: Brompton Split Banc Corp.
   listing: CAD
@@ -753,6 +877,8 @@ funds:
   aliases:
   - SBC
   mentions_in_ranking_videos: 19
+  group: other
+  subsector: Financials
 - ticker: SMAX.TO
   name: Hamilton U.S. Equity YIELD MAXIMIZER ETF
   listing: CAD
@@ -763,6 +889,7 @@ funds:
   - SMAX
   mentions_in_ranking_videos: 19
   pair: SMAX-U.TO
+  group: diversified
 - ticker: XYLD
   name: Global X S&P 500 Covered Call ETF
   listing: USD
@@ -781,6 +908,7 @@ funds:
     quote: And the point is really, if you're watching this and you still own QYLD or XYLD, in my personal opinion, I think you should strongly
       consider swapping out of it for another similar income oriented covered call fund.
     t: 0:31
+  group: diversified
 - ticker: HHLE.TO
   name: Harvest Healthcare Leaders Enhanced Income ETF - Class A Units
   listing: CAD
@@ -789,6 +917,8 @@ funds:
   aliases:
   - HHLE
   mentions_in_ranking_videos: 18
+  group: sector
+  subsector: Healthcare
 - ticker: QQCI.TO
   name: Invesco NASDAQ 100 Income Advantage ETF
   listing: CAD
@@ -799,6 +929,7 @@ funds:
   - QQCI
   mentions_in_ranking_videos: 18
   pair: QQCI-U.TO
+  group: diversified
 - ticker: TDAX
   name: TDAQ Lift ETF
   listing: USD
@@ -817,6 +948,7 @@ funds:
     url: https://youtu.be/Pz5AOOAp1RE?t=813
     quote: You guys know that I'm a fan of leverage, so this is the first leverage covered call ETF on the list.
     t: '13:33'
+  group: diversified
 - ticker: ZWB.TO
   name: BMO Covered Call Canadian Banks ETF
   listing: CAD
@@ -827,6 +959,8 @@ funds:
   - ZWB
   mentions_in_ranking_videos: 18
   pair: ZWB-U.TO
+  group: sector
+  subsector: Financials
 - ticker: ZWU.TO
   name: BMO Covered Call Utilities ETF
   listing: CAD
@@ -835,6 +969,8 @@ funds:
   aliases:
   - ZWU
   mentions_in_ranking_videos: 18
+  group: sector
+  subsector: Utilities
 - ticker: HGY.TO
   name: Global X Gold Yield ETF Common
   listing: CAD
@@ -844,6 +980,8 @@ funds:
   aliases:
   - HGY
   mentions_in_ranking_videos: 17
+  group: commodities
+  subsector: Gold
 - ticker: XQQI
   name: NEOS Boosted Nasdaq-100 High Income ETF
   listing: USD
@@ -853,6 +991,7 @@ funds:
   aliases:
   - XQQI
   mentions_in_ranking_videos: 17
+  group: diversified
 - ticker: BALQ
   name: iShares Nasdaq Premium Income Active ETF
   listing: USD
@@ -862,6 +1001,7 @@ funds:
   aliases:
   - BALQ
   mentions_in_ranking_videos: 16
+  group: diversified
 - ticker: CNCC.TO
   name: Global X Canadian S&P/TSX 60 Covered Call ETF
   listing: CAD
@@ -871,6 +1011,7 @@ funds:
   aliases:
   - CNCC
   mentions_in_ranking_videos: 16
+  group: diversified
 - ticker: IVVW
   name: iShares S&P 500 BuyWrite ETF
   listing: USD
@@ -880,6 +1021,7 @@ funds:
   aliases:
   - IVVW
   mentions_in_ranking_videos: 16
+  group: diversified
 - ticker: USCC.TO
   name: Global X S&P 500 Covered Call ETF
   listing: CAD
@@ -890,6 +1032,7 @@ funds:
   - USCC
   mentions_in_ranking_videos: 16
   pair: USCC-U.TO
+  group: diversified
 - ticker: LMAX.TO
   name: Hamilton Healthcare YIELD MAXIMIZER ETF
   listing: CAD
@@ -898,6 +1041,8 @@ funds:
   aliases:
   - LMAX
   mentions_in_ranking_videos: 15
+  group: sector
+  subsector: Healthcare
 - ticker: MSTY.TO
   name: Harvest Strategy Inc. High Income Shares ETF
   listing: CAD
@@ -906,6 +1051,8 @@ funds:
   aliases:
   - MSTY
   mentions_in_ranking_videos: 15
+  group: crypto
+  subsector: Bitcoin-proxy stock (MSTR)
 - ticker: OILY.TO
   name: Evolve Canadian Energy Enhanced Yield Index Fund ETF (CAD-Unhedged)
   listing: CAD
@@ -915,6 +1062,8 @@ funds:
   aliases:
   - OILY
   mentions_in_ranking_videos: 15
+  group: sector
+  subsector: Energy
 - ticker: PAYG.TO
   name: Brompton Global Equity HighPay ETF
   listing: CAD
@@ -925,6 +1074,7 @@ funds:
   - PAGG
   - PAYG
   mentions_in_ranking_videos: 15
+  group: diversified
 - ticker: BANK.TO
   name: Evolve Canadian Banks and Lifecos Enhanced Yield Index Fund
   listing: CAD
@@ -934,6 +1084,8 @@ funds:
   aliases:
   - BANK
   mentions_in_ranking_videos: 14
+  group: sector
+  subsector: Financials
 - ticker: GDV.TO
   name: Global Dividend Growth Split Corp.
   listing: CAD
@@ -943,6 +1095,8 @@ funds:
   aliases:
   - GDV
   mentions_in_ranking_videos: 14
+  group: other
+  subsector: Dividend / equity split
 - ticker: HUTS.TO
   name: Hamilton Enhanced Utilities ETF
   listing: CAD
@@ -951,6 +1105,8 @@ funds:
   aliases:
   - HUTS
   mentions_in_ranking_videos: 14
+  group: sector
+  subsector: Utilities
 - ticker: QYLD
   name: Global X NASDAQ 100 Covered Call ETF
   listing: USD
@@ -987,6 +1143,7 @@ funds:
       bit more uh research you could click on the fact sheet here which will bring you to this document uh which covers a lot of the stuff that
       i already mentioned but if…
     t: '6:11'
+  group: diversified
 - ticker: SEPI
   name: Shelton Equity Premium Income ETF
   listing: USD
@@ -996,6 +1153,7 @@ funds:
   aliases:
   - SEPI
   mentions_in_ranking_videos: 14
+  group: diversified
 - ticker: TSYX
   name: TSPY Lift ETF
   listing: USD
@@ -1005,6 +1163,7 @@ funds:
   aliases:
   - TSYX
   mentions_in_ranking_videos: 14
+  group: diversified
 - ticker: YSPY
   name: GraniteShares YieldBOOST SPY ETF
   listing: USD
@@ -1014,6 +1173,7 @@ funds:
   aliases:
   - YSPY
   mentions_in_ranking_videos: 13
+  group: diversified
 - ticker: AIPI
   name: REX AI Equity Premium Income ETF
   listing: USD
@@ -1023,6 +1183,8 @@ funds:
   aliases:
   - AIPI
   mentions_in_ranking_videos: 12
+  group: sector
+  subsector: Tech
 - ticker: SPLT.TO
   name: Brompton Split Corp. PreferredShareETF
   listing: CAD
@@ -1033,6 +1195,8 @@ funds:
   - SPLT
   mentions_in_ranking_videos: 12
   pair: SPLT-U.TO
+  group: other
+  subsector: Preferred shares
 - ticker: XBCI
   name: NEOS Boosted Bitcoin High Income ETF
   listing: USD
@@ -1042,6 +1206,8 @@ funds:
   aliases:
   - XBCI
   mentions_in_ranking_videos: 12
+  group: crypto
+  subsector: Bitcoin
 - ticker: ZWC.TO
   name: BMO CA High Dividend Covered Call ETF
   listing: CAD
@@ -1061,6 +1227,7 @@ funds:
       what's in this one the vanguard you could see the top 10 holdings here which makes up 72 percent of the fund which is the bulk and you could
       see basically the same…
     t: '11:57'
+  group: diversified
 - ticker: HEQL.TO
   name: Global X Enhanced All-Equity Asset Allocation ETF CAD
   listing: CAD
@@ -1070,6 +1237,7 @@ funds:
   aliases:
   - HEQL
   mentions_in_ranking_videos: 11
+  group: diversified
 - ticker: CANY.TO
   name: Evolve Canadian Equity UltraYield ETF
   listing: CAD
@@ -1079,6 +1247,7 @@ funds:
   aliases:
   - CANY
   mentions_in_ranking_videos: 10
+  group: diversified
 - ticker: CMCL.TO
   name: Global X Enhanced All-In-One Commodity Producers Equity Covered Call ETF
   listing: CAD
@@ -1096,6 +1265,8 @@ funds:
     url: https://youtu.be/i40uJVBZ6qQ?t=1521
     quote: This is why I love the CMCL all-in-one commodity producer ETF.
     t: '25:21'
+  group: commodities
+  subsector: Mining & materials
 - ticker: HTA.TO
   name: Harvest Tech Leaders Income ETF Class A CAD Hedged
   listing: CAD
@@ -1106,6 +1277,8 @@ funds:
   - HTA
   mentions_in_ranking_videos: 10
   pair: HTA-U.TO
+  group: sector
+  subsector: Tech
 - ticker: SIXY.TO
   name: Evolve Big Six Canadian Banks UltraYield Index ETF
   listing: CAD
@@ -1115,6 +1288,8 @@ funds:
   aliases:
   - SIXY
   mentions_in_ranking_videos: 10
+  group: sector
+  subsector: Financials
 - ticker: UTES.TO
   name: Evolve Canadian Utilities Enhanced Yield Index Fund ETF
   listing: CAD
@@ -1124,6 +1299,8 @@ funds:
   - UTES
   - YUTS
   mentions_in_ranking_videos: 10
+  group: sector
+  subsector: Utilities
 - ticker: XLKI
   name: State Street Technology Select Sector SPDR Premium Income ETF
   listing: USD
@@ -1133,6 +1310,8 @@ funds:
   aliases:
   - XLKI
   mentions_in_ranking_videos: 10
+  group: sector
+  subsector: Tech
 - ticker: YBTC
   name: Roundhill Bitcoin Covered Call Strategy ETF
   listing: USD
@@ -1142,6 +1321,8 @@ funds:
   aliases:
   - YBTC
   mentions_in_ranking_videos: 10
+  group: crypto
+  subsector: Bitcoin
 - ticker: ZWQT.TO
   name: BMO Global Enhanced Income Fund Series ETF
   listing: CAD
@@ -1151,6 +1332,7 @@ funds:
   aliases:
   - ZWQT
   mentions_in_ranking_videos: 10
+  group: diversified
 - ticker: FEPI
   name: REX FANG & Innovation Equity Premium Income ETF
   listing: USD
@@ -1160,6 +1342,8 @@ funds:
   aliases:
   - FEPI
   mentions_in_ranking_videos: 9
+  group: sector
+  subsector: Tech
 - ticker: GIAX
   name: Nicholas Global Equity and Income ETF
   listing: USD
@@ -1177,6 +1361,7 @@ funds:
     url: https://youtu.be/Pz5AOOAp1RE?t=2060
     quote: Um before we get into like why I don't have global, and I'll give you an honorable an honorable mention for global, it's GIAX.
     t: '34:20'
+  group: diversified
 - ticker: HHIH.TO
   name: Harvest High Income Equity Shares ETF Class A Units
   listing: CAD
@@ -1186,6 +1371,7 @@ funds:
   aliases:
   - HHIH
   mentions_in_ranking_videos: 9
+  group: diversified
 - ticker: HPYB.TO
   name: Harvest Premium Yield Canadian Bank ETF Class A
   listing: CAD
@@ -1195,6 +1381,8 @@ funds:
   aliases:
   - HPYB
   mentions_in_ranking_videos: 9
+  group: sector
+  subsector: Financials
 - ticker: LFGY
   name: YieldMax Crypto Industry & Tech Portfolio Option Income ETF
   listing: USD
@@ -1204,6 +1392,8 @@ funds:
   aliases:
   - LFGY
   mentions_in_ranking_videos: 9
+  group: crypto
+  subsector: Crypto equities
 - ticker: QQQT
   name: Defiance Nasdaq 100 Income Target ETF
   listing: USD
@@ -1213,6 +1403,7 @@ funds:
   aliases:
   - QQQT
   mentions_in_ranking_videos: 9
+  group: diversified
 - ticker: RS.TO
   name: Real Estate Split Corp.
   listing: CAD
@@ -1222,6 +1413,8 @@ funds:
   aliases:
   - RS
   mentions_in_ranking_videos: 9
+  group: other
+  subsector: Real estate
 - ticker: SDTY
   name: YieldMax S&P 500 0DTE Covered Call Strategy ETF
   listing: USD
@@ -1231,6 +1424,7 @@ funds:
   aliases:
   - SDTY
   mentions_in_ranking_videos: 9
+  group: diversified
 - ticker: ZWG.TO
   name: BMO Global High Dividend Covered Call ETF
   listing: CAD
@@ -1240,6 +1434,7 @@ funds:
   aliases:
   - ZWG
   mentions_in_ranking_videos: 9
+  group: diversified
 - ticker: FYEE
   name: Fidelity Yield Enhanced Equity ETF
   listing: USD
@@ -1248,6 +1443,7 @@ funds:
   aliases:
   - FYEE
   mentions_in_ranking_videos: 8
+  group: diversified
 - ticker: QQA
   name: Invesco QQQ Income Advantage ETF
   listing: USD
@@ -1257,6 +1453,7 @@ funds:
   aliases:
   - QQA
   mentions_in_ranking_videos: 8
+  group: diversified
 - ticker: QYLG
   name: Global X Nasdaq 100 Covered Call & Growth ETF
   listing: USD
@@ -1266,6 +1463,7 @@ funds:
   aliases:
   - QYLG
   mentions_in_ranking_videos: 8
+  group: diversified
 - ticker: USHI.TO
   name: Ninepoint Enhanced U.S. Equity HighShares ETF CAD Inc
   listing: CAD
@@ -1283,6 +1481,7 @@ funds:
     url: https://youtu.be/NdMtiWw-I3k?t=947
     quote: So for me, if USHI is beating VFV, it's a good sign, and so far it is.
     t: '15:47'
+  group: diversified
 - ticker: XYLG
   name: Global X S&P 500 Covered Call & Growth ETF
   listing: USD
@@ -1292,6 +1491,7 @@ funds:
   aliases:
   - XYLG
   mentions_in_ranking_videos: 8
+  group: diversified
 - ticker: BASE.TO
   name: Evolve Global Materials & Mining Enhanced Yield Index ETF
   listing: CAD
@@ -1301,6 +1501,8 @@ funds:
   aliases:
   - BASE
   mentions_in_ranking_videos: 7
+  group: commodities
+  subsector: Mining & materials
 - ticker: BGIE.TO
   name: Brompton Global Infrastructure ETF
   listing: CAD
@@ -1309,6 +1511,8 @@ funds:
   aliases:
   - BGIE
   mentions_in_ranking_videos: 7
+  group: sector
+  subsector: Infrastructure
 - ticker: FTN.TO
   name: Financial 15 Split Corp.
   listing: CAD
@@ -1318,6 +1522,8 @@ funds:
   aliases:
   - FTN
   mentions_in_ranking_videos: 7
+  group: other
+  subsector: Financials
 - ticker: TYLG
   name: Global X Information Technology Covered Call & Growth ETF
   listing: USD
@@ -1327,6 +1533,8 @@ funds:
   aliases:
   - TYLG
   mentions_in_ranking_videos: 7
+  group: sector
+  subsector: Tech
 - ticker: XPAY
   name: Roundhill S&P 500 Target 20 Managed Distribution ETF
   listing: USD
@@ -1344,6 +1552,7 @@ funds:
     url: https://youtu.be/Alzt2J4MJzA?t=243
     quote: This is uh you know, OVL, XPAY, GPIX, those three, which seems to be the top three performers.
     t: '4:03'
+  group: diversified
 - ticker: BKCC.TO
   name: Global X Equal Weight Canadian Bank Covered Call ETF
   listing: CAD
@@ -1353,6 +1562,8 @@ funds:
   aliases:
   - BKCC
   mentions_in_ranking_videos: 6
+  group: sector
+  subsector: Financials
 - ticker: DFN.TO
   name: Dividend 15 Split Corp.
   listing: CAD
@@ -1362,6 +1573,8 @@ funds:
   aliases:
   - DFN
   mentions_in_ranking_videos: 6
+  group: other
+  subsector: Dividend / equity split
 - ticker: DGS.TO
   name: Dividend Growth Split Corporation
   listing: CAD
@@ -1371,6 +1584,8 @@ funds:
   aliases:
   - DGS
   mentions_in_ranking_videos: 6
+  group: other
+  subsector: Dividend / equity split
 - ticker: HVOI.TO
   name: Harvest Low Volatility Canadian Equity Income ETF - Class A Units
   listing: CAD
@@ -1380,6 +1595,7 @@ funds:
   aliases:
   - HVOI
   mentions_in_ranking_videos: 6
+  group: diversified
 - ticker: QQCC.TO
   name: Global X NASDAQ-100 Covered Call ETF
   listing: CAD
@@ -1390,6 +1606,7 @@ funds:
   - QQCC
   mentions_in_ranking_videos: 6
   pair: QQCC-U.TO
+  group: diversified
 - ticker: TQQY
   name: GraniteShares YieldBOOST QQQ ETF
   listing: USD
@@ -1399,6 +1616,7 @@ funds:
   aliases:
   - TQQY
   mentions_in_ranking_videos: 6
+  group: diversified
 - ticker: CMCC.TO
   name: Global X All-In-One Commodity Producers Equity Covered Call ETF
   listing: CAD
@@ -1408,6 +1626,8 @@ funds:
   aliases:
   - CMCC
   mentions_in_ranking_videos: 5
+  group: commodities
+  subsector: Mining & materials
 - ticker: HHII.TO
   name: Harvest International High Income Shares ETF - Class A Units
   listing: CAD
@@ -1417,6 +1637,7 @@ funds:
   aliases:
   - HHII
   mentions_in_ranking_videos: 5
+  group: diversified
 - ticker: HHIS-U.TO
   name: Harvest Diversified High Income ETF U
   listing: USD
@@ -1429,6 +1650,7 @@ funds:
   mentions_in_ranking_videos: 5
   stances: *id002
   pair: HHIS.TO
+  group: diversified
 - ticker: HIG.TO
   name: Brompton Global Healthcare Income & Growth ETF
   listing: CAD
@@ -1438,6 +1660,8 @@ funds:
   - HIG
   mentions_in_ranking_videos: 5
   pair: HIG-U.TO
+  group: sector
+  subsector: Healthcare
 - ticker: IWMI
   name: NEOS Russell 2000 High Income ETF
   listing: USD
@@ -1446,6 +1670,7 @@ funds:
   aliases:
   - IWMI
   mentions_in_ranking_videos: 5
+  group: diversified
 - ticker: LCS.TO
   name: Brompton Lifeco Split Corporation A
   listing: CAD
@@ -1455,6 +1680,8 @@ funds:
   aliases:
   - LCS
   mentions_in_ranking_videos: 5
+  group: other
+  subsector: Financials
 - ticker: BITA
   name: iShares Bitcoin Premium Income ETF
   listing: USD
@@ -1464,6 +1691,8 @@ funds:
   aliases:
   - BITA
   mentions_in_ranking_videos: 4
+  group: crypto
+  subsector: Bitcoin
 - ticker: EASY.TO
   name: Evolve All-in-One UltraYield ETF
   listing: CAD
@@ -1473,6 +1702,7 @@ funds:
   aliases:
   - EASY
   mentions_in_ranking_videos: 4
+  group: diversified
 - ticker: FFN.TO
   name: North American Financial 15 Split Corp.
   listing: CAD
@@ -1482,6 +1712,8 @@ funds:
   aliases:
   - FFN
   mentions_in_ranking_videos: 4
+  group: other
+  subsector: Financials
 - ticker: FHI.TO
   name: CI Health Care Giants Covered Call ETF Common Units
   listing: CAD
@@ -1491,6 +1723,8 @@ funds:
   - FHI
   mentions_in_ranking_videos: 4
   pair: FHI-U.TO
+  group: sector
+  subsector: Healthcare
 - ticker: HBIE.TO
   name: Harvest Balanced Income & Growth Enhanced ETF Class A
   listing: CAD
@@ -1500,6 +1734,7 @@ funds:
   aliases:
   - HBIE
   mentions_in_ranking_videos: 4
+  group: diversified
 - ticker: HFN.TO
   name: HAMILTON CHAMPIONS Canadian Financials Index ETF
   listing: CAD
@@ -1509,6 +1744,8 @@ funds:
   aliases:
   - HFN
   mentions_in_ranking_videos: 4
+  group: sector
+  subsector: Financials
 - ticker: HLIF.TO
   name: Harvest Canadian Dividend Leaders Income ETF
   listing: CAD
@@ -1518,6 +1755,7 @@ funds:
   aliases:
   - HLIF
   mentions_in_ranking_videos: 4
+  group: diversified
 - ticker: HPYG.TO
   name: Harvest Premium Yield Gold ETF - Class A Units
   listing: CAD
@@ -1527,6 +1765,8 @@ funds:
   aliases:
   - HPYG
   mentions_in_ranking_videos: 4
+  group: commodities
+  subsector: Gold
 - ticker: IQQQ
   name: ProShares Nasdaq-100 High Income ETF
   listing: USD
@@ -1536,6 +1776,7 @@ funds:
   aliases:
   - IQQQ
   mentions_in_ranking_videos: 4
+  group: diversified
 - ticker: KGLD
   name: Kurv Gold Enhanced Income ETF
   listing: USD
@@ -1545,6 +1786,8 @@ funds:
   aliases:
   - KGLD
   mentions_in_ranking_videos: 4
+  group: commodities
+  subsector: Gold
 - ticker: PAYU.TO
   name: Brompton U.S. Equity HighPay ETF
   listing: CAD
@@ -1554,6 +1797,7 @@ funds:
   aliases:
   - PAYU
   mentions_in_ranking_videos: 4
+  group: diversified
 - ticker: SPIN
   name: State Street US Equity Premium Income ETF
   listing: USD
@@ -1563,6 +1807,7 @@ funds:
   aliases:
   - SPIN
   mentions_in_ranking_videos: 4
+  group: diversified
 - ticker: TLF.TO
   name: Brompton Tech Leaders Income ETF
   listing: CAD
@@ -1573,6 +1818,8 @@ funds:
   - TLF
   mentions_in_ranking_videos: 4
   pair: TLF-U.TO
+  group: sector
+  subsector: Tech
 - ticker: XBTY
   name: GraniteShares YieldBOOST Bitcoin ETF
   listing: USD
@@ -1582,6 +1829,8 @@ funds:
   aliases:
   - XBTY
   mentions_in_ranking_videos: 4
+  group: crypto
+  subsector: Bitcoin
 - ticker: ZWH.TO
   name: BMO US High Dividend Covered Call ETF
   listing: CAD
@@ -1592,6 +1841,7 @@ funds:
   - ZWH
   mentions_in_ranking_videos: 4
   pair: ZWH-U.TO
+  group: diversified
 - ticker: AGCC.TO
   name: Global X Silver Covered Call ETF
   listing: CAD
@@ -1601,6 +1851,8 @@ funds:
   aliases:
   - AGCC
   mentions_in_ranking_videos: 3
+  group: commodities
+  subsector: Silver
 - ticker: BPI
   name: Grayscale Bitcoin Premium Income ETF
   listing: USD
@@ -1610,6 +1862,8 @@ funds:
   aliases:
   - BPI
   mentions_in_ranking_videos: 3
+  group: crypto
+  subsector: Bitcoin
 - ticker: CLSA.TO
   name: Brompton Split Corp. Enhanced Equity Income ETF
   listing: CAD
@@ -1628,6 +1882,8 @@ funds:
     quote: And in today's video, I want to talk about one of my newer favorite ETFs of all time, the Brompton Split Corp Enhanced Equity Income
       ETF.
     t: 0:13
+  group: other
+  subsector: Dividend / equity split
 - ticker: HBF.TO
   name: Harvest US Equity Leaders Income ETF Class A CAD Hedged
   listing: CAD
@@ -1638,6 +1894,7 @@ funds:
   - HBF
   mentions_in_ranking_videos: 3
   pair: HBF-U.TO
+  group: diversified
 - ticker: ITWO
   name: ProShares Russell 2000 High Income ETF
   listing: USD
@@ -1646,6 +1903,7 @@ funds:
   aliases:
   - ITWO
   mentions_in_ranking_videos: 3
+  group: diversified
 - ticker: NPS.TO
   name: Canadian Large Cap Leaders Split Corp.
   listing: CAD
@@ -1655,6 +1913,8 @@ funds:
   aliases:
   - NPS
   mentions_in_ranking_videos: 3
+  group: other
+  subsector: Dividend / equity split
 - ticker: QDTY
   name: YieldMax Nasdaq 100 0DTE Covered Call Strategy ETF
   listing: USD
@@ -1664,6 +1924,7 @@ funds:
   aliases:
   - QDTY
   mentions_in_ranking_videos: 3
+  group: diversified
 - ticker: RDTE
   name: Roundhill Russell 2000 0DTE Covered Call Strategy ETF
   listing: USD
@@ -1672,6 +1933,7 @@ funds:
   aliases:
   - RDTE
   mentions_in_ranking_videos: 3
+  group: diversified
 - ticker: RYLD
   name: Global X Russell 2000 Covered Call ETF
   listing: USD
@@ -1680,6 +1942,7 @@ funds:
   aliases:
   - RYLD
   mentions_in_ranking_videos: 3
+  group: diversified
 - ticker: SPYT
   name: 'Defiance S&P 500 Target Income '
   listing: USD
@@ -1689,6 +1952,7 @@ funds:
   aliases:
   - SPYT
   mentions_in_ranking_videos: 3
+  group: diversified
 - ticker: YMAX
   name: YieldMax Universe Fund of Option Income ETFs
   listing: USD
@@ -1697,6 +1961,7 @@ funds:
   aliases:
   - YMAX
   mentions_in_ranking_videos: 3
+  group: single_stock
 - ticker: ZWHC.TO
   name: BMO Covered Call Health Care ETF
   listing: CAD
@@ -1705,6 +1970,8 @@ funds:
   aliases:
   - ZWHC
   mentions_in_ranking_videos: 3
+  group: sector
+  subsector: Healthcare
 - ticker: CIC.TO
   name: CI Canadian Banks Covered Call Income Class ETF
   listing: CAD
@@ -1714,6 +1981,8 @@ funds:
   aliases:
   - CIC
   mentions_in_ranking_videos: 2
+  group: sector
+  subsector: Financials
 - ticker: CMVP.TO
   name: HAMILTON CHAMPIONS Canadian Dividend Index ETF Class E Units
   listing: CAD
@@ -1723,6 +1992,7 @@ funds:
   aliases:
   - CMVP
   mentions_in_ranking_videos: 2
+  group: diversified
 - ticker: CUTL.TO
   name: CI Utilities Giants Covered Call ETF (Hedged Common Units)
   listing: CAD
@@ -1731,6 +2001,8 @@ funds:
   aliases:
   - CUTL
   mentions_in_ranking_videos: 2
+  group: sector
+  subsector: Utilities
 - ticker: CWIN.TO
   name: HAMILTON CHAMPIONS Enhanced Canadian Dividend ETF Class E Units
   listing: CAD
@@ -1740,6 +2012,7 @@ funds:
   aliases:
   - CWIN
   mentions_in_ranking_videos: 2
+  group: diversified
 - ticker: EGGY
   name: NestYield Dynamic Income ETF
   listing: USD
@@ -1748,6 +2021,7 @@ funds:
   aliases:
   - EGGY
   mentions_in_ranking_videos: 2
+  group: diversified
 - ticker: EQCC.TO
   name: Global X All-Equity Asset Allocation Covered Call ETF
   listing: CAD
@@ -1757,6 +2031,7 @@ funds:
   aliases:
   - EQCC
   mentions_in_ranking_videos: 2
+  group: diversified
 - ticker: HGR.TO
   name: Harvest REIT Leaders Income ETF CAD Hedged
   listing: CAD
@@ -1765,6 +2040,8 @@ funds:
   aliases:
   - HGR
   mentions_in_ranking_videos: 2
+  group: sector
+  subsector: Real estate
 - ticker: KQQQ
   name: Kurv Technology Titans Select ETF
   listing: USD
@@ -1774,6 +2051,8 @@ funds:
   aliases:
   - KQQQ
   mentions_in_ranking_videos: 2
+  group: sector
+  subsector: Tech
 - ticker: NRGI.TO
   name: Ninepoint Energy Income Fund Series ETF
   listing: CAD
@@ -1783,6 +2062,8 @@ funds:
   aliases:
   - NRGI
   mentions_in_ranking_videos: 2
+  group: sector
+  subsector: Energy
 - ticker: RDTY
   name: YieldMax Russell 2000 0DTE Covered Call Strategy ETF
   listing: USD
@@ -1791,6 +2072,7 @@ funds:
   aliases:
   - RDTY
   mentions_in_ranking_videos: 2
+  group: diversified
 - ticker: WDTE
   name: Defiance S&P 500 Target 30 Weekly Distribution ETF
   listing: USD
@@ -1800,6 +2082,7 @@ funds:
   aliases:
   - WDTE
   mentions_in_ranking_videos: 2
+  group: diversified
 - ticker: BTCY-U.TO
   name: Purpose Bitcoin Yield ETF - USD ETF Non-Currency Hedged Units
   listing: USD
@@ -1810,6 +2093,8 @@ funds:
   - BTCY
   pair: BTCY.TO
   mentions_in_ranking_videos: 0
+  group: crypto
+  subsector: Bitcoin
 - ticker: CGXF-U.TO
   name: CI Gold+ Giants Covered Call ETF Common Units (USD Hedged)
   listing: USD
@@ -1820,6 +2105,8 @@ funds:
   - CGXF
   pair: CGXF.TO
   mentions_in_ranking_videos: 0
+  group: commodities
+  subsector: Gold
 - ticker: ESPX-U.TO
   name: Evolve S&P 500 Enhanced Yield Fund USD Unhedged
   listing: USD
@@ -1830,6 +2117,7 @@ funds:
   - ESPX
   pair: ESPX.TO
   mentions_in_ranking_videos: 0
+  group: diversified
 - ticker: FHI-U.TO
   name: CI Health Care Giants Covered Call ETF Common Units (USD Hedged)
   listing: USD
@@ -1839,6 +2127,8 @@ funds:
   - FHI
   pair: FHI.TO
   mentions_in_ranking_videos: 0
+  group: sector
+  subsector: Healthcare
 - ticker: HBF-U.TO
   name: Harvest US Equity Leaders Income ETF Class U USD
   listing: USD
@@ -1849,6 +2139,7 @@ funds:
   - HBF
   pair: HBF.TO
   mentions_in_ranking_videos: 0
+  group: diversified
 - ticker: HHL-U.TO
   name: Harvest Healthcare Leaders Income ETF Class U Units
   listing: USD
@@ -1858,6 +2149,8 @@ funds:
   - HHL
   pair: HHL.TO
   mentions_in_ranking_videos: 0
+  group: sector
+  subsector: Healthcare
 - ticker: HIG-U.TO
   name: Brompton Global Healthcare Income & Growth ETF
   listing: USD
@@ -1867,6 +2160,8 @@ funds:
   - HIG
   pair: HIG.TO
   mentions_in_ranking_videos: 0
+  group: sector
+  subsector: Healthcare
 - ticker: HPF-U.TO
   name: Harvest Energy Leaders Income ETF Class U USD
   listing: USD
@@ -1876,6 +2171,8 @@ funds:
   - HPF
   pair: HPF.TO
   mentions_in_ranking_videos: 0
+  group: sector
+  subsector: Energy
 - ticker: HTA-U.TO
   name: Harvest Tech Leaders Income ETF U USD
   listing: USD
@@ -1886,6 +2183,8 @@ funds:
   - HTA
   pair: HTA.TO
   mentions_in_ranking_videos: 0
+  group: sector
+  subsector: Tech
 - ticker: NXF-U.TO
   name: CI Energy Giants Covered Call ETF Common Units (USD Hedged)
   listing: USD
@@ -1895,6 +2194,8 @@ funds:
   - NXF
   pair: NXF.TO
   mentions_in_ranking_videos: 0
+  group: sector
+  subsector: Energy
 - ticker: QMAX-U.TO
   name: Hamilton Technology YIELD MAXIMIZER ETF USD
   listing: USD
@@ -1906,6 +2207,8 @@ funds:
   - QMAX
   pair: QMAX.TO
   mentions_in_ranking_videos: 0
+  group: sector
+  subsector: Tech
 - ticker: QQCC-U.TO
   name: GLOBAL X NASDAQ 100 CVRD CALL E
   listing: USD
@@ -1916,6 +2219,7 @@ funds:
   - QQCC
   pair: QQCC.TO
   mentions_in_ranking_videos: 0
+  group: diversified
 - ticker: QQCI-U.TO
   name: Invesco NASDAQ 100 Income Advantage ETF USD Inc
   listing: USD
@@ -1926,6 +2230,7 @@ funds:
   - QQCI
   pair: QQCI.TO
   mentions_in_ranking_videos: 0
+  group: diversified
 - ticker: QQQY-U.TO
   name: Evolve NASDAQ Technology Enhanced Yield Index Fund USD Unhedged
   listing: USD
@@ -1936,6 +2241,8 @@ funds:
   - QQQY
   pair: QQQY.TO
   mentions_in_ranking_videos: 0
+  group: sector
+  subsector: Tech
 - ticker: SMAX-U.TO
   name: Hamilton US Equity YIELD MAXIMIZER ETF USD
   listing: USD
@@ -1946,6 +2253,7 @@ funds:
   - SMAX
   pair: SMAX.TO
   mentions_in_ranking_videos: 0
+  group: diversified
 - ticker: SPLT-U.TO
   name: Brompton Split Corp. Preferred Share ETF USD
   listing: USD
@@ -1955,6 +2263,8 @@ funds:
   - SPLT
   pair: SPLT.TO
   mentions_in_ranking_videos: 0
+  group: other
+  subsector: Preferred shares
 - ticker: TLF-U.TO
   name: Brompton Tech Leaders Income ETF
   listing: USD
@@ -1965,6 +2275,8 @@ funds:
   - TLF
   pair: TLF.TO
   mentions_in_ranking_videos: 0
+  group: sector
+  subsector: Tech
 - ticker: TSPY
   name: TappAlpha SPY Growth & Daily Income ETF
   listing: USD
@@ -1975,6 +2287,7 @@ funds:
   - T-SPY
   - TSPY
   mentions_in_ranking_videos: 0
+  group: diversified
 - ticker: TXF-U.TO
   name: CI Tech Giants Covered Call ETF Common Units (USD Hedged)
   listing: USD
@@ -1985,6 +2298,8 @@ funds:
   - TXF
   pair: TXF.TO
   mentions_in_ranking_videos: 0
+  group: sector
+  subsector: Tech
 - ticker: USCC-U.TO
   name: Global X S&P 500 Covered Call ETF
   listing: USD
@@ -1995,6 +2310,7 @@ funds:
   - USCC
   pair: USCC.TO
   mentions_in_ranking_videos: 0
+  group: diversified
 - ticker: ZWB-U.TO
   name: BMO Covered Call Canadian Banks ETF (USD Units)
   listing: USD
@@ -2005,6 +2321,8 @@ funds:
   - ZWB
   pair: ZWB.TO
   mentions_in_ranking_videos: 0
+  group: sector
+  subsector: Financials
 - ticker: ZWH-U.TO
   name: BMO US High Dividend Covered Call ETF USD
   listing: USD
@@ -2015,6 +2333,7 @@ funds:
   - ZWH
   pair: ZWH.TO
   mentions_in_ranking_videos: 0
+  group: diversified
 - ticker: QQC.TO
   name: CI Invesco NASDAQ 100 Index ETF CAD Units
   listing: CAD
@@ -2024,6 +2343,7 @@ funds:
   - QQC
   - QQQC
   mentions_in_ranking_videos: 67
+  group: diversified
 - ticker: VFV.TO
   name: Vanguard S&P 500 Index ETF
   listing: CAD
@@ -2032,6 +2352,7 @@ funds:
   aliases:
   - VFV
   mentions_in_ranking_videos: 62
+  group: diversified
 - ticker: VSP.TO
   name: Vanguard S&P 500 Index ETF (CAD-hedged)
   listing: CAD
@@ -2041,6 +2362,7 @@ funds:
   - VSP
   - VSSP
   mentions_in_ranking_videos: 55
+  group: diversified
 - ticker: QQQ
   name: Invesco QQQ Trust
   listing: USD
@@ -2049,6 +2371,7 @@ funds:
   aliases:
   - QQQ
   mentions_in_ranking_videos: 43
+  group: diversified
 - ticker: XEQT.TO
   name: iShares Core Equity ETF Portfolio
   listing: CAD
@@ -2057,6 +2380,7 @@ funds:
   aliases:
   - XEQT
   mentions_in_ranking_videos: 34
+  group: diversified
 - ticker: QQQM
   name: Invesco NASDAQ 100 ETF
   listing: USD
@@ -2065,6 +2389,7 @@ funds:
   aliases:
   - QQQM
   mentions_in_ranking_videos: 33
+  group: diversified
 - ticker: VOO
   name: Vanguard S&P 500 ETF
   listing: USD
@@ -2073,6 +2398,7 @@ funds:
   aliases:
   - VOO
   mentions_in_ranking_videos: 33
+  group: diversified
 - ticker: SPY
   name: State Street SPDR S&P 500 ETF Trust
   listing: USD
@@ -2081,6 +2407,7 @@ funds:
   aliases:
   - SPY
   mentions_in_ranking_videos: 31
+  group: diversified
 - ticker: IBIT
   name: iShares Bitcoin Trust ETF
   listing: USD
@@ -2089,6 +2416,8 @@ funds:
   aliases:
   - IBIT
   mentions_in_ranking_videos: 29
+  group: crypto
+  subsector: Bitcoin
 - ticker: VDY.TO
   name: Vanguard FTSE Canadian High Dividend Yield Index ETF
   listing: CAD
@@ -2097,6 +2426,7 @@ funds:
   aliases:
   - VDY
   mentions_in_ranking_videos: 20
+  group: diversified
 - ticker: USSL.TO
   name: Global X Enhanced S&P 500 Index ETF
   listing: CAD
@@ -2105,6 +2435,7 @@ funds:
   aliases:
   - USSL
   mentions_in_ranking_videos: 15
+  group: diversified
 - ticker: ZEB.TO
   name: BMO Equal Weight Banks Index ETF
   listing: CAD
@@ -2113,6 +2444,8 @@ funds:
   aliases:
   - ZEB
   mentions_in_ranking_videos: 15
+  group: sector
+  subsector: Financials
 - ticker: BTC
   name: Grayscale Bitcoin Mini Trust ETF
   listing: USD
@@ -2121,6 +2454,8 @@ funds:
   aliases:
   - BTC
   mentions_in_ranking_videos: 12
+  group: crypto
+  subsector: Bitcoin
 - ticker: GLD
   name: SPDR Gold Shares
   listing: USD
@@ -2129,6 +2464,8 @@ funds:
   aliases:
   - GLD
   mentions_in_ranking_videos: 12
+  group: commodities
+  subsector: Gold
 - ticker: XIU.TO
   name: iShares S&P/TSX 60 Index ETF
   listing: CAD
@@ -2137,6 +2474,7 @@ funds:
   aliases:
   - XIU
   mentions_in_ranking_videos: 12
+  group: diversified
 - ticker: VO
   name: Vanguard Morningstar Mid-Cap ETF
   listing: USD
@@ -2145,6 +2483,7 @@ funds:
   aliases:
   - VO
   mentions_in_ranking_videos: 10
+  group: diversified
 - ticker: XLK
   name: State Street Technology Select Sector SPDR ETF
   listing: USD
@@ -2153,6 +2492,8 @@ funds:
   aliases:
   - XLK
   mentions_in_ranking_videos: 10
+  group: sector
+  subsector: Tech
 - ticker: HEQT.TO
   name: Global X All-Equity Asset Allocation ETF
   listing: CAD
@@ -2161,6 +2502,7 @@ funds:
   aliases:
   - HEQT
   mentions_in_ranking_videos: 9
+  group: diversified
 - ticker: XFN.TO
   name: iShares S&P/TSX Capped Financials Index ETF
   listing: CAD
@@ -2169,6 +2511,8 @@ funds:
   aliases:
   - XFN
   mentions_in_ranking_videos: 9
+  group: sector
+  subsector: Financials
 - ticker: GDX
   name: VanEck Gold Miners ETF
   listing: USD
@@ -2177,6 +2521,8 @@ funds:
   aliases:
   - GDX
   mentions_in_ranking_videos: 8
+  group: commodities
+  subsector: Gold
 - ticker: ZGLD.TO
   name: BMO Gold Bullion ETF (CAD Units)
   listing: CAD
@@ -2185,6 +2531,8 @@ funds:
   aliases:
   - ZGLD
   mentions_in_ranking_videos: 8
+  group: commodities
+  subsector: Gold
 - ticker: GLDX.TO
   name: Global X Gold Producers Index ETF
   listing: CAD
@@ -2193,6 +2541,8 @@ funds:
   aliases:
   - GLDX
   mentions_in_ranking_videos: 7
+  group: commodities
+  subsector: Gold
 - ticker: QQQL.TO
   name: Global X Enhanced Nasdaq-100 Index ETF
   listing: CAD
@@ -2201,6 +2551,7 @@ funds:
   aliases:
   - QQQL
   mentions_in_ranking_videos: 7
+  group: diversified
 - ticker: VEQT.TO
   name: Vanguard All-Equity ETF Portfolio
   listing: CAD
@@ -2209,6 +2560,7 @@ funds:
   aliases:
   - VEQT
   mentions_in_ranking_videos: 7
+  group: diversified
 - ticker: ZCN.TO
   name: BMO S&P/TSX Capped Composite Index ETF
   listing: CAD
@@ -2217,6 +2569,7 @@ funds:
   aliases:
   - ZCN
   mentions_in_ranking_videos: 7
+  group: diversified
 - ticker: REIT.TO
   name: Global X Equal Weight Canadian REITs Index ETF
   listing: CAD
@@ -2225,6 +2578,8 @@ funds:
   aliases:
   - REIT
   mentions_in_ranking_videos: 6
+  group: sector
+  subsector: Real estate
 - ticker: RSP
   name: Invesco S&P 500 Equal Weight ETF
   listing: USD
@@ -2233,6 +2588,7 @@ funds:
   aliases:
   - RSP
   mentions_in_ranking_videos: 6
+  group: diversified
 - ticker: CANL.TO
   name: Global X Enhanced S&P/TSX 60 Index ETF
   listing: CAD
@@ -2241,6 +2597,7 @@ funds:
   aliases:
   - CANL
   mentions_in_ranking_videos: 5
+  group: diversified
 - ticker: SCHD
   name: Schwab U.S. Dividend Equity ETF
   listing: USD
@@ -2249,6 +2606,7 @@ funds:
   aliases:
   - SCHD
   mentions_in_ranking_videos: 5
+  group: diversified
 - ticker: VGT
   name: Vanguard Information Technology Index Fund ETF Shares
   listing: USD
@@ -2257,6 +2615,8 @@ funds:
   aliases:
   - VGT
   mentions_in_ranking_videos: 5
+  group: sector
+  subsector: Tech
 - ticker: XRE.TO
   name: iShares S&P/TSX Capped REIT Index ETF
   listing: CAD
@@ -2265,6 +2625,8 @@ funds:
   aliases:
   - XRE
   mentions_in_ranking_videos: 5
+  group: sector
+  subsector: Real estate
 - ticker: ZUT.TO
   name: BMO Equal Weight Utilities Index ETF
   listing: CAD
@@ -2273,6 +2635,8 @@ funds:
   aliases:
   - ZUT
   mentions_in_ranking_videos: 5
+  group: sector
+  subsector: Utilities
 - ticker: DAX
   name: Global X DAX Germany ETF
   listing: USD
@@ -2281,6 +2645,7 @@ funds:
   aliases:
   - DAX
   mentions_in_ranking_videos: 4
+  group: diversified
 - ticker: VTWO
   name: Vanguard Russell 2000 Index Fund ETF Shares
   listing: USD
@@ -2289,6 +2654,7 @@ funds:
   aliases:
   - VTWO
   mentions_in_ranking_videos: 4
+  group: diversified
 - ticker: CNDX.TO
   name: Global X S&P/TSX 60 Index ETF
   listing: CAD
@@ -2297,6 +2663,7 @@ funds:
   aliases:
   - CNDX
   mentions_in_ranking_videos: 3
+  group: diversified
 - ticker: NRGY.TO
   name: Global X Equal Weight Canadian Oil & Gas Index ETF
   listing: CAD
@@ -2305,6 +2672,8 @@ funds:
   aliases:
   - NRGY
   mentions_in_ranking_videos: 3
+  group: sector
+  subsector: Energy
 - ticker: VT
   name: Vanguard Total World Stock Index Fund ETF Shares
   listing: USD
@@ -2313,6 +2682,7 @@ funds:
   aliases:
   - VT
   mentions_in_ranking_videos: 3
+  group: diversified
 - ticker: ZRE.TO
   name: BMO Equal Weight REITs Index ETF
   listing: CAD
@@ -2321,6 +2691,8 @@ funds:
   aliases:
   - ZRE
   mentions_in_ranking_videos: 3
+  group: sector
+  subsector: Real estate
 - ticker: IVV
   name: iShares Core S&P 500 ETF
   listing: USD
@@ -2329,6 +2701,7 @@ funds:
   aliases:
   - IVV
   mentions_in_ranking_videos: 2
+  group: diversified
 - ticker: XEG.TO
   name: iShares S&P/TSX Capped Energy Index ETF
   listing: CAD
@@ -2337,6 +2710,8 @@ funds:
   aliases:
   - XEG
   mentions_in_ranking_videos: 2
+  group: sector
+  subsector: Energy
 - ticker: XLV
   name: State Street Health Care Select Sector SPDR ETF
   listing: USD
@@ -2345,6 +2720,8 @@ funds:
   aliases:
   - XLV
   mentions_in_ranking_videos: 2
+  group: sector
+  subsector: Healthcare
 - ticker: ZBK.TO
   name: BMO Equal Weight US Banks Index ETF
   listing: CAD
@@ -2353,6 +2730,8 @@ funds:
   aliases:
   - ZBK
   mentions_in_ranking_videos: 2
+  group: sector
+  subsector: Financials
 - ticker: ZDV.TO
   name: BMO Canadian Dividend ETF
   listing: CAD
@@ -2361,6 +2740,7 @@ funds:
   aliases:
   - ZDV
   mentions_in_ranking_videos: 2
+  group: diversified
 - ticker: ZLB.TO
   name: BMO Low Volatility Canadian Equity ETF
   listing: CAD
@@ -2369,6 +2749,7 @@ funds:
   aliases:
   - ZLB
   mentions_in_ranking_videos: 2
+  group: diversified
 excluded:
 - token: YMAG
   mentions: 34

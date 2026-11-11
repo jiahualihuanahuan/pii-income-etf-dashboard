@@ -62,7 +62,7 @@ def score_funds(rows: list[dict], weights: dict, stability_weights: dict, window
     components are percentile ranks (0-100, higher is better) of: total return over `window`,
     stability (weighted mean of 4 sub-percentiles) and TTM yield. Missing components are dropped and the
     remaining weights re-normalised (`partial_score` = True). With scope='category' percentiles are computed
-    inside each category (categories with fewer than 3 scorable funds fall back to the whole universe).
+    inside each broad group (falls back to `category` when a row has no group; groups with fewer than 3 scorable funds fall back to the whole universe).
 
     `missing_return` = what to do when a fund is too young for the chosen window: "neutral" (default) gives the
     return component a neutral 50 so a young high-yielder is not rewarded for having no track record, "renormalize"
@@ -72,7 +72,7 @@ def score_funds(rows: list[dict], weights: dict, stability_weights: dict, window
     sw = normalize(stability_weights, DEFAULT_STABILITY_WEIGHTS)
     groups: dict[str, list[int]] = defaultdict(list)
     for i, r in enumerate(rows):
-        key = r.get("category") if scope == "category" else "__all__"
+        key = (r.get("group") or r.get("category")) if scope == "category" else "__all__"
         groups[key].append(i)
     if scope == "category":
         for k in [k for k, v in groups.items() if len(v) < MIN_CATEGORY_SIZE]:

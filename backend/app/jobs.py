@@ -86,10 +86,28 @@ def build_scheduler(settings: dict):
     return sch
 
 
+def _auto_import_holdings() -> None:
+    """If the holdings tables are empty and a bundle sits in DATA_DIR (or HOLDINGS_BUNDLE), import it. Never touches the network."""
+    import os
+    from pathlib import Path
+    from . import holdings
+    from .config import paths
+    f = Path(os.environ.get("HOLDINGS_BUNDLE") or paths()["data_dir"] / "pii_holdings_bundle.json.gz")
+    try:
+        with db.session() as con:
+            if holdings.has_data(con) or not f.exists():
+                return
+        n = holdings.import_bundle(holdings.load_bundle(f))
+        log.info("imported holdings bundle %s: %s", f, n)
+    except Exception:  # a broken bundle must not stop the app
+        log.exception("holdings bundle import failed: %s", f)
+
+
 def bootstrap() -> None:
     """On first start: load seed JSON, and kick off a full history download if the DB has no prices."""
     db.init()
     seed.load()
+    _auto_import_holdings()
     with db.session() as con:
         empty = db.count_prices(con) == 0
     if empty and load_settings().get("bootstrap_on_start", True):

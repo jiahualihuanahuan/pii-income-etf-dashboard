@@ -13,7 +13,8 @@ export default function Ranking({ status }) {
   const [saved, setSaved] = useState(null)
   const [data, setData] = useState(null)
   const [cats, setCats] = useState([])
-  const [filters, setFilters] = useState({ listing: 'ALL', category: '', q: '', stanceOnly: false })
+  const [groups, setGroups] = useState([])
+  const [filters, setFilters] = useState({ listing: 'ALL', group: '', subsector: '', q: '', stanceOnly: false })
   const [show, setShow] = useState('tr')
   const [sort, setSort] = useState({ key: 'rank', dir: 1 })
   const [sel, setSel] = useState(null)
@@ -23,6 +24,7 @@ export default function Ranking({ status }) {
   useEffect(() => {
     api.settings().then((s) => { setSaved(s.settings); setCfg(s.settings) }).catch((e) => setError(String(e)))
     api.categories().then(setCats).catch(() => {})
+    api.groups().then(setGroups).catch(() => {})
   }, [])
 
   useEffect(() => {
@@ -50,7 +52,7 @@ export default function Ranking({ status }) {
       ...Object.fromEntries(WINDOWS.map((x) => [x, (r) => (show === 'tr' ? trOf(r, x) : prOf(r, x)) ?? -9])),
     }[sort.key] || ((r) => r.rank ?? 1e9)
     let out = data.rows.filter((r) =>
-      (filters.listing === 'ALL' || r.listing === filters.listing) && (!filters.category || r.category === filters.category) &&
+      (filters.listing === 'ALL' || r.listing === filters.listing) && (!filters.group || r.group === filters.group) && (!filters.subsector || r.subsector === filters.subsector) &&
       (!filters.stanceOnly || r.stance) && (!filters.q || (r.ticker + ' ' + (r.name || '')).toLowerCase().includes(filters.q.toLowerCase())))
     out = [...out].sort((a, b) => { const x = val(a), y = val(b); return (x < y ? -1 : x > y ? 1 : 0) * sort.dir })
     return out
@@ -63,6 +65,8 @@ export default function Ranking({ status }) {
 
   if (!cfg) return <div className="panel">{error ? `Error: ${error}` : 'Loading…'}</div>
   const catLabel = Object.fromEntries(cats.map((c) => [c.key, c.label]))
+  const groupLabel = Object.fromEntries(groups.map((g) => [g.key, g.label]))
+  const curGroup = groups.find((g) => g.key === filters.group)
   const relWindow = cfg.window === 'inception' ? '3y' : cfg.window
 
   return (
@@ -78,7 +82,7 @@ export default function Ranking({ status }) {
           <div><label>Total-return window</label>
             <select value={cfg.window} onChange={(e) => setCfg({ ...cfg, window: e.target.value })}>{WINDOWS.map((w) => <option key={w} value={w}>{WLABEL[w]}</option>)}</select></div>
           <div><label>Rank against</label>
-            <select value={cfg.scope} onChange={(e) => setCfg({ ...cfg, scope: e.target.value })}><option value="all">All funds</option><option value="category">Own category</option></select></div>
+            <select value={cfg.scope} onChange={(e) => setCfg({ ...cfg, scope: e.target.value })}><option value="all">All funds</option><option value="category">Own group</option></select></div>
           <div><label>Recency half-life (days)</label>
             <input type="number" min="7" max="3650" value={cfg.half_life_days} onChange={(e) => setCfg({ ...cfg, half_life_days: +e.target.value || 180 })} /></div>
           <div style={{ display: 'flex', gap: 8 }}>
@@ -94,7 +98,8 @@ export default function Ranking({ status }) {
       <div className="panel">
         <div className="controls" style={{ marginBottom: 10 }}>
           <div><label>Listing</label><select value={filters.listing} onChange={(e) => setFilters({ ...filters, listing: e.target.value })}><option value="ALL">CAD + USD</option><option value="CAD">CAD</option><option value="USD">USD</option></select></div>
-          <div><label>Category</label><select value={filters.category} onChange={(e) => setFilters({ ...filters, category: e.target.value })}><option value="">All categories</option>{cats.filter((c) => c.count).map((c) => <option key={c.key} value={c.key}>{c.label} ({c.count})</option>)}</select></div>
+          <div><label>Group</label><select value={filters.group} onChange={(e) => setFilters({ ...filters, group: e.target.value, subsector: '' })}><option value="">All groups</option>{groups.filter((g) => g.count).map((g) => <option key={g.key} value={g.key}>{g.label} ({g.count})</option>)}</select></div>
+          {curGroup && Object.keys(curGroup.subsectors).length > 0 && <div><label>Subsector</label><select value={filters.subsector} onChange={(e) => setFilters({ ...filters, subsector: e.target.value })}><option value="">All {curGroup.label.toLowerCase()}</option>{Object.entries(curGroup.subsectors).sort().map(([k, n]) => <option key={k} value={k}>{k} ({n})</option>)}</select></div>}
           <div><label>Returns shown</label><select value={show} onChange={(e) => setShow(e.target.value)}><option value="tr">Total return (distributions reinvested)</option><option value="pr">Price return only</option></select></div>
           <div><label>Search</label><input type="text" value={filters.q} onChange={(e) => setFilters({ ...filters, q: e.target.value })} placeholder="ticker or name" /></div>
           <div><label><input type="checkbox" checked={filters.stanceOnly} onChange={(e) => setFilters({ ...filters, stanceOnly: e.target.checked })} /> Only funds with a stated opinion</label></div>
@@ -105,7 +110,7 @@ export default function Ranking({ status }) {
         <div className="tablewrap">
           <table>
             <thead><tr>
-              {head('rank', '#')}{head('ticker', 'Fund', true)}<th className="l">Category</th>{head('score', 'Score')}
+              {head('rank', '#')}{head('ticker', 'Fund', true)}<th className="l">Group</th>{head('score', 'Score')}
               {WINDOWS.map((w) => head(w, WLABEL[w]))}{head('yield', 'TTM yield')}<th>Distributions</th>{head('rel', 'vs bench')}{head('stance', 'His stance', true)}
             </tr></thead>
             <tbody>
@@ -115,7 +120,7 @@ export default function Ranking({ status }) {
                   <tr key={r.ticker} className={`row ${sel === r.ticker ? 'sel' : ''}`} onClick={() => setSel(sel === r.ticker ? null : r.ticker)}>
                     <td>{r.rank ?? '–'}</td>
                     <td className="l name"><b>{r.ticker}</b> <span className="cur">{r.listing}</span> <span className="muted small">{r.name}</span></td>
-                    <td className="l small muted">{catLabel[r.category] || r.category}</td>
+                    <td className="l small" title={`Detailed category: ${catLabel[r.category] || r.category}`}>{groupLabel[r.group] || r.group}{r.subsector ? <span className="muted"> · {r.subsector}</span> : null}<div className="muted" style={{ fontSize: 11 }}>{catLabel[r.category] || r.category}</div></td>
                     <td title={r.components ? `Return ${r.components.total_return ?? '–'} · Stability ${r.components.stability ?? '–'} · Yield ${r.components.yield ?? '–'}${r.partial_score ? ' (partial: a component is missing, weights re-normalised)' : ''}` : ''}>
                       {r.stale ? <span className="muted small" title="Last price is much older than the rest: halted or delisted, left unranked">stale</span> : r.no_data ? <span className="muted small">no data</span> : r.score === null || r.score === undefined ? <span className="muted small" title="Too little history for this window (policy: exclude)">n/a</span> : <>{num(r.score, 0)}{r.partial_score ? '*' : ''}<span className="scorebar"><i style={{ width: `${r.score}%` }} /></span></>}
                     </td>
@@ -134,7 +139,7 @@ export default function Ranking({ status }) {
         </div>
         <p className="muted small">* = partial: yield annualised from &lt;1 year of history, or a score component missing because the fund is too new for the chosen window.</p>
       </div>
-      {sel && <FundDetail ticker={sel} onClose={() => setSel(null)} catLabel={catLabel} />}
+      {sel && <FundDetail ticker={sel} onClose={() => setSel(null)} catLabel={catLabel} groupLabel={groupLabel} />}
     </>
   )
 }

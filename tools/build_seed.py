@@ -20,6 +20,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "backend"))
+from app import groups  # noqa: E402
 from app.mentions import find_mentions, fmt_t, parse, secs_at, sentences  # noqa: E402
 
 STOP = set("ETF US NASDAQ TSX TFSA AUM NAV CEO RRSP EAFE CIBC MSFT JP DIY SPX VIX FY EIT GIF CBN CLO CIO TC SL OG MSI IQQ ENS NK QQ HB AF PIK LRA SNP MAG IH HEE ZW".split())
@@ -317,6 +318,10 @@ def main():
         if ss:
             u["his_latest_stance"] = sorted(ss, key=lambda s: s["date"], reverse=True)[0]
     used_cats = sorted({f["category"] for f in funds})
+    for f in funds:  # broad group / subsector (backend/app/groups.py); the detailed category stays as the secondary field
+        f["group"], sub = groups.classify(f)
+        if sub:
+            f["subsector"] = sub
     doc = {
         "version": 1,
         "generated": datetime.now().strftime("%Y-%m-%d"),
@@ -324,6 +329,8 @@ def main():
                   "(fetched, shown, never ranked). A benchmark must have the same listing currency as the fund. stances: his dated opinions, "
                   "newest wins. Re-generate with tools/build_seed.py or edit by hand."),
         "categories": {k: {"label": CATEGORIES[k][0], "description": CATEGORIES[k][1]} for k in used_cats},
+        "groups": {k: dict(v) for k, v in groups.GROUPS.items()},
+        "category_groups": {k: groups.CATEGORY_GROUP[k] for k in used_cats},
         "funds": funds,
         "excluded": excluded,
         "unresolved": unresolved,

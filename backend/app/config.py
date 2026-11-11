@@ -122,7 +122,8 @@ def load_universe() -> dict:
         f.setdefault("aliases", [])
         f.setdefault("stances", [])
         f["stances"] = [{**s, "date": str(s["date"])} for s in f["stances"]]
-    return y
+    from . import groups
+    return groups.apply(y)
 
 
 def load_seed(name: str):

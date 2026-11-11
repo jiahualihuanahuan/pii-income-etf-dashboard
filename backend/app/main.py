@@ -8,7 +8,7 @@ from typing import Optional
 from fastapi import BackgroundTasks, FastAPI, HTTPException, Query
 from pydantic import BaseModel, Field
 
-from . import db, jobs, service
+from . import db, groups, holdings, jobs, service
 from .config import (UI_EDITABLE, load_seed, load_settings, load_universe, reset_override, save_override,
                      validate_settings)
 from .scoring import DEFAULT_STABILITY_WEIGHTS, DEFAULT_WEIGHTS, TR_WINDOWS
@@ -91,7 +91,8 @@ def delete_settings():
 @app.get("/api/funds")
 def funds(window: Optional[str] = None, scope: Optional[str] = None, half_life_days: Optional[float] = Query(None, gt=0),
           w_total_return: Optional[float] = Query(None, ge=0), w_stability: Optional[float] = Query(None, ge=0),
-          w_yield: Optional[float] = Query(None, ge=0), category: Optional[str] = None, listing: Optional[str] = None,
+          w_yield: Optional[float] = Query(None, ge=0), category: Optional[str] = None, group: Optional[str] = None, subsector: Optional[str] = None,
+          listing: Optional[str] = None,
           benchmarks: bool = False):
     """Ranked funds. Query params override saved settings for this request only (the UI sliders use them)."""
     s = load_settings()
@@ -112,6 +113,10 @@ def funds(window: Optional[str] = None, scope: Optional[str] = None, half_life_d
     rows = payload["rows"]
     if category:
         rows = [r for r in rows if r["category"] == category]
+    if group:
+        rows = [r for r in rows if r["group"] == group]
+    if subsector:
+        rows = [r for r in rows if (r["subsector"] or "").lower() == subsector.lower()]
     if listing:
         rows = [r for r in rows if (r["listing"] or "").upper() == listing.upper()]
     payload["rows"] = sorted(rows, key=lambda r: (r["rank"] is None, r["rank"] or 0, r["ticker"]))
@@ -146,7 +151,24 @@ def categories():
     for f in uni["funds"]:
         if f.get("role", "fund") == "fund":
             counts[f.get("category")] = counts.get(f.get("category"), 0) + 1
-    return [{"key": k, **v, "count": counts.get(k, 0)} for k, v in uni["categories"].items()]
+    return [{"key": k, **v, "group": uni.get("category_groups", {}).get(k) or groups.CATEGORY_GROUP.get(k), "count": counts.get(k, 0)}
+            for k, v in uni["categories"].items()]
+
+
+@app.get("/api/groups")
+def groups_list():
+    """Broad groups (what the UI filters on) with fund counts and their subsectors; `categories` = old detailed categories inside each."""
+    uni = load_universe()
+    out = {k: {"key": k, **v, "count": 0, "subsectors": {}, "categories": {}} for k, v in uni["groups"].items()}
+    for f in uni["funds"]:
+        if f.get("role", "fund") != "fund":
+            continue
+        g = out.setdefault(f["group"], {"key": f["group"], "label": f["group"], "count": 0, "subsectors": {}, "categories": {}})
+        g["count"] += 1
+        if f.get("subsector"):
+            g["subsectors"][f["subsector"]] = g["subsectors"].get(f["subsector"], 0) + 1
+        g["categories"][f.get("category")] = g["categories"].get(f.get("category"), 0) + 1
+    return list(out.values())
 
 
 @app.get("/api/stances")
@@ -157,7 +179,8 @@ def stances(half_life_days: Optional[float] = Query(None, gt=0)):
     for f in load_universe()["funds"]:
         st = service._stance_payload(f, hl)
         if st:
-            out.append({"ticker": f["ticker"], "name": f.get("name"), "category": f.get("category"), "stance": st})
+            out.append({"ticker": f["ticker"], "name": f.get("name"), "category": f.get("category"), "group": f.get("group"),
+                        "subsector": f.get("subsector"), "stance": st})
     out.sort(key=lambda x: x["stance"]["date"], reverse=True)
     return out
 
@@ -170,6 +193,26 @@ def videos(half_life_days: Optional[float] = Query(None, gt=0), views_transform:
 @app.get("/api/mindset")
 def mindset():
     return load_seed("mindset.json") or {}
+
+
+@app.get("/api/etfs/{ticker}/holdings")
+def etf_holdings(ticker: str, lookthrough: bool = True, q: str = "", limit: int = Query(0, ge=0, le=5000), offset: int = Query(0, ge=0)):
+    """Holdings of a dashboard ETF. lookthrough=true expands funds-of-funds recursively down to individual securities
+    (weights multiplied through, % of this ETF's NAV); lookthrough=false returns the direct holdings as published."""
+    f = next((x for x in load_universe()["funds"] if x["ticker"].upper() == ticker.upper()), None)
+    if f is None:
+        raise HTTPException(404, "unknown ticker")
+    with db.session() as con:
+        return holdings.etf_payload(con, f["ticker"], f.get("name") or "", lookthrough, q, limit, offset)
+
+
+@app.get("/api/holdings/coverage")
+def holdings_coverage():
+    """Which dashboard ETFs have holdings, which look through completely, which are missing."""
+    with db.session() as con:
+        c = holdings.coverage(con, load_universe()["funds"])
+        meta = {r["k"]: r["v"] for r in con.execute("SELECT k, v FROM etf_meta")}
+    return {**c, "meta": meta}
 
 
 @app.post("/api/jobs/{name}/run")
