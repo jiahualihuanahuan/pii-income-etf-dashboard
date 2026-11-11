@@ -225,6 +225,10 @@ def _flags(con, key: str, lt: dict, dash_name: str = "") -> list[dict]:
         add("warn", "opaque_fund", f"{b['opaque_fund']:.1f}% sits in funds we have no holdings for, so it is not looked through: {'; '.join(names)}.")
     if b.get("derivative", 0) or any(abs(r["weight"]) > 0 for r in lt["rows"] if r["kind"] == "derivative"):
         add("info", "derivatives", f"Derivative rows (options/swaps/futures) are listed separately: net {b.get('derivative', 0):.2f}% of NAV.")
+        long_deriv = sum(r["weight"] for r in lt["rows"] if r["kind"] == "derivative" and r["weight"] > 0)
+        if long_deriv >= 50.0 and b.get("security", 0) < 50.0:
+            add("warn", "synthetic_exposure", f"{long_deriv:.0f}% of NAV is held as long options/swaps (synthetic exposure to an index or stock). The filing does not itemise the "
+                "stocks behind them, so the stock list is short by design: the holdings are complete as filed, but there is no stock-level look-through for that part.")
     elif OPT_RX.search((dash_name or "") + " " + (f["name"] or "")) and not b.get("derivative"):
         add("info", "options_not_shown", "Option overlay: written calls/puts are generally not in the issuer holdings file, so their exposure is not shown.")
     if b.get("cash", 0) < -0.5:

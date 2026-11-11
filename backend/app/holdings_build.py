@@ -380,22 +380,27 @@ def _pseudo_row(m: str, key: str, h: dict) -> list[str]:
             h.get("country") or "", h.get("asset_class") or "", h.get("currency") or "", "", "", ""]
 
 
-def supp_subs(idx: XrayIndex, key: str, entry: dict) -> dict[int, str]:
-    """position -> sub-fund key for the fund rows of a supplement."""
+def supp_subs(idx: XrayIndex, key: str, entry: dict, known: Iterable[str] = ()) -> dict[int, str]:
+    """position -> sub-fund key for the fund rows of a supplement. A filing's own ticker for a fund row (N-PORT identifiers) maps to an xray fund or
+    another supplement fund with exactly that ticker (``known``); nothing is matched by name beyond what resolve_fund does."""
     m = key.split(":")[0]
+    known = set(known)
     out = {}
     for i, h in enumerate(entry["holdings"]):
         if h.get("kind") == "fund":
             sub = idx.resolve_fund(_pseudo_row(m, key, h), m, key)
+            t = (h.get("ticker") or "").upper()
+            if not sub and t:
+                sub = idx.key_for(m, t) or next((c for c in (m + ":" + t, ("US" if m == "CA" else "CA") + ":" + t) if c in known), None)
             if sub and sub != key:
                 out[i] = sub
     return out
 
 
-def build_supp_fund(idx: XrayIndex, key: str, entry: dict) -> dict:
+def build_supp_fund(idx: XrayIndex, key: str, entry: dict, known: Iterable[str] = ()) -> dict:
     """A bundle fund from a supplement entry (weights are % of NAV and kept as reported; the entry says whether it is actual or a proxy)."""
     m = key.split(":")[0]
-    subs = supp_subs(idx, key, entry)
+    subs = supp_subs(idx, key, entry, known)
     items = []
     for i, h in enumerate(entry["holdings"]):
         it = {"name": h["name"], "ticker": h.get("ticker") or "", "isin": h.get("isin") or "", "cusip": h.get("cusip") or "", "w": float(h["w"]),
@@ -470,7 +475,7 @@ def build_bundle(xray_dir: Path, tickers_yaml: Path, log=print, supplements_dir:
                 if sub and sub in idx.funds and sub not in have and sub not in wanted:
                     new.add(sub)
         for k in wanted & set(supp):
-            for sub in supp_subs(idx, k, supp[k]).values():
+            for sub in supp_subs(idx, k, supp[k], supp).values():
                 if (sub in idx.funds or sub in supp) and sub not in have and sub not in wanted:
                     new.add(sub)
         log(f"pass {it}: {len(rows)} funds read, {len(new)} new sub-funds")
@@ -479,7 +484,7 @@ def build_bundle(xray_dir: Path, tickers_yaml: Path, log=print, supplements_dir:
         wanted |= new
     funds = {}
     for k, rs in have.items():
-        f = build_supp_fund(idx, k, supp[k]) if k in supp else build_fund(idx, k, rs)
+        f = build_supp_fund(idx, k, supp[k], supp) if k in supp else build_fund(idx, k, rs)
         f["name"] = (idx.univ.get((k.split(":")[0], k.split(":", 1)[1].upper())) or {}).get("name") or (supp.get(k) or {}).get("name") or ""
         funds[k] = f
     for f in funds.values():  # sub-funds we hold no rows for: physical bullion/crypto trusts are terminal, anything else stays opaque
